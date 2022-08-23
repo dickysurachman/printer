@@ -24,6 +24,16 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <style>
+            body {
+                    font-size: 11px !important;
+            }
+            .treeview-menu>li>a {
+                    font-size: 11px !important;
+            
+            
+            }
+        </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <?php $this->beginBody() ?>
