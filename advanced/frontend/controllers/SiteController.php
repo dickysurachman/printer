@@ -15,7 +15,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+use app\models\Item;
 /**
  * Site controller
  */
@@ -68,6 +68,21 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionInfo(){
+        $res=Item::find()->where(['status'=>0])->limit(5)->all();
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    return [
+        'message' => $res,
+        'code' => 100,
+    ];
+    }
+
+    public function actionHitung($id){
+        $ja=Item::findOne($id);
+        $ja->hitung = $ja->hitung+1;
+        if($ja->hitung>=$ja->ulang) $ja->status=1;
+        $ja->save();
+    }
     /**
      * Displays homepage.
      *
@@ -85,6 +100,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout="main-login";
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
