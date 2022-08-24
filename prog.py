@@ -1,3 +1,6 @@
+
+#! C:/python/python.exe
+
 import json
 import socket
 from urllib import request
@@ -5,6 +8,7 @@ from time import time, sleep
 file1 = open('setting.txt', 'r')
 Lines = file1.readlines()
 
+print("Content-Type: text/html\n")
 def validateJSON(jsonData):
     try:
         json.loads(jsonData)
