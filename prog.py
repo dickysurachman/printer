@@ -52,9 +52,9 @@ while True:
             #koneksi ke alat printer
 
             s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-            s.connect((TCP_IP,TCP_PORT))
+            s.connect((str(TCP_IP),int(TCP_PORT)))
             s.send(bytes.fromhex(MESSAGE))
-            data=s.recv(BUFFER_SIZE)
+            data=s.recv(int(BUFFER_SIZE))
             s.close()
             print("receiveddata:")
             print(data)

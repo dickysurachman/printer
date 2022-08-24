@@ -213,8 +213,8 @@ class ItemController extends Controller
                     $limaj=" ".$limaj .$x." ";
                 }
 
-                $jum2=dechex($angka1-1);
-                $jum1=dechex($angka2-1);
+                $jum2=dechex($angka1);
+                $jum1=dechex($angka2);
                 $jadi1="00 00 00 00 00";
                 $jadi1a="00 64 00";
                 $jadi2="00 cf 00 00 00 00";
@@ -401,8 +401,8 @@ class ItemController extends Controller
                     $limaj=" ".$limaj .$x." ";
                 }
 
-                $jum2=dechex($angka1-1);
-                $jum1=dechex($angka2-1);
+                $jum2=dechex($angka1);
+                $jum1=dechex($angka2);
                 $jadi1="00 00 00 00 00";
                 $jadi1a="00 64 00";
                 $jadi2="00 cf 00 00 00 00";
