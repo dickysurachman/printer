@@ -8,3 +8,6 @@ alter TABLE `item` add ulang int(11) NOT NULL DEFAULT '0';
 
 alter TABLE `item` add `var_4` varchar(100) NULL;
 alter TABLE `item` add `var_5` varchar(100) NULL;
+
+
+ALTER TABLE `item` CHANGE `biner` `biner` VARCHAR(500) 

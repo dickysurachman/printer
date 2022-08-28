@@ -63,7 +63,7 @@ class ItemController extends Controller
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                             Html::a(Yii::t('yii2-ajaxcrud', 'Update'), ['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];    
         }else{
@@ -337,7 +337,7 @@ class ItemController extends Controller
                 if($lsatu<10){
                     $satuj="0".$lsatu;
                 } else {
-                    $satuj=$lsatu;
+                    $satuj="0".dechex($lsatu);
                 }
                 $x="";
                 $y=str_split($dsatu,2);
@@ -357,7 +357,7 @@ class ItemController extends Controller
                 if($ldua<10){
                     $duaj="0".$ldua;
                 } else {
-                    $duaj=$ldua;
+                    $duaj="0".dechex($ldua);
                 }
                 $x="";
                 $y=str_split($ddua,2);
@@ -377,7 +377,7 @@ class ItemController extends Controller
                     if($ltiga<10){
                         $tigaj="0".$ltiga;
                     } else {
-                        $tigaj=$ltiga;
+                        $tigaj="0".dechex($ltiga);
                     }
                     $x="";
                     $y=str_split($dtiga,2);
@@ -397,7 +397,7 @@ class ItemController extends Controller
                     if($lempat<10){
                         $empatj="0".$lempat;
                     } else {
-                        $empatj=$lempat;
+                        $empatj="0".dechex($lempat);
                     }
                     $x="";
                     $y=str_split($dempat,2);
@@ -417,7 +417,7 @@ class ItemController extends Controller
                     if($llima<10){
                         $limaj="0".$llima;
                     } else {
-                        $limaj=$llima;
+                        $limaj="0".dechex($llima);
                     }
                     $x="";
                     $y=str_split($dlima,2);
@@ -427,19 +427,42 @@ class ItemController extends Controller
                     $limaj=" ".$limaj .$x." ";
                 }
 
-                $jum2=dechex($angka1);
-                $jum1=dechex($angka2);
+                $jum2=dechex($angka1+1);
+                $jum1=dechex($angka2+1);
                 $jadi1="00 00 00 00 00";
                 $jadi1a="00 64 00";
                 $jadi2="00 cf 00 00 00 00";
                 $jadi3="";
-                for($i=0;$i<=17;$i++){
+                $bil=18;
+                if(is_null($model->var_2)==false and trim($model->var_2)<>"")
+                {
+                    $jum2=dechex($angka1);
+                    $jum1=dechex($angka2);
+                    $bil=17;
+                }
+                if(is_null($model->var_3)==false and trim($model->var_3)<>"")
+                {
+                    $jum2=dechex($angka1-1);
+                    $jum1=dechex($angka2-1);
+                    $bil=16;
+                }
+                if(is_null($model->var_4)==false and trim($model->var_4)<>"")
+                {
+                    $jum2=dechex($angka1-1);
+                    $jum1=dechex($angka2-1);
+                    $bil=15;
+                }
+                if(is_null($model->var_5)==false and trim($model->var_5)<>"")
+                {
+                    $jum2=dechex($angka1-1);
+                    $jum1=dechex($angka2-1);
+                    $bil=14;
+                }
+
+                for($i=0;$i<=$bil;$i++){
                     $jadi3=$jadi3."00 ";
                 }
                 $jadi3=" ".$jadi3;
-                //$jadi3="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
-                //$jadi3="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
-                //$jadi=$jadi1." ".$jum1." ".$jadi1a." ".$jum2." ".$jadi2." ".$satuj.$duaj.$tigaj.$empatj.$limaj.$jadi3;
                 $jadi=$jadi1." ".$jum1." ".$jadi1a." ".$jum2." ".$jadi2." ".$satuj.$duaj.$tigaj.$empatj.$limaj.$jadi3;
                 $model->biner=$jadi;
                 $model->save();

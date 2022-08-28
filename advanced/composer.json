@@ -31,7 +31,8 @@
         "kartik-v/yii2-icons": "@dev",
         "kartik-v/yii2-export": "dev-master",
         "kartik-v/yii2-widget-depdrop": "dev-master",
-        "yiisoft/yii2-bootstrap5": "^2.0"
+        "yiisoft/yii2-bootstrap5": "^2.0",
+        "2amigos/qrcode-library": "~1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

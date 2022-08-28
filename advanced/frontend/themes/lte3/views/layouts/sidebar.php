@@ -1,3 +1,8 @@
+<?php 
+use hscstudio\mimin\components\Mimin;
+
+
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -33,18 +38,18 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
-            echo \hail812\adminlte\widgets\Menu::widget([
+            echo \hail812\adminlte\widgets\Menu::widget(
+                [
                 'items' => [
-                    [
-                        'label' => 'Starter Pages',
-                        'icon' => 'tachometer-alt',
-                        'badge' => '<span class="right badge badge-info">2</span>',
-                        'items' => [
-                            ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                            ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                        ]
-                    ],
-                    ['label' => 'Item Barcode', 'url'=>['item/index'],'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
+                     ['label' => \Yii::t('yii', 'Users'), 'url' => ['/userk/index'], 'icon' => 'fas fa-portrait','visible'=>Mimin::checkRoute('userk/create')],
+                     ['label' => \Yii::t('yii', 'Role'), 'url' => ['/mimin/role/index'], 'icon' => 'fas fa-bug','visible'=>Mimin::checkRoute('mimin/role')],
+                    ['label' => \Yii::t('yii', 'Routes'), 'url' => ['/mimin/route/index'], 'icon' => 'fas fa-angle-double-right','visible'=>Mimin::checkRoute('mimin/route')],
+                    //['label' => 'Item Barcode', 'url'=>['item/index'],'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>','visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Item Barcode', 'url'=>['item/index'],'icon' => 'th', 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => \Yii::t('yii', 'Login'), 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
+                    ['label' =>  \Yii::t('yii', 'Logout'),'url' => ['site/logout'],'template'=>'<a class="nav-link" href="{url}" data-method="post"><i class="nav-icon fas fa-sign-in-alt"></i>{label}</a>','icon' => 'sign-in-alt', 'visible' => !Yii::$app->user->isGuest]
+
+                    /*
                     ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
                     ['label' => 'Yii2 PROVIDED', 'header' => true],
                     ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
@@ -73,7 +78,8 @@
                     ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
                     ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
                     ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
-                ],
+                    */
+                ]
             ]);
             ?>
         </nav>

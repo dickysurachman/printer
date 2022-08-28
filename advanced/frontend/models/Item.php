@@ -33,10 +33,11 @@ class Item extends \yii\db\ActiveRecord
         return [
             [['tanggal'], 'safe'],
             [['ulang'], 'required'],
-            [['status','ulang'], 'integer'],
-            [['var_2'], 'string', 'max' => 200],
+            [['status','ulang','hitung'], 'integer'],
+            //[['var_2'], 'string', 'max' => 200],
             //[['var_1'], 'string', 'max' => 200],
-            [['var_1'], 'string','min' => 14, 'max' => 14],
+            [['var_1','var_2'], 'string','min' => 14, 'max' => 14],
+            [['var_4'], 'string','min' => 6, 'max' => 6],
             [['biner'], 'string', 'max' => 500],
             [['var_3','var_4','var_5'], 'string', 'max' => 100],
         ];
@@ -49,14 +50,15 @@ class Item extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'tanggal' => Yii::t('yii', 'Tanggal'),
-            'var_1' => Yii::t('yii', 'Variable 1'),
-            'var_2' => Yii::t('yii', 'Variable 2'),
-            'var_4' => Yii::t('yii', 'Variable 4'),
-            'var_5' => Yii::t('yii', 'Variable 5'),
+            'tanggal' => Yii::t('yii', 'Date Time'),
+            'var_1' => Yii::t('yii', 'NIE'),
+            'var_2' => Yii::t('yii', 'GTIN'),
+            'var_4' => Yii::t('yii', 'EXP DATE'),
+            'var_5' => Yii::t('yii', 'S / N'),
             'biner' => Yii::t('yii', 'Hexa'),
             'ulang' => Yii::t('yii', 'Loop'),
-            'var_3' => Yii::t('yii', 'Variabel 3'),
+            'var_3' => Yii::t('yii', 'LOT NO'),
+            'hitung' => Yii::t('yii', 'Success Count'),
             'status' => Yii::t('yii', 'Status'),
         ];
     }
