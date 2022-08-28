@@ -34,7 +34,9 @@ class Item extends \yii\db\ActiveRecord
             [['tanggal'], 'safe'],
             [['ulang'], 'required'],
             [['status','ulang'], 'integer'],
-            [['var_1', 'var_2'], 'string', 'max' => 200],
+            [['var_2'], 'string', 'max' => 200],
+            //[['var_1'], 'string', 'max' => 200],
+            [['var_1'], 'string','min' => 14, 'max' => 14],
             [['biner'], 'string', 'max' => 500],
             [['var_3','var_4','var_5'], 'string', 'max' => 100],
         ];
