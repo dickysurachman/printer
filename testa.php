@@ -18,7 +18,6 @@ $(document).ready(function() {
 	  $.ajax({
 		type: 'POST',
 		url: 'ipc.py',
-	
 		success: function(data) {
 		  $("#servertime").html(data); 
 		  
