@@ -4,7 +4,7 @@ import json
 from urllib import request
 
 # tentukan url endpoint
-url = "http://localhost/printer/site/info.html"
+url = "http://localhost/printer/printer/site/info.html"
 
 # lakukan http request ke server
 response = request.urlopen(url)

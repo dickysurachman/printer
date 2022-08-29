@@ -1,0 +1,7 @@
+# ignore generated files
+/assets/
+/css/
+/images/
+/js/
+index.php
+setting.txt
