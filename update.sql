@@ -11,3 +11,5 @@ alter TABLE `item` add `var_5` varchar(100) NULL;
 
 
 ALTER TABLE `item` CHANGE `biner` `biner` VARCHAR(500) 
+#
+alter TABLE `item` add `gagal` int(11) DEFAULT '0';

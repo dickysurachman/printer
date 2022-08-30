@@ -96,7 +96,10 @@ class ItemController extends Controller
                 $transaction = Yii::$app->db->beginTransaction();
                 try
                 {
-                while (($row = fgetcsv($file)) !== FALSE) {
+                //while (($row = fgetcsv($file)) !== FALSE) {  fgetcsv($fh, 0, "\t"
+                while (($row = fgetcsv($file,0,"\t")) !== FALSE) {
+                        //var_dump($row);
+                        //die();
                         $i++;
                         $barang = New Item();
                         $str = preg_replace('/[[:^print:]]/', '',$row[0]);

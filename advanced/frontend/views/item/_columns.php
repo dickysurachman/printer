@@ -46,6 +46,10 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'hitung',
     ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'gagal',
+    ],
     //[
     //    'class'=>'\kartik\grid\DataColumn',
     //    'attribute'=>'biner',

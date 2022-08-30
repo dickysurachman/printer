@@ -19,7 +19,7 @@ class ItemSearch extends Item
     {
         return [
             [['id'], 'integer'],
-            [['tanggal', 'var_1','hitung','ulang', 'var_2', 'biner', 'var_3', 'status'], 'safe'],
+            [['tanggal', 'var_1','gagal','hitung','ulang','var_4','var_5','var_2', 'biner', 'var_3', 'status'], 'safe'],
         ];
     }
 
@@ -59,6 +59,7 @@ class ItemSearch extends Item
             'id' => $this->id,
             'tanggal' => $this->tanggal,
             'hitung' => $this->hitung,
+            'gagal' => $this->gagal,
             'ulang' => $this->ulang,
         ]);
 
@@ -66,6 +67,8 @@ class ItemSearch extends Item
             ->andFilterWhere(['like', 'var_2', $this->var_2])
             ->andFilterWhere(['like', 'biner', $this->biner])
             ->andFilterWhere(['like', 'var_3', $this->var_3])
+            ->andFilterWhere(['like', 'var_4', $this->var_4])
+            ->andFilterWhere(['like', 'var_5', $this->var_5])
             ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;

@@ -33,7 +33,7 @@ class Item extends \yii\db\ActiveRecord
         return [
             [['tanggal'], 'safe'],
             [['ulang'], 'required'],
-            [['status','ulang','hitung'], 'integer'],
+            [['status','ulang','hitung','gagal'], 'integer'],
             //[['var_2'], 'string', 'max' => 200],
             //[['var_1'], 'string', 'max' => 200],
             [['var_1','var_2'], 'string','min' => 14, 'max' => 14],
@@ -58,7 +58,8 @@ class Item extends \yii\db\ActiveRecord
             'biner' => Yii::t('yii', 'Hexa'),
             'ulang' => Yii::t('yii', 'Loop'),
             'var_3' => Yii::t('yii', 'LOT NO'),
-            'hitung' => Yii::t('yii', 'Success Count'),
+            'hitung' => Yii::t('yii', 'Success'),
+            'gagal' => Yii::t('yii', 'Failure'),
             'status' => Yii::t('yii', 'Status'),
         ];
     }
