@@ -17,6 +17,7 @@ CrudAsset::register($this);
 
 ?>
 <div class="item-index">
+    <?= Html::a(Yii::t('yii', 'Import CSV'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
