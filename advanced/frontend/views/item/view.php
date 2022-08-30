@@ -11,7 +11,7 @@ use yii\widgets\DetailView;
         <div class="col-5">
             <?php 
             use Da\QrCode\QrCode;
-            $gabung ="[01]".$model->var_1."[17]".$model->var_2."[10]".$model->var_3."[21]".$model->var_4;
+            $gabung ="(90)".$model->var_1."(01)".$model->var_2."(10)".$model->var_3."(17)".$model->var_4."(21)".$model->var_5;
             $qrCode = (new QrCode($gabung))
                 ->setSize(170)
                 ->setMargin(5)
