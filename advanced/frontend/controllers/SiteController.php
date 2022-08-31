@@ -77,10 +77,17 @@ class SiteController extends Controller
     ];
     }
 
-    public function actionHitung($id){
+    public function actionHitung($id,$status){
         $ja=Item::findOne($id);
+        $total=$ja->hitung+$ja->gagal;
+        if($status=="sukses") {
         $ja->hitung = $ja->hitung+1;
-        if($ja->hitung>=$ja->ulang) $ja->status=1;
+        $total+=1;
+        } else {
+        $ja->gagal= $ja->gagal+1;
+        $total+=1;
+        if($total>=$ja->ulang) $ja->status=1;
+        }
         $ja->save();
     }
     /**
@@ -90,7 +97,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        } else {
+            return $this->render('index');
+        }
     }
 
     /**

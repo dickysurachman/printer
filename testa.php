@@ -19,7 +19,7 @@ $(document).ready(function() {
 		type: 'POST',
 		url: 'ipc.py',
 		success: function(data) {
-		  $("#servertime").html(data); 
+		  $("#servertime").append(data); 
 		  
 		}
 	  });

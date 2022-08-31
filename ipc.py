@@ -7,9 +7,8 @@ now = datetime.now()
 
 
 print("Content-Type: text/html\n")
-print("Hello, World!")
+print("<br>Hello, World!")
 print(socket.gethostbyname(socket.gethostname()))
-print("<br>hihihi")
-
+#print("<br>hihihi")
 current_time = now.strftime("%H:%M:%S")
 print("Current Time =", current_time)

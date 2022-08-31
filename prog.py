@@ -52,8 +52,7 @@ while True:
         while x <= batas:
             x += 1
             y += 1
-            #koneksi ke alat printer
-
+            #koneksi ke alat printe
             s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
             s.connect((str(TCP_IP),int(TCP_PORT)))
             s.send(bytes.fromhex(MESSAGE))
@@ -61,8 +60,15 @@ while True:
             s.close()
             print("receiveddata:")
             print(data)
-            
-            url1 = str(settt[1])+"?id="+str(i['id'])
+            dua=str(data)
+            x = dua.find("01O")
+            #print(x)
+            if(x>0): 
+                print("data berhasil diterima")
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&st=sukses"
+            else:
+                print("data gagal dikirim")
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&st=gagal"
             response = request.urlopen(url1)
             print(str(y) + " sending to server " +url1)
         
