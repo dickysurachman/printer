@@ -79,6 +79,7 @@ class SiteController extends Controller
 
     public function actionHitung($id,$status){
         $ja=Item::findOne($id);
+        if(isset($ja)){
         $total=$ja->hitung+$ja->gagal;
         if($status=="sukses") {
         $ja->hitung = $ja->hitung+1;
@@ -89,6 +90,7 @@ class SiteController extends Controller
         if($total>=$ja->ulang) $ja->status=1;
         }
         $ja->save();
+        }
     }
     /**
      * Displays homepage.
