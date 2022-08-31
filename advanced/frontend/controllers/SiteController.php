@@ -219,7 +219,7 @@ class SiteController extends Controller
         $model->buffer=$satu[5];*/
         if ($model->load(Yii::$app->request->post())) {
             Yii::$app->session->setFlash('success', 'Save File Setting');
-            $myfile = fopen("settingbc.txt", "w") or die("Unable to open file!");
+            $myfile = fopen("setting.txt", "w") or die("Unable to open file!");
             //$txt = "Mickey Mouse\n";
             fwrite($myfile, $model->url1."\n");
             fwrite($myfile, $model->url2."\n");
