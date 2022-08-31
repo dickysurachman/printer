@@ -61,14 +61,15 @@ while True:
             print("receiveddata:")
             print(data)
             dua=str(data)
-            x = dua.find("01O")
+            x1= dua.find("01O")
             #print(x)
-            if(x>0): 
+            if(x1>0): 
                 print("data berhasil diterima")
-                url1 = str(settt[1])+"?id="+str(i['id'])+"&st=sukses"
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=sukses"
             else:
                 print("data gagal dikirim")
-                url1 = str(settt[1])+"?id="+str(i['id'])+"&st=gagal"
-            response = request.urlopen(url1)
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=gagal"
+            print(url1)
+            response2 = request.urlopen(url1)
             print(str(y) + " sending to server " +url1)
         

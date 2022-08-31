@@ -36,6 +36,10 @@ return [
     ],
 
     'components' => [
+        'formatter' => [
+            'class'           => 'yii\i18n\Formatter',
+            'defaultTimeZone' => 'Asia/Bangkok',
+        ],
         'view' => [
          'theme' => [
              'pathMap' => [

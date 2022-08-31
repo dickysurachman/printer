@@ -1,4 +1,5 @@
 <?php
+use app\models\Item;
 $this->title = 'Starter Page';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
@@ -118,38 +119,47 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
           
         </div>
     </div>
+    <?php 
+    $job=Item::find()->count();
+    $sukses=Item::find()->sum('hitung');
+    $gagal=Item::find()->sum('gagal');
+    $run=Item::find()->sum('ulang');
+    date_default_timezone_set("Asia/Bangkok");
+
+    $time=date("Y-m-d h:i");
+    ?>
     <div class="row">
     <div class="x_panel x_content">
     <div class="tile_count row">
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-check"></i> Total Read</span>
-    <div class="count green">0<?php //echo $totalread; ?></div>
-    <span class="count_bottom">Updated: <?php //echo $time; ?></span>
+    <span class="count_top"><i class="fa fa-check"></i> Total Job</span>
+    <div class="count green"><?php echo $job//echo $totalread; ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-remove"></i> Total Reject</span>
-    <div class="count red">0<?php //echo $totalreject; ?></div>
-    <span class="count_bottom">Updated: <?php //echo $time; ?></span>
+    <span class="count_top"><i class="fa fa-remove"></i> Total Success</span>
+    <div class="count red"><?php echo $sukses //echo $totalreject; ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-camera"></i> Total Trigger</span>
-    <div class="count blue">0<?php //echo $totaltrigger; ?></div>
-    <span class="count_bottom">Updated: <?php //echo $time; ?></span>
+    <span class="count_top"><i class="fa fa-camera"></i> Total Failure</span>
+    <div class="count blue"><?php echo $gagal//echo $totaltrigger; ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-check"></i> Read Rate</span>
-    <div class="count purple">0<?php //custom_echo($readrate,5); ?>%</div>
-    <span class="count_bottom">Updated: <?php //echo $time; ?></span>
+    <span class="count_top"><i class="fa fa-check"></i> Total Loop</span>
+    <div class="count purple"><?php  echo $run//custom_echo($readrate,5); ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-remove"></i> Reject Rate</span>
-    <div class="count aero">0<?php //custom_echo($rejectrate,5); ?>%</div>
-    <span class="count_bottom">Updated: <?php //echo $time; ?></span>
+    <span class="count_top"><i class="fa fa-remove"></i> Success Presentation</span>
+    <div class="count aero"><?php echo number_format(($sukses/$run)*100)//custom_echo($rejectrate,5); ?>%</div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-bullseye"></i> Sensor Reject</span>
-    <div class="count red">0<?php //echo $sensorreject; ?></div>
-    <span class="count_bottom">Updated: <?php //echo $time; ?></span>
+    <span class="count_top"><i class="fa fa-bullseye"></i> Failure Presentation </span>
+    <div class="count red"><?php echo number_format(($gagal/$run)*100)//echo $sensorreject; ?>%</div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     </div>
     </div>

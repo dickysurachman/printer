@@ -56,8 +56,17 @@ for i in data['message']:
             s.close()
             print("receiveddata:")
             print(data)
-            url1 = str(settt[1])+"?id="+str(i['id'])
-            response = request.urlopen(url1)
+            dua=str(data)
+            x1= dua.find("01O")
+            #print(x)
+            if(x1>0): 
+                print("data berhasil diterima")
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=sukses"
+            else:
+                print("data gagal dikirim")
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=gagal"
+            print(url1)
+            response2 = request.urlopen(url1)
             print(str(y) + " sending to server " +url1)
-            
+                    
         
