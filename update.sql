@@ -13,3 +13,50 @@ alter TABLE `item` add `var_5` varchar(100) NULL;
 ALTER TABLE `item` CHANGE `biner` `biner` VARCHAR(500) 
 #
 alter TABLE `item` add `gagal` int(11) DEFAULT '0';
+
+CREATE TABLE `itemkardus` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `var_1` varchar(200) DEFAULT NULL,
+  `var_2` varchar(200) DEFAULT NULL,
+  `biner` varchar(500) DEFAULT NULL,
+  `var_3` varchar(100) DEFAULT NULL,
+  `status` tinyint(2) DEFAULT 0,
+  `ulang` int(11) NOT NULL DEFAULT 0,
+  `var_4` varchar(100) DEFAULT NULL,
+  `var_5` varchar(100) DEFAULT NULL,
+  `var_6` varchar(100) DEFAULT NULL,
+  `var_7` varchar(100) DEFAULT NULL,
+  `var_8` varchar(100) DEFAULT NULL,
+  `var_9` varchar(100) DEFAULT NULL,
+  `var_10` varchar(100) DEFAULT NULL,
+  `hitung` int(11) DEFAULT 0,
+  `gagal` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `itemkardus`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemkardus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+CREATE TABLE `itempallet` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `var_1` varchar(200) DEFAULT NULL,
+  `var_2` varchar(200) DEFAULT NULL,
+  `biner` varchar(500) DEFAULT NULL,
+  `var_3` varchar(100) DEFAULT NULL,
+  `var_6` varchar(100) DEFAULT NULL,
+  `var_7` varchar(100) DEFAULT NULL,
+  `var_8` varchar(100) DEFAULT NULL,
+  `var_9` varchar(100) DEFAULT NULL,
+  `var_10` varchar(100) DEFAULT NULL,
+  `status` tinyint(2) DEFAULT 0,
+  `ulang` int(11) NOT NULL DEFAULT 0,
+  `var_4` varchar(100) DEFAULT NULL,
+  `var_5` varchar(100) DEFAULT NULL,
+  `hitung` int(11) DEFAULT 0,
+  `gagal` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `itempallet`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itempallet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

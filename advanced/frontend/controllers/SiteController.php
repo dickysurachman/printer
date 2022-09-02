@@ -198,25 +198,7 @@ class SiteController extends Controller
 
      public function actionSettingsave()
     {
-        //$this->layout="main-login";
         $model = new Setting();
-/*
-        $myfile = fopen("setting.txt", "r") or die("Unable to open file!");
-        // Output one line until end-of-file
-        $i=0;
-        while(!feof($myfile)) {
-            $satu[$i]=fgets($myfile);
-            $i++;
-          //echo fgets($myfile) . "<br>";
-        }
-        fclose($myfile);
-
-        $model->url1=$satu[0];
-        $model->url2=$satu[1];
-        $model->timer=$satu[2];
-        $model->ip_alat=$satu[3];
-        $model->port_alat=$satu[4];
-        $model->buffer=$satu[5];*/
         if ($model->load(Yii::$app->request->post())) {
             Yii::$app->session->setFlash('success', 'Save File Setting');
             $myfile = fopen("setting.txt", "w") or die("Unable to open file!");
@@ -227,7 +209,6 @@ class SiteController extends Controller
             fwrite($myfile, $model->ip_alat."\n");
             fwrite($myfile, $model->port_alat."\n");
             fwrite($myfile, $model->buffer."\n");
-            //fwrite($myfile, $txt);
             fclose($myfile);
             return $this->goHome();
         }

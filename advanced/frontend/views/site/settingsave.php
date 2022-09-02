@@ -11,11 +11,9 @@ use yii\bootstrap5\ActiveForm;
         $i=0;
         $satu=[];
         $block =1024*1024;
-        //while (($line = fgets($myfile)) !== false) {
         while(!feof($myfile)) {
             $satu[$i]=fread($myfile,$block);
             $i++;
-            //echo fread($myfile) . "<br>";
             echo fread($myfile,$block) . "<br>";
         }
         fclose($myfile);
@@ -46,10 +44,6 @@ use yii\bootstrap5\ActiveForm;
     <?= $form->field($model, 'port_alat')->textInput() ?>
     <?= $form->field($model, 'buffer')->textInput() ?>
 
-
-   
-
-  
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
 	        <?= Html::submitButton(Yii::t('yii', 'Update'), ['class' => 'btn btn-success']) ?>
