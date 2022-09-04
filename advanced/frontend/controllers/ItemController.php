@@ -92,22 +92,22 @@ class ItemController extends Controller
                 $transaction = Yii::$app->db->beginTransaction();
                 try
                 {
-              
                 $jobini=Jobs::findOne($model->namav);
                 $nie=$jobini->nie;
                 $gtin=$jobini->gtin;
                 $i++;
                 $lot=$model->lot;
                 $expire=$model->expired;
-                $serial=substr($nie, 3,6).substr($lot,2,3);
+                $serial=substr($nie, 5,6).substr($lot,3,3);
                 $mulai2=intval($model->jumlah);
                 $job =new Itemmaster();
                 $job->nama=$model->nama;
                 $job->save();
                 $idmaster=$job->id;
+                $belakang=-1*$mulai2;
                 for($mulai1=1;$mulai1<=$mulai2;$mulai1++)
                 {
-                $kodesn=$serial. substr("0000000000".$mulai1, -1 * intval($mulai2));
+                $kodesn=$serial. substr("000000".$mulai1,-3);
                 $barang = New Item();
                 $barang->var_1 = $nie;
                 $barang->var_2 = $gtin;
@@ -277,7 +277,7 @@ class ItemController extends Controller
                     $mdet->save();
                 }
                     $transaction->commit();
-                    Yii::$app->session->setFlash('success', $i.' rows Success ');
+                    Yii::$app->session->setFlash('success', $mulai1.' rows Generate Success ');
                 }
                 catch(Exception $e)
                 {

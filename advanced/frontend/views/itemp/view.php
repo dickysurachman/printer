@@ -82,7 +82,7 @@ use yii\widgets\DetailView;
 
             <?php 
             // or even as data:uri url
-            echo '<img src="' . $qrCode->writeDataUri() . '" class="center">';
+            echo '<img src="' . $qrCode->writeDataUri() . '" class="center" style="width:250px">';
             ?>
 
             
