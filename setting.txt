@@ -1,6 +1,6 @@
 http://localhost/printer/site/info.html
 http://localhost/printer/site/hitung.html
-20
+2
 172.16.20.8
 25001
 1024

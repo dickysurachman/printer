@@ -19,23 +19,18 @@ $timer=(intval($dua[2]))*1000;
 <script src="<?=Yii::$app->homeUrl?>/js/jquery.js"></script>
 <script>
 $(document).ready(function() {
-		var counter = 0;
-	  	var pertama=setInterval(function update() {
+	  	var pertama=setInterval(update,<?=$timer?>);
+		function update() {
 		  clearInterval(pertama);
-		  counter++;
 		  $.ajax({
 			type: 'POST',
 			url: '<?=Yii::$app->homeUrl?>prog1.py',
 			success: function(data) {
 			  $("#servertime").append(data); 
+			  var pertama=setInterval(update,<?=$timer?>);
 			}
 		  });
-		setTimeout(function() {
-		        }, <?=$timer?>);
-		var pertama=setInterval(update,<?=$timer?>);
-		console.log(counter);
-		clearInterval(pertama);
-		},<?=$timer?>);
+		}
 	});
 </script>
 

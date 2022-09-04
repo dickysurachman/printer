@@ -52,13 +52,13 @@ use yii\widgets\DetailView;
         <div class="col-10" style="font-size: 13pt;">
             Lot : <b><?=$model->var_3?></b> QTY : <b><?=$model->var_8?></b>
             <br>
-            <img alt="barcode <?=$model->var_7?>" src="<?=str_replace("index.php","",Yii::$app->homeUrl) .'/barcode.php?size=70&text=(17)'.$model->var_1.'(10)'.$model->var_3.'(30)'.$model->var_5?>">
+            <img alt="barcode <?=$model->var_4?>" src="<?=str_replace("index.php","",Yii::$app->homeUrl) .'/barcode.php?size=70&text=(17)'.$model->var_4.'(10)'.$model->var_3.'(30)'.$model->var_8?>">
             <br>
-            (17)<?=$model->var_1?>(10)<?=$model->var_1?>(30)<?=$model->var_1?>
+            (17)<?=$model->var_4?>(10)<?=$model->var_3?>(30)<?=$model->var_8?>
             <br>
-            <img alt="barcode <?=$model->var_7?>" src="<?=str_replace("index.php","",Yii::$app->homeUrl) .'/barcode.php?size=70&text=(00)'.$model->var_2?>">
+            <img alt="barcode <?=$model->var_2?>" src="<?=str_replace("index.php","",Yii::$app->homeUrl) .'/barcode.php?size=70&text=(00)'.$model->var_2?>">
             <br>
-            (00)<?=$model->var_1?>
+            (00)<?=$model->var_2?>
         </div>
         <div class="col-2">
         </div>

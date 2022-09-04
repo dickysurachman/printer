@@ -91,3 +91,30 @@ ALTER TABLE `itemkardus` CHANGE `var_8` `var_8` int(11) NULL;
 
 ALTER TABLE `itempallet` CHANGE `var_6` `var_6` int(11) NULL;
 ALTER TABLE `itempallet` CHANGE `var_8` `var_8` int(11) NULL;
+
+
+
+CREATE TABLE `itemmaster` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `nama` varchar(100) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `itemmaster`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemmaster`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE `itemmasterd` (
+  `id` int(11) NOT NULL,
+  `idmaster` datetime DEFAULT current_timestamp(),
+  `iddetail` varchar(100) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `itemmasterd`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemmasterd`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
