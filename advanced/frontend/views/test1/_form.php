@@ -3,26 +3,45 @@ use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Item */
+/* @var $model app\models\Itemkardus */
 /* @var $form yii\widgets\ActiveForm */
-$st=['Active','Done'];
 ?>
 
-<div class="item-form">
+<div class="itemkardus-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'tanggal')->textInput() ?>
 
     <?= $form->field($model, 'var_1')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'var_2')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'biner')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'var_3')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'var_4')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'var_5')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'status')->textInput() ?>
+
     <?= $form->field($model, 'ulang')->textInput() ?>
 
+    <?= $form->field($model, 'var_4')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList($st); ?>
+    <?= $form->field($model, 'var_5')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'var_6')->textInput() ?>
+
+    <?= $form->field($model, 'var_7')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'var_8')->textInput() ?>
+
+    <?= $form->field($model, 'var_9')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'var_10')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'hitung')->textInput() ?>
+
+    <?= $form->field($model, 'gagal')->textInput() ?>
 
   
 	<?php if (!Yii::$app->request->isAjax){ ?>

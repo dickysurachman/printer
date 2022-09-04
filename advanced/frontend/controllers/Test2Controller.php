@@ -3,18 +3,18 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Itempallet;
-use app\models\ItempalletSearch;
+use app\models\Item;
+use app\models\ItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
-use yii\helpers\Html;
+use yii\bootstrap5\Html;
 
 /**
- * ItempController implements the CRUD actions for Itempallet model.
+ * Test2Controller implements the CRUD actions for Item model.
  */
-class ItempController extends Controller
+class Test2Controller extends Controller
 {
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class ItempController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['post'],
                     'bulkdelete' => ['post'],
@@ -33,12 +33,12 @@ class ItempController extends Controller
     }
 
     /**
-     * Lists all Itempallet models.
+     * Lists all Item models.
      * @return mixed
      */
     public function actionIndex()
-    {    
-        $searchModel = new ItempalletSearch();
+    {
+        $searchModel = new ItemSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,23 +49,23 @@ class ItempController extends Controller
 
 
     /**
-     * Displays a single Itempallet model.
+     * Displays a single Item model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
-    {   
+    {
         $request = Yii::$app->request;
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Itempallet #".$id,
+                    'title'=> Yii::t('yii', 'Item #').$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a(Yii::t('yii2-ajaxcrud', 'Update'), ['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];    
+                    'footer'=> Html::button(Yii::t('yii', 'Close'),['class'=>'btn btn-secondary float-left','data-bs-dismiss'=>'modal']).
+                            Html::a(Yii::t('yii', 'Edit'),['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                ];
         }else{
             return $this->render('view', [
                 'model' => $this->findModel($id),
@@ -74,7 +74,7 @@ class ItempController extends Controller
     }
 
     /**
-     * Creates a new Itempallet model.
+     * Creates a new Item model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -82,7 +82,7 @@ class ItempController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new Itempallet();  
+        $model = new Item();
 
         if($request->isAjax){
             /*
@@ -91,33 +91,33 @@ class ItempController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itempallet",
+                    'title'=>Yii::t('yii', 'Create new Item'),
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button(Yii::t('yii2-ajaxcrud', 'Create'), ['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
+                    'footer'=> Html::button(Yii::t('yii', 'Close'),['class'=>'btn btn-secondary float-left','data-bs-dismiss'=>'modal']).
+                                Html::button(Yii::t('yii', 'Save'),['class'=>'btn btn-primary','type'=>'submit'])
+
+                ];
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itempallet",
-                    'content'=>'<span class="text-success">'.Yii::t('yii2-ajaxcrud', 'Create').' Itempallet '.Yii::t('yii2-ajaxcrud', 'Success').'</span>',
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a(Yii::t('yii2-ajaxcrud', 'Create More'), ['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
-        
-                ];         
-            }else{           
+                    'title'=> Yii::t('yii', 'Create new Item'),
+                    'content'=>'<span class="text-success">'.Yii::t('yii', 'Create Item success').'</span>',
+                    'footer'=> Html::button(Yii::t('yii', 'Close'),['class'=>'btn btn-secondary float-left','data-bs-dismiss'=>'modal']).
+                            Html::a(Yii::t('yii', 'Create More'),['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+
+                ];
+            }else{
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itempallet",
+                    'title'=> Yii::t('yii', 'Create new Item'),
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button(Yii::t('yii2-ajaxcrud', 'Save'), ['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
+                    'footer'=> Html::button(Yii::t('yii', 'Close'),['class'=>'btn btn-secondary float-left','data-bs-dismiss'=>'modal']).
+                                Html::button(Yii::t('yii', 'Save'),['class'=>'btn btn-primary','type'=>'submit'])
+
+                ];
             }
         }else{
             /*
@@ -131,11 +131,11 @@ class ItempController extends Controller
                 ]);
             }
         }
-       
+
     }
 
     /**
-     * Updates an existing Itempallet model.
+     * Updates an existing Item model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -144,7 +144,7 @@ class ItempController extends Controller
     public function actionUpdate($id)
     {
         $request = Yii::$app->request;
-        $model = $this->findModel($id);       
+        $model = $this->findModel($id);
 
         if($request->isAjax){
             /*
@@ -153,32 +153,32 @@ class ItempController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itempallet #".$id,
+                    'title'=> Yii::t('yii', 'Update Item #').$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button(Yii::t('yii2-ajaxcrud', 'Save'), ['class'=>'btn btn-primary','type'=>"submit"])
-                ];         
+                    'footer'=> Html::button(Yii::t('yii', 'Close'),['class'=>'btn btn-secondary float-left','data-bs-dismiss'=>'modal']).
+                                Html::button(Yii::t('yii', 'Save'),['class'=>'btn btn-primary','type'=>'submit'])
+                ];
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Itempallet #".$id,
+                    'title'=> Yii::t('yii', 'Item #').$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a(Yii::t('yii2-ajaxcrud', 'Update'), ['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];    
+                    'footer'=> Html::button(Yii::t('yii', 'Close'),['class'=>'btn btn-secondary float-left','data-bs-dismiss'=>'modal']).
+                            Html::a(Yii::t('yii', 'Edit'),['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                ];
             }else{
                  return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itempallet #".$id,
+                    'title'=> Yii::t('yii', 'Update Item #').$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button(Yii::t('yii2-ajaxcrud', 'Save'), ['class'=>'btn btn-primary','type'=>"submit"])
-                ];        
+                    'footer'=> Html::button(Yii::t('yii', 'Close'),['class'=>'btn btn-secondary float-left','data-bs-dismiss'=>'modal']).
+                                Html::button(Yii::t('yii', 'Save'),['class'=>'btn btn-primary','type'=>'submit'])
+                ];
             }
         }else{
             /*
@@ -195,7 +195,7 @@ class ItempController extends Controller
     }
 
     /**
-     * Delete an existing Itempallet model.
+     * Delete an existing Item model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -223,14 +223,14 @@ class ItempController extends Controller
     }
 
      /**
-     * Delete multiple existing Itempallet model.
+     * Delete multiple existing Item model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionBulkdelete()
-    {        
+    {
         $request = Yii::$app->request;
         $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
         foreach ( $pks as $pk ) {
@@ -250,19 +250,19 @@ class ItempController extends Controller
             */
             return $this->redirect(['index']);
         }
-       
+
     }
 
     /**
-     * Finds the Itempallet model based on its primary key value.
+     * Finds the Item model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Itempallet the loaded model
+     * @return Item the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Itempallet::findOne($id)) !== null) {
+        if (($model = Item::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

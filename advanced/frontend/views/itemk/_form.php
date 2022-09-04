@@ -3,8 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use kartik\widgets\Select2;
+//use kartik\widgets\Select2;
 
+use kartik\select2\Select2;
 //use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 //use yii\helpers\ArrayHelper;
@@ -59,11 +60,12 @@ $st=['Active','Done'];
       <?php
     echo $form->field($model, 'var_6')->widget(Select2::classname(), [
       'data' => $data,
+      //'language'=>'',
       'options' => [
         'placeholder' => 'Select Company ...',
       ],
       'pluginOptions' => [
-        //'allowClear' => true,
+        'allowClear' => true,
         //'multiple' => false,
       ],
     ]);

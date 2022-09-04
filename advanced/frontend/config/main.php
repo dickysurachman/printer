@@ -19,7 +19,8 @@ return [
     //'language' =>  $en,
     'modules' => [
             'gridview' =>  [
-                'class' => '\kartik\grid\Module'
+                'class' => '\kartik\grid\Module',
+                'bsVersion' => '4.x', 
                     ],
              'mimin' => [
                     'class' => '\hscstudio\mimin\Module',
@@ -88,12 +89,12 @@ return [
                 ]*/
         ],
         'assetManager' => [
-        'bundles' => [
-            'kartik\form\ActiveFormAsset' => [
-                'bsDependencyEnabled' => false, // do not load bootstrap assets for a specific asset bundle
-                'bsVersion' => '5.x',
-            ],
-            ],
+                'bundles' => [
+                    'kartik\form\ActiveFormAsset' => [
+                        'bsDependencyEnabled' => false, // do not load bootstrap assets for a specific asset bundle
+                        'bsVersion' => '4.x',
+                    ],
+                    ],
         ],
          'i18n' => [
             'translations' => [
@@ -131,7 +132,7 @@ return [
     'params' => $params,
     'params' => [
         'bsDependencyEnabled' => false, // this will not load Bootstrap CSS and JS for all Krajee extensions
-        'bsVersion' => '5.x',
+        'bsVersion' => '4.x',
         'adminEmail' => 'admin@example.com',
         'supportEmail' => 'support@example.com',
         'senderEmail' => 'noreply@example.com',

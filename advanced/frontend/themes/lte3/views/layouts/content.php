@@ -1,7 +1,7 @@
 <?php
 /* @var $content string */
 use common\widgets\Alert;
-use yii\bootstrap5\Breadcrumbs;
+use yii\bootstrap4\Breadcrumbs;
 ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

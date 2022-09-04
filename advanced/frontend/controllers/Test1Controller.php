@@ -3,8 +3,8 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Itempallet;
-use app\models\ItempalletSearch;
+use app\models\Itemkardus;
+use app\models\ItemkardusSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,9 +12,9 @@ use \yii\web\Response;
 use yii\helpers\Html;
 
 /**
- * ItempController implements the CRUD actions for Itempallet model.
+ * Test1Controller implements the CRUD actions for Itemkardus model.
  */
-class ItempController extends Controller
+class Test1Controller extends Controller
 {
     /**
      * @inheritdoc
@@ -33,12 +33,12 @@ class ItempController extends Controller
     }
 
     /**
-     * Lists all Itempallet models.
+     * Lists all Itemkardus models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new ItempalletSearch();
+        $searchModel = new ItemkardusSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,7 +49,7 @@ class ItempController extends Controller
 
 
     /**
-     * Displays a single Itempallet model.
+     * Displays a single Itemkardus model.
      * @param integer $id
      * @return mixed
      */
@@ -59,7 +59,7 @@ class ItempController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Itempallet #".$id,
+                    'title'=> "Itemkardus #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -74,7 +74,7 @@ class ItempController extends Controller
     }
 
     /**
-     * Creates a new Itempallet model.
+     * Creates a new Itemkardus model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -82,7 +82,7 @@ class ItempController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new Itempallet();  
+        $model = new Itemkardus();  
 
         if($request->isAjax){
             /*
@@ -91,7 +91,7 @@ class ItempController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itempallet",
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemkardus",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -102,15 +102,15 @@ class ItempController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itempallet",
-                    'content'=>'<span class="text-success">'.Yii::t('yii2-ajaxcrud', 'Create').' Itempallet '.Yii::t('yii2-ajaxcrud', 'Success').'</span>',
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemkardus",
+                    'content'=>'<span class="text-success">'.Yii::t('yii2-ajaxcrud', 'Create').' Itemkardus '.Yii::t('yii2-ajaxcrud', 'Success').'</span>',
                     'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                             Html::a(Yii::t('yii2-ajaxcrud', 'Create More'), ['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
         
                 ];         
             }else{           
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itempallet",
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemkardus",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -135,7 +135,7 @@ class ItempController extends Controller
     }
 
     /**
-     * Updates an existing Itempallet model.
+     * Updates an existing Itemkardus model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -153,7 +153,7 @@ class ItempController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itempallet #".$id,
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itemkardus #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -163,7 +163,7 @@ class ItempController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Itempallet #".$id,
+                    'title'=> "Itemkardus #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -172,7 +172,7 @@ class ItempController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itempallet #".$id,
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itemkardus #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -195,7 +195,7 @@ class ItempController extends Controller
     }
 
     /**
-     * Delete an existing Itempallet model.
+     * Delete an existing Itemkardus model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -223,7 +223,7 @@ class ItempController extends Controller
     }
 
      /**
-     * Delete multiple existing Itempallet model.
+     * Delete multiple existing Itemkardus model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -254,15 +254,15 @@ class ItempController extends Controller
     }
 
     /**
-     * Finds the Itempallet model based on its primary key value.
+     * Finds the Itemkardus model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Itempallet the loaded model
+     * @return Itemkardus the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Itempallet::findOne($id)) !== null) {
+        if (($model = Itemkardus::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
