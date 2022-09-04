@@ -71,7 +71,7 @@ class SiteController extends Controller
     }
 
     public function actionInfo(){
-        $res=Item::find()->where(['status'=>0])->limit(5)->all();
+        $res=Item::find()->where(['status'=>1])->limit(5)->all();
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     return [
         'message' => $res,
@@ -91,11 +91,11 @@ class SiteController extends Controller
         if($status=="sukses") {
         $ja->hitung = $ja->hitung+1;
         $total+=1;
-        if($total>=$ja->ulang) $ja->status=1;
+        if($total>=$ja->ulang) $ja->status=2;
         } else {
         $ja->gagal= $ja->gagal+1;
         $total+=1;
-        if($total>=$ja->ulang) $ja->status=1;
+        if($total>=$ja->ulang) $ja->status=2;
         }
         $ja->save();
         }

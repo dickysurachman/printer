@@ -5,7 +5,7 @@ use yii\bootstrap4\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
 /* @var $form yii\widgets\ActiveForm */
-$st=['Active','Done'];
+$st=['Active','Progress Execution','Done'];
 ?>
 
 <div class="item-form">

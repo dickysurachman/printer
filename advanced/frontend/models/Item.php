@@ -48,6 +48,18 @@ class Item extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function getStatusname(){
+        if($this->status==0)
+        {
+            return 'Active';
+        }elseif($this->status==1){
+            return 'Progress Execution';
+        } else {
+            return 'Done';
+        }
+
+    }
+
     public function attributeLabels()
     {
         return [

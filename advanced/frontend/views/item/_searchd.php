@@ -15,7 +15,7 @@ $(".ada").datepicker({
 JS;
 $position= View::POS_END;
 $this->registerJs($script,$position);
-
+$st=['Active','Progress Execution','Done'];
 /* @var $this yii\web\View */
 /* @var $model app\models\ReservasiSearch */
 /* @var $form yii\widgets\ActiveForm */
@@ -54,7 +54,7 @@ $this->registerJs($script,$position);
     ]]);
     ?></div>
     </div>
-  
+    <?= $form->field($model, 'status')->dropDownList($st); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

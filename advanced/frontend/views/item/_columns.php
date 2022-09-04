@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-
+$st=['Active','Progress Execution','Done'];
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -54,10 +54,12 @@ return [
     //    'class'=>'\kartik\grid\DataColumn',
     //    'attribute'=>'biner',
     //],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'status',
-    // ],
+    [
+         'class'=>'\kartik\grid\DataColumn',
+         'attribute'=>'status',
+         'value'=>'statusname',
+         'filter'=>$st,
+     ],
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,

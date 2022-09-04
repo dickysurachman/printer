@@ -764,6 +764,31 @@ class ItemController extends Controller
         }
        
     }
+    public function actionRunningdelete()
+    {        
+        $request = Yii::$app->request;
+        $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
+        foreach ( $pks as $pk ) {
+            $model = $this->findModel($pk);
+            $model->status=1;
+            $model->save();
+            //$model->delete();
+        }
+
+        if($request->isAjax){
+            /*
+            *   Process for ajax request
+            */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+        }else{
+            /*
+            *   Process for non-ajax request
+            */
+            return $this->redirect(['index']);
+        }
+       
+    }
 
     /**
      * Finds the Item model based on its primary key value.
