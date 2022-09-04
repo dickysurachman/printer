@@ -16,6 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use app\models\Item;
+use app\models\Logitem;
 use frontend\models\Setting;
 /**
  * Site controller
@@ -78,7 +79,12 @@ class SiteController extends Controller
     ];
     }
 
-    public function actionHitung($id,$status){
+    public function actionHitung($id,$status,string $logbaca=""){
+        if($status=="failure") {
+            $new1=new Logitem();
+            $new1->logbaca=$logbaca;
+            $new1->save();
+        } else {
         $ja=Item::findOne($id);
         if(isset($ja)){
         $total=$ja->hitung+$ja->gagal;
@@ -93,6 +99,7 @@ class SiteController extends Controller
         }
         $ja->save();
         }
+        }
     }
     /**
      * Displays homepage.
@@ -105,6 +112,14 @@ class SiteController extends Controller
             return $this->redirect(['site/login']);
         } else {
             return $this->render('index');
+        }
+    }
+    public function actionEksekusi()
+    {
+        if(Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        } else {
+            return $this->render('py');
         }
     }
 

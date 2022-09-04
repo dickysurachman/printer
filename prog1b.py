@@ -34,13 +34,11 @@ BUFFER_SIZE=settt[5]
 
 url = str(settt[0])
 response = request.urlopen(url)
-baca=""
 data = json.loads(response.read())
 if validateJSON(response.read())==False:
        print("data kosong<br>")
 for i in data['message']:
         print ("<br>",i)
-        baca +="hexa pengiriman"+str(i['biner'])
         print("hexa pengiriman",i['biner'])
         print("batas ",i['ulang'])
         MESSAGE=i['biner']
@@ -72,9 +70,6 @@ for i in data['message']:
                 response2 = request.urlopen(url1)
                 print(str(y) + " sending to server " +url1)
             except socket.error:
-                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca="+str(baca.replace(" ",""))
-                response2 = request.urlopen(url1)
-                print(str(y) + " sending to server " +url1)
                 print ('koneksi error')
                 break
             finally:

@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
-
+$this->title=Yii::t('yii', 'Setting Printer');
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
 /* @var $form yii\widgets\ActiveForm */

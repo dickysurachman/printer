@@ -1,28 +1,22 @@
 <?php
-
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-use kartik\widgets\Select2;
-
-//use yii\helpers\Html;
-//use yii\widgets\ActiveForm;
-//use yii\helpers\ArrayHelper;
-//
-
-//use yii\helpers\Html;
-//use kartik\widgets\Select2;
-//use yii\bootstrap4\ActiveForm;
-//use kartik\select2\Select2;
+use yii\bootstrap4\ActiveForm;
+use kartik\select2\Select2;
 use app\models\Perusahaan;
-//use yii\helpers\ArrayHelper;
-//use kartik\depdrop\DepDrop;
-//use yii\helpers\Url;
-//use yii\web\View;
-
-
+use yii\helpers\ArrayHelper;
+use kartik\depdrop\DepDrop;
+use yii\helpers\Url;
 $data=ArrayHelper::map(Perusahaan::find()->orderBy(['nama' => SORT_ASC])->asArray()->all(), 'id', 'nama');
 
+use yii\web\View;
+$script = <<< JS
+$.fn.modal.Constructor.prototype.enforceFocus = function() {};
+$(document).on("select2:open", () => {
+  document.querySelector(".select2-container--open .select2-search__field").focus()
+})
+JS;
+$position= View::POS_END;
+$this->registerJs($script,$position);
 
 
 $st=['Active','Done'];
@@ -55,22 +49,7 @@ $st=['Active','Done'];
     </div>
     <div class="col">      
 
-     
-      <?php
-    echo $form->field($model, 'var_6')->widget(Select2::classname(), [
-      'data' => $data,
-      'options' => [
-        'placeholder' => 'Select Company ...',
-      ],
-      'pluginOptions' => [
-        //'allowClear' => true,
-        //'multiple' => false,
-      ],
-    ]);
-    //->label('Role'); ?>
-    <?php 
-
-
+     <?php 
       /*    'bsVersion' => '4.x',
         'data' => $data,
         'options' => ['placeholder' => 'Select Company ...','autocomplete' => 'off'],
@@ -91,7 +70,7 @@ $st=['Active','Done'];
     ]
     ]);*/
     ?>
-    <?php //= $form->field($model, 'var_6')->dropDownList($data,['prompt'=>'Choose']); ?>
+    <?= $form->field($model, 'var_6')->dropDownList($data,['prompt'=>'Choose']); ?>
     </div>
     </div>
     <div class="row">
@@ -112,11 +91,11 @@ $st=['Active','Done'];
     <?= $form->field($model, 'status')->dropDownList($st); ?>
 
   
-	<?php if (!Yii::$app->request->isAjax){ ?>
-	  	<div class="form-group">
-	        <?= Html::submitButton($model->isNewRecord ? Yii::t('yii', 'Create') : Yii::t('yii', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	    </div>
-	<?php } ?>
+    <?php if (!Yii::$app->request->isAjax){ ?>
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('yii', 'Create') : Yii::t('yii', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
+    <?php } ?>
 
     <?php ActiveForm::end(); ?>
     

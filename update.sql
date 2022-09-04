@@ -60,3 +60,34 @@ ALTER TABLE `itempallet`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `itempallet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+create table `logitem`(
+`id` int(11) NOT NULL,
+`tanggal` datetime DEFAULT current_timestamp(),
+`status` int(2) DEFAULT 0,
+`logbaca` text null
+);
+ALTER TABLE `logitem`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `logitem`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+create table `perusahaan`(
+`id` int(11) NOT NULL,
+`tanggal` datetime DEFAULT current_timestamp(),
+`nama` varchar(100) DEFAULT NULL,
+`telp` varchar(100) DEFAULT NULL,
+`alamat` varchar(100) DEFAULT NULL,
+`status` int(2) DEFAULT 0
+);
+ALTER TABLE `perusahaan`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `perusahaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `itemkardus` CHANGE `var_6` `var_6` int(11) NULL;
+ALTER TABLE `itemkardus` CHANGE `var_8` `var_8` int(11) NULL;
+
+ALTER TABLE `itempallet` CHANGE `var_6` `var_6` int(11) NULL;
+ALTER TABLE `itempallet` CHANGE `var_8` `var_8` int(11) NULL;

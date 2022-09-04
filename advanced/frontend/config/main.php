@@ -90,7 +90,8 @@ return [
         'assetManager' => [
         'bundles' => [
             'kartik\form\ActiveFormAsset' => [
-                'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+                'bsDependencyEnabled' => false, // do not load bootstrap assets for a specific asset bundle
+                'bsVersion' => '5.x',
             ],
             ],
         ],
@@ -129,6 +130,8 @@ return [
     ],
     'params' => $params,
     'params' => [
+        'bsDependencyEnabled' => false, // this will not load Bootstrap CSS and JS for all Krajee extensions
+        'bsVersion' => '5.x',
         'adminEmail' => 'admin@example.com',
         'supportEmail' => 'support@example.com',
         'senderEmail' => 'noreply@example.com',
