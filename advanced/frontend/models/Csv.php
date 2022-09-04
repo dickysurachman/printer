@@ -14,6 +14,13 @@ class Csv extends Model
     public $phone;
     public $gambar;
     public $tanggal;
+    public $jumlah;
+    public $lot;
+    public $expired;
+    public $nama;
+    public $nie;
+    public $gtin;
+    public $namav;
     public $csv;
 
 
@@ -26,11 +33,15 @@ class Csv extends Model
         return [
             // name, email, subject and body are required
             
-            [['csv'],'file'], 
-			[['csv'], 'file', 'extensions' => 'csv',],
+            //[['csv'],'file'], 
+            [['jumlah'],'integer'],
+			//[['csv'], 'file', 'extensions' => 'csv',],
+            [['alamat'], 'string', 'max' => 2],
+            [['expired'], 'string', 'max' => 12],
+            [['lot'], 'string', 'max' => 12],
             //[['gambar'],'file', 'extensions' => 'csv', 'mimeTypes' => 'image/jpeg, image/png'], 
             //[['gambar'], 'file', 'extensions' => 'jpg,jpeg,png'],
-            [['alamat','phone','tanggal'],'safe'],
+            [['nie','namav','nama','gtin','alamat','phone','lot','expired','tanggal','nama'],'safe'],
             // verifyCode needs to be entered correctly
         ];
     }
@@ -43,9 +54,17 @@ class Csv extends Model
         return [
                     'tanggal'=>'Tanggal Scanning',
                     'gambar'=>'File Foto',
+                    'nama'=>'Job Name',
+                    'jumlah'=>'Generate S/N Count',
                     'csv'=>'File CSV',
-                    'alamat'=> 'Alamat',
+                    'alamat'=> 'Delimiter',
                     'phone'=>'Phone',
+                    'lot'=>'LOT',
+                    'expired'=>'EXP DATE',
+                    'nie'=>'NIE',
+                    'nama'=>'JOB NAME',
+                    'namav'=>'PRODUCT NAME',
+                    'gtin'=>'GTIN',
                     ];
      
     }

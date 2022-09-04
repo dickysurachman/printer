@@ -15,6 +15,7 @@ use yii\web\View;
 
 <div class="userprofile-form">
     <?= Html::a(Yii::t('yii', 'Download Sample'), Yii::$app->homeUrl."\images\contoh.csv", ['class' => 'btn btn-success']) ?>
+    <
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
    <?php /*
  <div class="col-md-12" style="margin-bottom:15px;padding-left:0px !important;">
@@ -30,7 +31,16 @@ use yii\web\View;
     ]]);
     ?>
     </div> */?>
+    <div class="row" style="margin:0px !important;">
+    <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'jumlah')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'expired')->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="row" style="margin:0px !important">
+    <?= $form->field($model, 'lot')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'alamat')->textInput(['maxlength' => true]) ?>
 	  <?= $form->field($model, 'csv')->fileInput() ?>
+    </div>
     <div class="form-group">
         <?= Html::submitButton('Import', ['class' => 'btn btn-success']) ?>
     </div>

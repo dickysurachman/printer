@@ -46,6 +46,8 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => \Yii::t('yii', 'Routes'), 'url' => ['/mimin/route/index'], 'icon' => 'fas fa-angle-double-right','visible'=>Mimin::checkRoute('mimin/route')],
                     //['label' => 'Item Barcode', 'url'=>['item/index'],'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>','visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Company', 'url'=>['/perusahaan/index'],'icon' => 'address-book', 'visible' => !Yii::$app->user->isGuest],
+                     ['label' => \Yii::t('yii', 'Master Job'), 'url' => ['/jobs/index'], 'icon' => 'fas fa-portrait','visible'=>Mimin::checkRoute('job/index')],
+                     ['label' => \Yii::t('yii', 'Job List'), 'url' => ['/job/index'], 'icon' => 'fas fa-portrait','visible'=>Mimin::checkRoute('job/index')],
                     ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Item Kardus', 'url'=>['/itemk/index'],'icon' => 'code', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Item Pallet', 'url'=>['/itemp/index'],'icon' => 'folder', 'visible' => !Yii::$app->user->isGuest],

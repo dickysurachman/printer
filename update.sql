@@ -108,13 +108,31 @@ ALTER TABLE `itemmaster`
 
 CREATE TABLE `itemmasterd` (
   `id` int(11) NOT NULL,
-  `idmaster` datetime DEFAULT current_timestamp(),
-  `iddetail` varchar(100) DEFAULT NULL,
+  `idmaster` int(11) DEFAULT NULL,
+  `iddetail` int(11) DEFAULT NULL,
   `status` int(2) DEFAULT 0
 ) ENGINE=InnoDB ;
 ALTER TABLE `itemmasterd`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `itemmasterd`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  
+  ALTER TABLE `itemmasterd` CHANGE `idmaster` `idmaster` INT(11) NULL, CHANGE `iddetail` `iddetail` INT(11) NULL;
 
 
+CREATE TRIGGER `delete` AFTER DELETE ON `itemmaster` FOR EACH ROW DELETE from itemmasterd where idmaster=old.id;
+CREATE TRIGGER `deletem` AFTER DELETE ON `itemmasterd` FOR EACH ROW delete from item where id=old.iddetail
+
+
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `nama` varchar(100) DEFAULT NULL,
+  `nie` varchar(100) DEFAULT NULL,
+  `gtin` varchar(100) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `jobs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
