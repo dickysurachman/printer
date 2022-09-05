@@ -71,7 +71,7 @@ class SiteController extends Controller
     }
 
     public function actionInfo(){
-        $res=Item::find()->where(['status'=>1])->limit(5)->all();
+        $res=Item::find()->where(['status'=>1])->limit(50)->all();
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     return [
         'message' => $res,

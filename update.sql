@@ -121,7 +121,7 @@ ALTER TABLE `itemmasterd`
 
 
 CREATE TRIGGER `delete` AFTER DELETE ON `itemmaster` FOR EACH ROW DELETE from itemmasterd where idmaster=old.id;
-CREATE TRIGGER `deletem` AFTER DELETE ON `itemmasterd` FOR EACH ROW delete from item where id=old.iddetail
+CREATE TRIGGER `deletem` AFTER DELETE ON `itemmasterd` FOR EACH ROW delete from item where id=old.iddetail;
 
 
 CREATE TABLE `jobs` (

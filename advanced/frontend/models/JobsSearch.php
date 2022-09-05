@@ -15,11 +15,13 @@ class JobsSearch extends Jobs
     /**
      * @inheritdoc
      */
+     public $tgl_a;
+    public $tgl_b;
     public function rules()
     {
         return [
             [['id', 'status'], 'integer'],
-            [['tanggal', 'nama', 'nie', 'gtin'], 'safe'],
+            [['tgl_a','tgl_b','tanggal', 'nama', 'nie', 'gtin'], 'safe'],
         ];
     }
 
@@ -63,6 +65,8 @@ class JobsSearch extends Jobs
 
         $query->andFilterWhere(['like', 'nama', $this->nama])
             ->andFilterWhere(['like', 'nie', $this->nie])
+             ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
+            ->andFilterWhere(['<=', 'tanggal', $this->tgl_b])
             ->andFilterWhere(['like', 'gtin', $this->gtin]);
 
         return $dataProvider;
