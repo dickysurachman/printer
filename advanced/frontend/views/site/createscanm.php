@@ -48,11 +48,12 @@ function kirim(){
 					contentType: false,
 					processData: false,
 					success: function(res){
+						$("#room_type").html(res);
 					   $("#scanlog-scan").val("");
 					   $("#scanlog-scan").focus();
 					},
 					error: function(res){
-						$("#scanlog-scan").text("Error!");
+						$("#room_type").text("Error!");
 						
 					}
                 });
@@ -68,11 +69,12 @@ $("#formSubmit").on("submit",function(e){
             contentType: false,
             processData: false,
             success: function(res){
+            	$("#room_type").html(res);
                $("#scanlog-scan").val("");
                $("#scanlog-scan").focus();
             },
             error: function(res){
-                $("#scanlog-scan").text("Error!");
+                $("#room_type").text("Error!");
                 
             }
         });
