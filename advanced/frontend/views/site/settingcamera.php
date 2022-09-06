@@ -32,7 +32,7 @@ $this->title=Yii::t('yii', 'Setting Printer');
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'url2')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'port_alat')->textInput() ?>
+    <?= $form->field($model, 'port_alat')->textInput()->label('Camera Port') ?>
 
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">

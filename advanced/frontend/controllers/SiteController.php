@@ -87,6 +87,9 @@ class SiteController extends Controller
             $mm->save();
         }
 
+    }    
+    public function actionCameralive(){        
+       return $this->render('livecamera');
     }
 
     public function actionScanm(){
@@ -101,12 +104,14 @@ class SiteController extends Controller
             if($value<>" " or $value<>""){
                 $value = preg_replace("/\r|\n/", "", $value);
                 $value =trim($value);
+                if($value<>""){
                 $jj=new Scanlog();
                 $jj->scan=$value;
                 if($jj->save()) {
                     $resp.=$value." berhasil diinput <br/>";
                 } else {
                     $resp.=$value." gagal diinput <br/>";
+                }
                 }
                 
             }

@@ -149,3 +149,23 @@ ALTER TABLE `scanlog`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `scanlog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE `itemcamera` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `var_1` varchar(200) DEFAULT NULL,
+  `var_2` varchar(200) DEFAULT NULL,
+  `var_3` varchar(100) DEFAULT NULL,
+  `var_4` varchar(100) DEFAULT NULL,
+  `var_5` varchar(100) DEFAULT NULL,
+  `status` tinyint(2) DEFAULT 0,
+  `hitung` int(11) DEFAULT 0,
+  `gagal` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `itemcamera`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemcamera`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+

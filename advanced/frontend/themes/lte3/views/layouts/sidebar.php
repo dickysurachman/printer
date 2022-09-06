@@ -57,6 +57,7 @@ use hscstudio\mimin\components\Mimin;
                     //['label' => 'Server Camera', 'url'=>Yii::$app->homeUrl.'/servercamera.py','target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Server Camera', 'url'=>['/site/scan'],'target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Input Barcode', 'url'=>['/site/scanm'],'icon' => 'barcode', 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Camera Monitoring', 'url'=>['/site/cameralive'],'icon' => 'eye', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Log Camera', 'url'=>['/log/index'],'icon' => 'download', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => \Yii::t('yii', 'Login'), 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
                     ['label' =>  \Yii::t('yii', 'Logout'),'url' => ['site/logout'],'template'=>'<a class="nav-link" href="{url}" data-method="post"><i class="nav-icon fas fa-sign-in-alt"></i>{label}</a>','icon' => 'sign-in-alt', 'visible' => !Yii::$app->user->isGuest]
