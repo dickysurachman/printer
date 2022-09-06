@@ -53,6 +53,7 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => 'Item Pallet', 'url'=>['/itemp/index'],'icon' => 'folder', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Configurasi Printer', 'url'=>['/site/settingsave'],'icon' => 'print', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Connect to Printer', 'url'=>['/site/eksekusi'],'target'=>'_blank','icon' => 'download', 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Server Camera', 'url'=>['/site/scan'],'target'=>'_blank','icon' => 'download', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => \Yii::t('yii', 'Login'), 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
                     ['label' =>  \Yii::t('yii', 'Logout'),'url' => ['site/logout'],'template'=>'<a class="nav-link" href="{url}" data-method="post"><i class="nav-icon fas fa-sign-in-alt"></i>{label}</a>','icon' => 'sign-in-alt', 'visible' => !Yii::$app->user->isGuest]
 

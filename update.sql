@@ -136,3 +136,16 @@ ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `jobs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+CREATE TABLE `scanlog` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `scan` varchar(300) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `scanlog`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `scanlog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

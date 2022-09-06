@@ -31,7 +31,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup','settingsave'],
+                'only' => ['logout', 'signup','settingsave','scan'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -39,7 +39,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout','settingsave'],
+                        'actions' => ['logout','settingsave','scan'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -114,6 +114,11 @@ class SiteController extends Controller
             return $this->render('index');
         }
     }
+    public function actionScan(){
+        return $this->render('scanning');
+
+    }
+
     public function actionEksekusi()
     {
         if(Yii::$app->user->isGuest){
