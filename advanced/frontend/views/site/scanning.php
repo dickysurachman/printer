@@ -9,7 +9,8 @@ ini_set('display_errors', 1);
 set_time_limit(0);
 
 // Set the ip and port we will listen on
-$address ='192.168.20.9';//$_SERVER['SERVER_ADDR'];//'192.168.20.9';
+$address ='192.168.20.9';
+//$_SERVER['SERVER_ADDR'];//'192.168.20.9';
 $port = 5000;
 
 ob_implicit_flush();
@@ -62,11 +63,16 @@ while (true) {
             } else {
                 if ($seconds > 60) {
                     // Ping every 5 seconds for live connections
+                    try {
                     if (false === socket_write($v, 'PING')) {
                         // Close non-responsive connection
                         socket_close($clients[$k]);
                         // Remove from active connections array
                         unset($clients[$k]);
+                    }
+                    }
+                    catch(Exception $e) {
+                        echo 'Message: ' .$e->getMessage();
                     }
                     // Reset counter
                     $seconds = 0;

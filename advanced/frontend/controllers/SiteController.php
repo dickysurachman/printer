@@ -18,6 +18,7 @@ use frontend\models\ContactForm;
 use app\models\Item;
 use app\models\Logitem;
 use frontend\models\Setting;
+use app\models\Scanlog;
 /**
  * Site controller
  */
@@ -31,7 +32,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup','settingsave','scan'],
+                'only' => ['logout', 'signup','settingsave','scan','settingcamera'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -39,7 +40,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout','settingsave','scan'],
+                        'actions' => ['logout','settingsave','scan','settingcamera'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -77,6 +78,15 @@ class SiteController extends Controller
         'message' => $res,
         'code' => 100,
     ];
+    }
+
+    public function actionCamera($status){        
+        if(trim($status)<>""){
+            $mm=new Scanlog;
+            $mm->scan =$status;
+            $mm->save();
+        }
+
     }
 
     public function actionHitung($id,$status,string $logbaca=""){
@@ -234,6 +244,24 @@ class SiteController extends Controller
         }
 
         return $this->render('settingsave', [
+            'model' => $model,
+        ]);
+    }
+
+     public function actionSettingcamera()
+    {
+        $model = new Setting();
+        if ($model->load(Yii::$app->request->post())) {
+            Yii::$app->session->setFlash('success', 'Save File Setting');
+            $myfile = fopen("setting2.txt", "w") or die("Unable to open file!");
+            //$txt = "Mickey Mouse\n";
+            fwrite($myfile, $model->url2."\n");
+            fwrite($myfile, $model->port_alat."\n");
+            fclose($myfile);
+            return $this->goHome();
+        }
+
+        return $this->render('settingcamera', [
             'model' => $model,
         ]);
     }

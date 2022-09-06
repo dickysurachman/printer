@@ -1,0 +1,2 @@
+http://localhost/printer/printer/site/camera.html
+5001
