@@ -42,7 +42,7 @@ class Scanlog extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('yii', 'ID'),
             'tanggal' => Yii::t('yii', 'Tanggal'),
-            'scan' => Yii::t('yii', 'Scan'),
+            'scan' => Yii::t('yii', 'Data'),
             'status' => Yii::t('yii', 'Status'),
         ];
     }

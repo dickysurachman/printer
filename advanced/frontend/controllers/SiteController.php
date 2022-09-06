@@ -125,7 +125,7 @@ class SiteController extends Controller
         }
     }
     public function actionScan(){
-        return $this->render('scanning');
+        return $this->render('scanningc');
 
     }
 
