@@ -32,7 +32,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup','settingsave','scan','settingcamera'],
+                'only' => ['logout', 'signup','settingsave','scan','settingcamera','scanm'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -40,7 +40,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout','settingsave','scan','settingcamera'],
+                        'actions' => ['logout','settingsave','scan','settingcamera','scanm'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -88,6 +88,39 @@ class SiteController extends Controller
         }
 
     }
+
+    public function actionScanm(){
+        $model= new Scanlog();
+        if (Yii::$app->request->isAjax) {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        if (Yii::$app->request->post()) {
+            $resp="";
+            $hasil = explode(PHP_EOL,$_POST['Inputan']['barcode']);
+            foreach($hasil as $value){
+            if($value<>" " or $value<>""){
+                $value = preg_replace("/\r|\n/", "", $value);
+                $value =trim($value);
+                $jj=new Scanlog();
+                $jj->scan=$value;
+                if($jj->save()) {
+                    $resp.=$value." berhasil diinput <br/>";
+                } else {
+                    $resp.=$value." gagal diinput <br/>";
+                }
+                
+            }
+            }
+            return $resp;
+            
+        } else {
+            return "data tidak berhasil diinput";
+        }
+        }
+        return $this->render('createscanm', [
+        'model' => $model,
+        ]);
+    } 
 
     public function actionHitung($id,$status,string $logbaca=""){
         if($status=="failure") {
