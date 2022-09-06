@@ -30,13 +30,13 @@ $script= "$(document).ready(function(){
       datasets: [
         {
           label               : 'Bar Grafik',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
+          backgroundColor     : '#28a745',
+          borderColor         : '#28a745',
           pointRadius          : false,
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointColor          : '#28a745',
+          pointStrokeColor    : '#28a745',
           pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
+          pointHighlightStroke: '#28a745',
           data                : [".$run.", ".$sukses.", ".$gagal."]
         },
       ]
