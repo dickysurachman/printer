@@ -133,7 +133,8 @@ class SiteController extends Controller
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if (Yii::$app->request->post()) {
             $resp="";
-            $hasil = explode(PHP_EOL,$_POST['Inputan']['barcode']);
+            //$hasil = explode(PHP_EOL,$_POST['Inputan']['barcode']);
+            $hasil = explode("\n",$_POST['Inputan']['barcode']);
             foreach($hasil as $value){
             if($value<>" " or $value<>""){
                 $value = preg_replace("/\r|\n/", "", $value);
@@ -188,7 +189,7 @@ class SiteController extends Controller
             return "data tidak berhasil diinput";
         }
         }
-        return $this->render('createscanm', [
+        return $this->render('createscanm2', [
         'model' => $model,
         ]);
     } 
@@ -233,7 +234,7 @@ class SiteController extends Controller
 
     }
 
-    public function actionEksekusi()
+public function actionEksekusi()
     {
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
