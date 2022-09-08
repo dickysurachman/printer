@@ -13,7 +13,7 @@ if(isset($timerr)){
 } else {
 	$durasi=5000;
 }*/
-$durasi=5000;
+$durasi=1000;
 $batas=10;
 $this->registerJs(
 '

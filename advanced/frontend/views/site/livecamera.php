@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use app\models\Itemcamera;
 use app\models\Scanlog;
 use yii\widgets\ActiveForm;
- use Da\QrCode\QrCode;
+use Da\QrCode\QrCode;
 use yii\widgets\DetailView;
 $timerr=1000;
 $this->title="Monitoring Camera Input";

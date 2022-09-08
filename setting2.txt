@@ -1,2 +1,2 @@
 http://localhost/printer/printer/site/camera.html
-5004
+5006
