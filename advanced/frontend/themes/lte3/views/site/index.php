@@ -9,7 +9,7 @@ $job=Item::find()->count();
     $sukses=Item::find()->sum('hitung');
     $gagal=Item::find()->sum('gagal');
     $run=Item::find()->sum('ulang');
-    if($sukses==0) $sukses=1;
+    if($run==0) $run=1;
 //$script = <<< JS JS;
 $script= "$(document).ready(function(){
   $(function () {
