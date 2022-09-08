@@ -42,7 +42,7 @@ class Item extends \yii\db\ActiveRecord
             [['var_4'], 'string', 'max' => 12],
             [['biner'], 'string', 'max' => 500],
             //[['var_4'], 'string', 'min'=>6,'max' => 6],
-            [['var_5'], 'string', 'max' => 50],
+            [['var_5'], 'string', 'max' => 14],
         ];
     }
 
