@@ -18,13 +18,14 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal',
     ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'status',
-    ],
+//    [
+//        'class'=>'\kartik\grid\DataColumn',
+//        'attribute'=>'status',
+//    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'logbaca',
+        'contentOptions' => [ 'style' => 'width: 70%;' ],
     ],
     [
         'class' => 'kartik\grid\ActionColumn',
