@@ -52,6 +52,7 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => 'Item Pallet', 'url'=>['/itemp/index'],'icon' => 'folder', 'visible' => Mimin::checkRoute('itemp/index')],
                     ['label' => 'Printer Configuration', 'url'=>['/site/settingsave'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Connect to Printer', 'url'=>['/site/eksekusi'],'target'=>'_blank','icon' => 'print', 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Log Error Printer', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => Mimin::checkRoute('loge/index')],
                     ['label' => 'Camera Configuration', 'url'=>['/site/settingcamera'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Server Camera', 'url'=>Yii::$app->homeUrl.'/servercamera.py','target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],
                     //['label' => 'Server Camera', 'url'=>['/site/scan'],'target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],

@@ -39,11 +39,13 @@ while True:
     url = str(settt[0])
     response = request.urlopen(url)
     data = json.loads(response.read())
+    baca=""
     if validateJSON(response.read())==False:
         print("data kosong")
     for i in data['message']:
         print (i)
         print("hexa pengiriman",i['biner'])
+        baca +="hexa pengiriman"+str(i['biner'])
         print("batas ",i['ulang'])
         MESSAGE=i['biner']
         batas=int(i['ulang'])
@@ -52,6 +54,35 @@ while True:
         while x <= batas:
             x += 1
             y += 1
+            try:
+                s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                s.connect((str(TCP_IP),int(TCP_PORT)))
+                s.send(bytes.fromhex(MESSAGE))
+                data=s.recv(int(BUFFER_SIZE))
+                s.close()
+                print("receiveddata:")
+                print(data)
+                dua=str(data)
+                x1= dua.find("01O")
+                #print(x)
+                if(x1>0): 
+                    print("data berhasil diterima")
+                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=sukses"
+                else:
+                    print("data gagal dikirim")
+                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=gagal"
+                print(url1)
+                response2 = request.urlopen(url1)
+                print(str(y) + " sending to server " +url1)
+            except socket.error:
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca="+str(baca.replace(" ",""))
+                response2 = request.urlopen(url1)
+                print(str(y) + " sending to server " +url1)
+                print ('koneksi error')
+                break
+            finally:
+                s.close()              
+        '''
             #koneksi ke alat printe
             s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
             s.connect((str(TCP_IP),int(TCP_PORT)))
@@ -72,4 +103,5 @@ while True:
             print(url1)
             response2 = request.urlopen(url1)
             print(str(y) + " sending to server " +url1)
+        '''
         
