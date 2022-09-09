@@ -75,7 +75,7 @@ while True:
                 response2 = request.urlopen(url1)
                 print(str(y) + " sending to server " +url1)
             except socket.error:
-                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca="+str(baca.replace(" ",""))
+                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca=koneksierror"+str(baca.replace(" ",""))
                 response2 = request.urlopen(url1)
                 print(str(y) + " sending to server " +url1)
                 print ('koneksi error')

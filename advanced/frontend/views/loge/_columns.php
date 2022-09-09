@@ -25,7 +25,7 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'logbaca',
-        'contentOptions' => [ 'style' => 'width: 70%;' ],
+        'contentOptions' => [ 'style'=>'max-width: 350px; overflow: auto; word-wrap: break-word;' ],
     ],
     [
         'class' => 'kartik\grid\ActionColumn',
