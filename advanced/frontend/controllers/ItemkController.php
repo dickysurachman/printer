@@ -53,6 +53,19 @@ class ItemkController extends Controller
      * @param integer $id
      * @return mixed
      */
+     public function actionPrint($id)
+    {
+        $model=$this->findModel($id);
+        if(isset($model)){
+            $this->layout=false;
+            return $this->render('viewpr', [
+                'model' => $model,
+//                'searchModel' => $searchModel,
+//                'dataProvider' => $dataProvider,
+            ]);
+
+        }
+    }
     public function actionView($id)
     {   
         $request = Yii::$app->request;
