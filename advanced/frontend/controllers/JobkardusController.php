@@ -3,21 +3,18 @@
 namespace frontend\controllers;
 
 use Yii;
-use app\models\Itemkardus;
-use app\models\ItemkardusSearch;
+use app\models\Itemk;
+use app\models\ItemkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
-use frontend\models\Csv2;
-use app\models\Itemk;
-use app\models\Itemkd;
-use app\models\Jobs;
+
 /**
- * ItemkController implements the CRUD actions for Itemkardus model.
+ * JobkardusController implements the CRUD actions for Itemk model.
  */
-class ItemkController extends Controller
+class JobkardusController extends Controller
 {
     /**
      * @inheritdoc
@@ -36,12 +33,12 @@ class ItemkController extends Controller
     }
 
     /**
-     * Lists all Itemkardus models.
+     * Lists all Itemk models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new ItemkardusSearch();
+        $searchModel = new ItemkSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,30 +49,17 @@ class ItemkController extends Controller
 
 
     /**
-     * Displays a single Itemkardus model.
+     * Displays a single Itemk model.
      * @param integer $id
      * @return mixed
      */
-     public function actionPrint($id)
-    {
-        $model=$this->findModel($id);
-        if(isset($model)){
-            $this->layout=false;
-            return $this->render('viewpr', [
-                'model' => $model,
-//                'searchModel' => $searchModel,
-//                'dataProvider' => $dataProvider,
-            ]);
-
-        }
-    }
     public function actionView($id)
     {   
         $request = Yii::$app->request;
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Itemkardus #".$id,
+                    'title'=> "Itemk #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -88,67 +72,9 @@ class ItemkController extends Controller
             ]);
         }
     }
-    public function actionUploadcsv()
-    {
-        $model= new Csv2();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                $i=0;
-                $j=0;
-                $transaction = Yii::$app->db->beginTransaction();
-                try
-                {
-                $jobini=Jobs::findOne($model->namav);
-                $nie=$jobini->nie;
-                $gtin=$jobini->gtin;
-                $i++;
-                $lot=$model->lot;
-                $expire=$model->expired;
-                $serial=substr($nie, 5,6).substr($lot,3,3);
-                $mulai2=intval($model->jumlah);
-                $job =new Itemk();
-                $job->nama=$model->nama;
-                $job->save();
-                $idmaster=$job->id;
-                $belakang=-1*$mulai2;
-                for($mulai1=1;$mulai1<=$mulai2;$mulai1++)
-                {
-                $kodesn=$serial. substr("000000".$mulai1,-3);
-                $barang = New Itemkardus();
-                $barang->var_1 = $nie;
-                $barang->var_2 = $gtin;
-                $barang->var_3 = $model->lot;
-                $barang->var_4 = $model->expired;
-                $barang->var_5 = $kodesn;
-                $barang->var_6 = $model->company;
-                $barang->var_7 = $model->varian;
-                $barang->var_8 = $model->qty;
-                $barang->var_9 = $model->berat;
-                $barang->ulang = 1;
-                    $barang->save();
-                    $mdet= new Itemkd();
-                    $mdet->idmaster=$idmaster;
-                    $mdet->iddetail=$barang->id;
-                    $mdet->save();
-                }
-                    $transaction->commit();
-                    Yii::$app->session->setFlash('success', $mulai1.' rows Generate Success ');
-                }
-                catch(Exception $e)
-                {
-                    $transaction->rollBack();
-                    Yii::$app->session->setFlash('danger', 'Failed import '.$e.getMessage());
 
-                }
-            return $this->redirect(['itemk/index']); 
-        }
-        // Yii::$app->session->setFlash('success', ' rows Success ');
-        return $this->render('uploadcsva', [
-        'model' => $model,
-        ]);
-
-    }
     /**
-     * Creates a new Itemkardus model.
+     * Creates a new Itemk model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -156,7 +82,7 @@ class ItemkController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new Itemkardus();  
+        $model = new Itemk();  
 
         if($request->isAjax){
             /*
@@ -165,7 +91,7 @@ class ItemkController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemkardus",
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemk",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -173,18 +99,18 @@ class ItemkController extends Controller
                                 Html::button(Yii::t('yii2-ajaxcrud', 'Create'), ['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
-            }else if($model->load($request->post()) && $model->validate() && $model->save()){
+            }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemkardus",
-                    'content'=>'<span class="text-success">'.Yii::t('yii2-ajaxcrud', 'Create').' Itemkardus '.Yii::t('yii2-ajaxcrud', 'Success').'</span>',
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemk",
+                    'content'=>'<span class="text-success">'.Yii::t('yii2-ajaxcrud', 'Create').' Itemk '.Yii::t('yii2-ajaxcrud', 'Success').'</span>',
                     'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                             Html::a(Yii::t('yii2-ajaxcrud', 'Create More'), ['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
         
                 ];         
             }else{           
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemkardus",
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Itemk",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -196,6 +122,7 @@ class ItemkController extends Controller
         }else{
             /*
             *   Process for non-ajax request
+            */
             if ($model->load($request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
@@ -203,13 +130,12 @@ class ItemkController extends Controller
                     'model' => $model,
                 ]);
             }
-            */
         }
        
     }
 
     /**
-     * Updates an existing Itemkardus model.
+     * Updates an existing Itemk model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -227,7 +153,7 @@ class ItemkController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itemkardus #".$id,
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itemk #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -237,7 +163,7 @@ class ItemkController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Itemkardus #".$id,
+                    'title'=> "Itemk #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -246,7 +172,7 @@ class ItemkController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itemkardus #".$id,
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Itemk #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -257,6 +183,7 @@ class ItemkController extends Controller
         }else{
             /*
             *   Process for non-ajax request
+            */
             if ($model->load($request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
@@ -264,12 +191,24 @@ class ItemkController extends Controller
                     'model' => $model,
                 ]);
             }
-            */
+        }
+    }
+    public function actionPrint($id)
+    {
+        $model=$this->findModel($id);
+        if(isset($model)){
+            $this->layout=false;
+            return $this->render('viewpr', [
+                'model' => $model,
+//                'searchModel' => $searchModel,
+//                'dataProvider' => $dataProvider,
+            ]);
+
         }
     }
 
     /**
-     * Delete an existing Itemkardus model.
+     * Delete an existing Itemk model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -297,7 +236,7 @@ class ItemkController extends Controller
     }
 
      /**
-     * Delete multiple existing Itemkardus model.
+     * Delete multiple existing Itemk model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -328,15 +267,15 @@ class ItemkController extends Controller
     }
 
     /**
-     * Finds the Itemkardus model based on its primary key value.
+     * Finds the Itemk model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Itemkardus the loaded model
+     * @return Itemk the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Itemkardus::findOne($id)) !== null) {
+        if (($model = Itemk::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

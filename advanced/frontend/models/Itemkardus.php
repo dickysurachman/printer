@@ -62,20 +62,31 @@ class Itemkardus extends \yii\db\ActiveRecord
              'tanggal' => Yii::t('yii', 'Date Time'),
             'var_1' => Yii::t('yii', 'NIE'),
             'var_2' => Yii::t('yii', 'GTIN'),
+            'var_3' => Yii::t('yii', 'LOT NO'),
             'var_4' => Yii::t('yii', 'EXP DATE'),
             'var_5' => Yii::t('yii', 'S / N'),
-            'biner' => Yii::t('yii', 'Hexa'),
-            'ulang' => Yii::t('yii', 'Loop'),
-            'var_3' => Yii::t('yii', 'LOT NO'),
-            'hitung' => Yii::t('yii', 'Success'),
-            'gagal' => Yii::t('yii', 'Failure'),
-            'status' => Yii::t('yii', 'Status'),
             'var_6' => Yii::t('yii', 'Company Name'),
             'var_7' => Yii::t('yii', 'Varian Name'),
             'var_8' => Yii::t('yii', 'Qty'),
             'var_9' => Yii::t('yii', 'Weight (kg)'),
             'var_10' => Yii::t('yii', 'Var 10'),
+            'biner' => Yii::t('yii', 'Hexa'),
+            'ulang' => Yii::t('yii', 'Loop'),
+            'hitung' => Yii::t('yii', 'Success'),
+            'gagal' => Yii::t('yii', 'Failure'),
+            'status' => Yii::t('yii', 'Status'),
         ];
+    }
+    public function getStatusname(){
+        if($this->status==0)
+        {
+            return 'Active';
+        }elseif($this->status==1){
+            return 'Progress Execution';
+        } else {
+            return 'Done';
+        }
+
     }
 
     public function getPerusahaan()
