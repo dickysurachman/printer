@@ -7,25 +7,17 @@ use yii2ajaxcrud\ajaxcrud\CrudAsset;
 use yii2ajaxcrud\ajaxcrud\BulkButtonWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ItemSearch */
+/* @var $searchModel app\models\ItemmasterpSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yii', 'Item Pallet');
+$this->title = Yii::t('yii', 'Pallet Job List');
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
 ?>
-<style type="text/css">
-    .modal-dialog {
-        max-width: 60% !important;
-        width: 60% !important;
-    }
-</style>
-
-<div class="item-index">
-    <?php //= Html::a(Yii::t('yii', 'Import Job'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>
-     <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemk/uploadcsv'], ['class' => 'btn btn-success']) ?>
+<div class="itemmasterp-index">
+     <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemp/uploadcsv'], ['class' => 'btn btn-success']) ?>
     <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
@@ -37,7 +29,7 @@ CrudAsset::register($this);
             'toolbar'=> [
                 ['content'=>
                     Html::a(Yii::t('yii2-ajaxcrud', 'Create New'), ['create'],
-                    ['role'=>'modal-remote','title'=> Yii::t('yii2-ajaxcrud', 'Create New').' Items','class'=>'btn btn-outline-primary']).
+                    ['role'=>'modal-remote','title'=> Yii::t('yii2-ajaxcrud', 'Create New').' Itemmasterps','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fa fa-redo"></i>', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-success', 'title' => Yii::t('yii2-ajaxcrud', 'Reset Grid')]).
                     '{toggleData}'.
@@ -47,9 +39,8 @@ CrudAsset::register($this);
             'striped' => true,
             'condensed' => true,
             'responsive' => true,          
-            'responsiveWrap'=>false,      
             'panel' => [
-               'type' => 'default', 
+                'type' => 'default', 
                 'heading' => '<i class="fa fa-list"></i> <b>'.$this->title.'</b>',
                 'before'=>'<em>* '.Yii::t('yii2-ajaxcrud', 'Resize Column').'</em>',
                 'after'=>BulkButtonWidget::widget([

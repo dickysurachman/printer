@@ -199,3 +199,30 @@ ALTER TABLE `itemmasterkd`
 CREATE TRIGGER `deletej` AFTER DELETE ON `itemmasterk` FOR EACH ROW DELETE from itemmasterkd where idmaster=old.id;
 CREATE TRIGGER `deletejm` AFTER DELETE ON `itemmasterkd` FOR EACH ROW delete from itemkardus where id=old.iddetail;
 
+CREATE TABLE `itemmasterp` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `nama` varchar(100) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `itemmasterp`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemmasterp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE `itemmasterpd` (
+  `id` int(11) NOT NULL,
+  `idmaster` int(11) DEFAULT NULL,
+  `iddetail` int(11) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `itemmasterpd`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemmasterpd`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  
+
+CREATE TRIGGER `deletep` AFTER DELETE ON `itemmasterp` FOR EACH ROW DELETE from itemmasterpd where idmaster=old.id;
+CREATE TRIGGER `deletepm` AFTER DELETE ON `itemmasterpd` FOR EACH ROW delete from itempallet where id=old.iddetail;
+

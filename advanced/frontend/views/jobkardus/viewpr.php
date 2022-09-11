@@ -43,7 +43,7 @@ foreach($model->detail as $value){
 
 
 ?>
-<div class="pages">
+<div class="pages" >
 <div class="item-view" style="padding: 15px;border:solid 1px black;margin-left: 10px;width: 55%;margin-top:25px;">
     
     <div class="row">
