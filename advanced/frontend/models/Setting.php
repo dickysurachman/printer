@@ -12,6 +12,7 @@ class Setting extends Model
 {
     public $url1;
     public $url2;
+    public $url3;
     public $timer;
     public $ip_alat;
     public $port_alat;
@@ -32,7 +33,7 @@ class Setting extends Model
             //[['gambar'],'file', 'extensions' => 'csv', 'mimeTypes' => 'image/jpeg, image/png'], 
             //[['gambar'], 'file', 'extensions' => 'jpg,jpeg,png'],
             [['timer','port_alat','buffer'],'integer'],
-            [['url1','url2','ip_alat'],'safe'],
+            [['url1','url2','url3','ip_alat'],'safe'],
             // verifyCode needs to be entered correctly
         ];
     }
@@ -45,6 +46,7 @@ class Setting extends Model
         return [
                     'url1'=> Yii::t('yii', 'URL Get Data'),
                     'url2'=> Yii::t('yii', 'URL Sent Data'),
+                    'url3'=> Yii::t('yii', 'URL Counter'),
                     'timer'=> Yii::t('yii', 'Loop Duration in second'),
                     'ip_alat'=> Yii::t('yii', 'Printer IP'),
                     'port_alat'=> Yii::t('yii', 'Printer Port'),
