@@ -15,7 +15,7 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id',
     // ],
-    [
+   [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal',
     ],
@@ -29,11 +29,15 @@ return [
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'biner',
+        'attribute'=>'var_3',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'var_3',
+        'attribute'=>'var_4',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'var_5',
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',

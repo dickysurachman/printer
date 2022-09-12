@@ -15,7 +15,7 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id',
     // ],
-    [
+   [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal',
     ],
@@ -23,26 +23,21 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'var_1',
     ],
-     [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'var_1',
-        'header'=>'Barcode',
-         'format' => 'raw',
-            'value'=>function ($data) {
-                return '<img alt="testing" src="'.str_replace("index.php","",Yii::$app->homeUrl) .'/barcode.php?size=25&text='.$data->var_1.'">';
-                                },
-    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'var_2',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'biner',
+        'attribute'=>'var_3',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'var_3',
+        'attribute'=>'var_4',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'var_5',
     ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
