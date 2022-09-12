@@ -31,7 +31,7 @@ print("PORT Perangkat ",TCP_PORT)
 print("BUFFER ",BUFFER_SIZE)
 print("URL API",settt[0])
 print("DURASI TIMER (dalam detik)",settt[2])
-print("URL API COUNTER",settt[6])
+#print("URL API COUNTER",settt[6])
 
 
 while True:
