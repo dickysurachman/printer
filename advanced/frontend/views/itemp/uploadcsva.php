@@ -67,7 +67,7 @@ $this->title="Generate Jobs";
     'options'=>['id'=>'cat2-id'], //,'placeholder' => 'Search for NIE  ...'
     'type' => DepDrop::TYPE_SELECT2,
     'pluginOptions'=>[
-        'depends'=>['csv2-namav'],
+        'depends'=>['csv3-namav'],
         ///'placeholder'=>'Select...',
         'url'=>Url::to(['/jobs/subcatuser'])
     ]
@@ -82,7 +82,7 @@ $this->title="Generate Jobs";
     'options'=>['id'=>'cat3-id'],//,'placeholder' => 'Search for GTIN  ...'
     'type' => DepDrop::TYPE_SELECT2,
     'pluginOptions'=>[
-        'depends'=>['csv2-namav'],
+        'depends'=>['csv3-namav'],
         //'placeholder'=>'Select...',
         'url'=>Url::to(['/jobs/subcatuser1'])
     ]
