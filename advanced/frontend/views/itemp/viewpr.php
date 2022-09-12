@@ -91,7 +91,7 @@ use yii\widgets\DetailView;
             use Da\QrCode\QrCode;
             $gabung ="(90)".$model->var_1."(01)".$model->var_2."(10)".$model->var_3."(17)".$model->var_4."(21)".$model->var_5;
             $qrCode = (new QrCode($gabung))
-                ->setSize(140)
+                ->setSize(170)
                 ->setMargin(5)
                 //->useForegroundColor(51, 153, 255);
                 ->useForegroundColor(13, 13, 13);

@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
-use frontend\models\Csv2;
+use frontend\models\Csv3;
 use app\models\Itemmasterp;
 use app\models\Itemmasterpd;
 use app\models\Jobs;
@@ -220,7 +220,7 @@ class ItempController extends Controller
      */
     public function actionUploadcsv()
     {
-        $model= new Csv2();
+        $model= new Csv3();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 $i=0;
                 $j=0;
