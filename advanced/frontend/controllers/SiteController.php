@@ -23,6 +23,7 @@ use Da\QrCode\QrCode;
 use ZipArchive;
 use app\models\User;
 use app\models\Machine;
+use app\models\Itemmasterd;
 /**
  * Site controller
  */
@@ -117,6 +118,10 @@ class SiteController extends Controller
         
         
     }
+    public function actionTanggal(){
+        return "Date Time : ".date('d-m-Y H:i:s',time());
+    }
+
     public function actionCamera($status){        
         if(trim($status)<>""){
             $mm=new Scanlog;
@@ -247,11 +252,22 @@ class SiteController extends Controller
             if($status=="sukses") {
             $ja->hitung = $ja->hitung+1;
             $total+=1;
-            if($total>=$ja->ulang) $ja->status=2;
+            if($total>=$ja->ulang) 
+            {
+                $ja->status=2;
+                $det=Itemmasterd::findOne($ja->id);
+                $det->status=1;
+                $det->save();
+            }
             } else {
             $ja->gagal= $ja->gagal+1;
             $total+=1;
-            if($total>=$ja->ulang) $ja->status=2;
+            if($total>=$ja->ulang) {
+                $ja->status=2;
+                $det=Itemmasterd::findOne($ja->id);
+                $det->status=2;
+                $det->save();                
+            }
             }
             $ja->save();
             }

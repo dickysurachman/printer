@@ -1,10 +1,113 @@
 <?php
 
 use yii\widgets\DetailView;
-
+use yii\helpers\Html;
+use Da\QrCode\QrCode;
 $this->title="Serialization and Inspection";
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
+$url1 = Yii::$app->homeUrl.'/site/tanggal.html';
+$url2 = Yii::$app->homeUrl.'/item/table.html?id='.$models->id;
+$url3 = Yii::$app->homeUrl.'/item/getjob.html?id='.$models->id;
+$urlpass = Yii::$app->homeUrl.'/item/pass.html?id='.$models->id;
+$urlfail = Yii::$app->homeUrl.'/item/fail.html?id='.$models->id;
+$urltotal = Yii::$app->homeUrl.'/item/total.html?id='.$models->id;
+$urlprogress = Yii::$app->homeUrl.'/item/progress.html?id='.$models->id;
+$this->registerJs(
+    "let statusx = false;
+    let status = false;
+    $('#setar').click(function(){
+        status=setInterval(update,2000);
+        statusx=true;
+        $('#recum').removeAttr('disabled');
+    });
+    $('#setop').click(function(){
+        statusx=false;
+        $('#recum').attr('disabled','disabled');
+        $('#recum').text('PAUSE');
+        clearInterval(status);
+        $('#servertime').html(''); 
+    });
+    $('#reset').click(function(){
+        $('#servertime').html(''); 
+    });
+    $('#recum').click(function(){
+        var title=$('#recum').text();
+        if (statusx === false) {
+        status = setInterval(update,2000);
+        statusx=true;
+        } else {
+        statusx=false;
+            clearInterval(status);
+        }
+        if(title=='RESUME') {
+            $('#recum').text('PAUSE');
+        } else {
+            $('#recum').text('RESUME');
+
+        }
+    });
+ 
+    function update() {
+      $.ajax({
+        type: 'POST',
+        url: '".$url1."',
+        success: function(data) {
+          $('#datess').html(data); 
+          
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '".$url2."',
+        success: function(data) {
+          $('#tableantrian').html(data); 
+          
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '".$url3."',
+        success: function(data) {
+          $('#qrinspeksi').html(data); 
+          
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '".$urlpass."',
+        success: function(data) {
+          $('#pass').html(data); 
+          
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '".$urlprogress."',
+        success: function(data) {
+          $('#progress').html(data); 
+          
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '".$urlfail."',
+        success: function(data) {
+          $('#fail').html(data); 
+          
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '".$urltotal."',
+        success: function(data) {
+          $('#total').html(data); 
+          
+        }
+      });
+    }"
+);
+
 ?>
 <div class="item-view">
     <div class="row">
@@ -15,10 +118,10 @@ $this->title="Serialization and Inspection";
             <h3 id="datess">Date Time : <?=date('d-m-Y H:i:s',time())?></h3>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="qrinspeksi">
         <div class="col-5">
             <?php 
-            use Da\QrCode\QrCode;
+
             $gabung ="(90)".$model->var_1."(01)".$model->var_2."(10)".$model->var_3."(17)".$model->var_4."(21)".$model->var_5;
             $qrCode = (new QrCode($gabung))
                 ->setSize(170)
@@ -62,9 +165,10 @@ $this->title="Serialization and Inspection";
 
     <div class="row">
         <div class="col-5">
-            <h3 style="color:green;">PASS    :</h3>
-            <h3 style="color:red;">FAIL    :</h3>
-            <h3 style="color:black;">TOTAL    :</h3>
+            <h3 id="pass" style="color:green;">PASS    :</h3>
+            <h3 id="fail" style="color:red;">FAIL    :</h3>
+            <h3 id="progress" style="color:blue;">PROGRESS    :</h3>
+            <h3 id="total" style="color:black;">TOTAL    :</h3>
         </div>
         <div class="col-7">
             <button id="setar" class="btn btn-success"><i class="fas fa-play"></i>&nbsp;START</button>
@@ -77,7 +181,7 @@ $this->title="Serialization and Inspection";
 
     </div>
 
-    <div class="row">
+    <div class="row" id="tableantrian">
          <table class="table">
             <tr>
                 <th>No</th>
@@ -86,6 +190,7 @@ $this->title="Serialization and Inspection";
                 <th>LOT</th>
                 <th>EXP DATE</th>
                 <th>S/N</th>
+                <th>Time Stamp</th>
                 <th>status</th>
             </tr>
         <?php
@@ -97,6 +202,7 @@ $this->title="Serialization and Inspection";
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_4."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
+        echo "<td>".$value->itemd->tanggal."</td>";
         echo "<td>".$value->itemd->statusname."</td></tr>";
         $i++;
     }

@@ -81,6 +81,9 @@ class JobController extends Controller
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    
+
+
     public function actionCreate()
     {
         $request = Yii::$app->request;

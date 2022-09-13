@@ -17,6 +17,9 @@ use app\models\Itemmasterd;
 use app\models\Jobs;
 use app\models\Line;
 use app\models\Machine;
+use yii\widgets\DetailView;
+use Da\QrCode\QrCode;
+
 /**
  * ItemController implements the CRUD actions for Item model.
  */
@@ -85,6 +88,85 @@ class ItemController extends Controller
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    public function actionTable($id){
+    $tab='<table class="table">
+            <tr>
+                <th>No</th>
+                <th>NIE</th>
+                <th>GTIN</th>
+                <th>LOT</th>
+                <th>EXP DATE</th>
+                <th>S/N</th>
+                <th>Time Stamp</th>
+                <th>status</th>
+            </tr>';
+        $i=1;
+    $models=Itemmaster::findOne($id);
+    foreach($models->detail as $value){
+        $tab.="<tr><td>".$i."</td>";
+        $tab.= "<td>".$value->itemd->var_1."</td>";
+        $tab.= "<td>".$value->itemd->var_2."</td>";
+        $tab.= "<td>".$value->itemd->var_3."</td>";
+        $tab.= "<td>".$value->itemd->var_4."</td>";
+        $tab.= "<td>".$value->itemd->var_5."</td>";
+        $tab.= "<td>".$value->itemd->tanggal."</td>";
+        $tab.= "<td>".$value->itemd->statusname."</td></tr>";
+        $i++;
+     }
+        $tab.="</table>";
+        return $tab;
+
+    }
+
+    public function actionTotal($id){
+        $id=Itemmasterd::find()->where(['idmaster'=>$id])->count();
+        return 'TOTAL '.$id;
+    }
+    public function actionPass($id){
+        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->count();
+        return 'PASS    :'.$id;
+    }
+    public function actionFail($id){
+        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>2])->count();
+        return 'FAIL    :'.$id;
+    }
+    public function actionProgress($id){
+        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>0])->count();
+        return 'PROGRESS :'.$id;
+    }
+
+
+    public function actionGetjob($id){
+        $job=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->limit(1)->orderBy(['id'=>SORT_DESC])->one();
+        $model=Item::findOne($job->iddetail);
+        $gabung ="(90)".$model->var_1."(01)".$model->var_2."(10)".$model->var_3."(17)".$model->var_4."(21)".$model->var_5;
+         $resp='<div class="col-5">';
+            $qrCode = (new QrCode($gabung))
+                ->setSize(170)
+                ->setMargin(5)
+                ->useForegroundColor(13, 13, 13);
+            $qrCode->writeFile('code.png'); 
+            header('Content-Type: '.$qrCode->getContentType());
+            $resp.='<img src="' . $qrCode->writeDataUri() . '">';
+            $resp.='<div class="row" style="text-align: center; margin: auto;border:solid 1px black;background-color: white;">
+               <span style="text-align: center; margin: auto;">'. $gabung.'</span>
+            </div>
+        </div>
+        <div class="col-7">';
+        $resp.= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'var_1',
+                'var_2',
+                'var_3',
+                'var_4',
+                'var_5',
+            ],
+        ]); 
+        $resp.='</div>';
+        return $resp;
+    }
+
       public function actionUploadcsv()
     {
         $model= new Csv();
