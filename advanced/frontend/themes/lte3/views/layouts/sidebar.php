@@ -65,6 +65,7 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => 'Log Camera', 'url'=>['/log/index'],'icon' => 'download', 'visible' => Mimin::checkRoute('job/index')],
                     ['label' => 'Data Scan', 'url'=>['/itemc/index'],'icon' => 'book', 'visible' => Mimin::checkRoute('itemc/index')],
                     ['label' => \Yii::t('yii', 'Login'), 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
+                    ['label' => \Yii::t('yii', 'Change Password'), 'url' => ['site/password'], 'icon' => 'key', 'visible' => !Yii::$app->user->isGuest],
                     ['label' =>  \Yii::t('yii', 'Logout'),'url' => ['site/logout'],'template'=>'<a class="nav-link" href="{url}" data-method="post"><i class="nav-icon fas fa-sign-in-alt"></i>{label}</a>','icon' => 'sign-in-alt', 'visible' => !Yii::$app->user->isGuest]
 
                     /*

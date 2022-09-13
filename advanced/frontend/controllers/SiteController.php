@@ -21,6 +21,7 @@ use frontend\models\Setting;
 use app\models\Scanlog;
 use Da\QrCode\QrCode;
 use ZipArchive;
+use app\models\User;
 use app\models\Machine;
 /**
  * Site controller
@@ -99,7 +100,23 @@ class SiteController extends Controller
         'code' => 100,
     ];
     }
+    public function actionPassword(){
+        $request = Yii::$app->request;
+        $model = User::findOne(Yii::$app->user->identity->id);
 
+        if($model->load($request->post())){
+                $model->updated_at=time();
+                $model->setPassword($model->password_hash);
+                $model->generateAuthKey();
+                $model->save();
+        
+        }
+        return $this->render('updatep', [
+                    'model' => $model,
+                ]);
+        
+        
+    }
     public function actionCamera($status){        
         if(trim($status)<>""){
             $mm=new Scanlog;

@@ -31,7 +31,7 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tanggal'], 'safe'],
+            [['tanggal','edit_date'], 'safe'],
             [['ulang','var_1','var_2','var_3','var_4','var_5'], 'required'],
             [['status','ulang','hitung','gagal'], 'integer'],
             //[['var_2'], 'string', 'max' => 200],
@@ -76,6 +76,7 @@ class Item extends \yii\db\ActiveRecord
             'hitung' => Yii::t('yii', 'Success'),
             'gagal' => Yii::t('yii', 'Failure'),
             'status' => Yii::t('yii', 'Status'),
+            'edit_date' => Yii::t('yii', 'Last Update'),
         ];
     }
 }

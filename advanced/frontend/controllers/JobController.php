@@ -144,8 +144,17 @@ class JobController extends Controller
             $this->layout=false;
             return $this->render('viewpr', [
                 'model' => $model,
-//                'searchModel' => $searchModel,
-//                'dataProvider' => $dataProvider,
+            ]);
+
+        }
+    }
+     public function actionStart($id)
+    {
+        $model=$this->findModel($id);
+        if(isset($model)){
+            $this->layout=false;
+            return $this->render('viewpr', [
+                'model' => $model,
             ]);
 
         }

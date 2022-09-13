@@ -27,7 +27,7 @@ $line=ArrayHelper::map(Line::find()->where(['status'=>1])->asArray()->all(), 'id
 $machine=ArrayHelper::map(Machine::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
 
 
-$this->title="Generate Jobs";
+$this->title="Aggregation Case Carton";
 ?>
 
 <div class="userprofile-form">

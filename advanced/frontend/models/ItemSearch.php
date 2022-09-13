@@ -23,7 +23,7 @@ class ItemSearch extends Item
     {
         return [
             [['id'], 'integer'],
-            [['tgl_a','tgl_b','tanggal', 'var_1','gagal','hitung','ulang','var_4','var_5','var_2', 'biner', 'var_3', 'status'], 'safe'],
+            [['tgl_a','tgl_b','edit_date','tanggal', 'var_1','gagal','hitung','ulang','var_4','var_5','var_2', 'biner', 'var_3', 'status'], 'safe'],
         ];
     }
 
@@ -62,6 +62,7 @@ class ItemSearch extends Item
         $query->andFilterWhere([
             'id' => $this->id,
             'tanggal' => $this->tanggal,
+            'edit_date' => $this->edit_date,
             'hitung' => $this->hitung,
             'gagal' => $this->gagal,
             'ulang' => $this->ulang,

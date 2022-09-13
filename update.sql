@@ -258,3 +258,4 @@ ALTER TABLE `linenm`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
   alter table `itemmaster` add `id_line` int(11) DEFAULT NULL;
+  alter table `item` add `edit_date` datetime DEFAULT NULL;

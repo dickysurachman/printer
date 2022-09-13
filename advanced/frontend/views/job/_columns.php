@@ -53,14 +53,17 @@ return [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'noWrap' => 'true',
-        'template' => '{view} {print}{delete}',
+        'template' => '{view} {print}{delete}{startjob}',
         'vAlign' => 'middle',
         'urlCreator' => function($action, $model, $key, $index) { 
                 return Url::to([$action,'id'=>$key]);
         },
         'buttons' => [
             'print' => function ($url, $model, $key) {
-                return Html::a('<span class="fas fa-print"></span>', ['print', 'id'=>$model->id],['target'=>'_blank','data-pjax' => "0",'class'=>'btn btn-sm btn-outline-success']);
+                return Html::a('<span class="fas fa-print"></span>', ['print', 'id'=>$model->id],['target'=>'_blank','data-pjax' => "0",'title'=>'Print Detail','class'=>'btn btn-sm btn-outline-success']);
+            },
+            'startjob' => function ($url, $model, $key) {
+                return Html::a('<span class="fas fa-plane"></span>', ['start', 'id'=>$model->id],['target'=>'_blank','data-pjax' => "0",'title'=>'Start Monitoring Job' ,'class'=>'btn btn-sm btn-outline-success']);
             },
         ],
         'viewOptions' => ['role' => 'modal-remote', 'title' => Yii::t('yii2-ajaxcrud', 'View'), 'data-toggle' => 'tooltip', 'class' => 'btn btn-sm btn-outline-success'],
