@@ -223,8 +223,8 @@ $this->registerJs(
     </div>
 
     <div class="row" id="tableantrian">
-         <table class="table">
-            <tr>
+         <table class="table table-hover table-striped">
+            <thead class="thead-dark">
                 <th>No</th>
                 <th>NIE</th>
                 <th>GTIN</th>
@@ -233,7 +233,7 @@ $this->registerJs(
                 <th>S/N</th>
                 <th>Time Stamp</th>
                 <th>status</th>
-            </tr>
+            </thead>
         <?php
         $i=1;
     foreach($models->detail as $value){

@@ -89,8 +89,8 @@ class ItemController extends Controller
      * @return mixed
      */
     public function actionTable($id){
-    $tab='<table class="table">
-            <tr>
+    $tab='<table class="table table-hover table-striped">
+               <thead class="thead-dark">
                 <th>No</th>
                 <th>NIE</th>
                 <th>GTIN</th>
@@ -99,7 +99,7 @@ class ItemController extends Controller
                 <th>S/N</th>
                 <th>Time Stamp</th>
                 <th>status</th>
-            </tr>';
+            </thead>';
         $i=1;
     $models=Itemmaster::findOne($id);
     foreach($models->detail as $value){
