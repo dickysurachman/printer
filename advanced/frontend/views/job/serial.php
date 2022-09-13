@@ -85,7 +85,9 @@ $this->registerJs(
         type: 'POST',
         url: '".$url3."',
         success: function(data) {
-          $('#qrinspeksi').html(data); 
+          if(data!=''){
+            $('#qrinspeksi').html(data); 
+          }
           
         }
       });
