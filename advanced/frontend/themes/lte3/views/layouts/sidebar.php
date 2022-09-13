@@ -46,7 +46,7 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => \Yii::t('yii', 'Routes'), 'url' => ['/mimin/route/index'], 'icon' => 'fas fa-angle-double-right','visible'=>Mimin::checkRoute('mimin/route')],
                     ['label' => 'Machine', 'url'=>['/machine/index'],'icon' => 'microchip', 'visible' => Mimin::checkRoute('machine/index')],
                     ['label' => 'Company', 'url'=>['/perusahaan/index'],'icon' => 'address-book', 'visible' => Mimin::checkRoute('perusahaan/index')],
-                     ['label' => \Yii::t('yii', 'Master Job'), 'url' => ['/jobs/index'], 'icon' => 'file','visible'=>Mimin::checkRoute('jobs/index')],
+                     ['label' => \Yii::t('yii', 'Master Product'), 'url' => ['/jobs/index'], 'icon' => 'file','visible'=>Mimin::checkRoute('jobs/index')],
                      ['label' => \Yii::t('yii', 'Job List'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
                     ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],
                      ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],

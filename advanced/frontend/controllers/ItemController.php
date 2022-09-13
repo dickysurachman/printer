@@ -93,6 +93,7 @@ class ItemController extends Controller
                 try
                 {
                 $jobini=Jobs::findOne($model->namav);
+                $namapr=$jobini->nama;
                 $nie=$jobini->nie;
                 $gtin=$jobini->gtin;
                 $i++;
@@ -102,6 +103,12 @@ class ItemController extends Controller
                 $mulai2=intval($model->jumlah);
                 $job =new Itemmaster();
                 $job->nama=$model->nama;
+                $job->job_id=$model->namav;
+                $job->var_1=$nie;
+                $job->var_2=$gtin;
+                $job->var_3=$model->expired;
+                $job->var_4=$model->lot;
+                $job->var_5=$namapr;
                 $job->save();
                 $idmaster=$job->id;
                 $belakang=-1*$mulai2;
@@ -115,10 +122,6 @@ class ItemController extends Controller
                 $barang->var_4 = $model->expired;
                 $barang->var_5 = $kodesn;
                 $barang->ulang = 1;
-                //$barang->biner="9032148902184";
-                //$barang->save();
-                //var_dump($barang);die();
-
                 $jadi="";
                 $satu="";
                 $dua="";

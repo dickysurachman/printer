@@ -241,3 +241,7 @@ ALTER TABLE `machine`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `machine`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+alter table `itemmaster` add `var_1` varchar(100) DEFAULT NULL,add `var_2` varchar(100) DEFAULT NULL,
+add `var_3` varchar(100) DEFAULT NULL,add `var_4` varchar(100) DEFAULT NULL,add `var_5` varchar(100) DEFAULT NULL,
+add `job_id` int(11) DEFAULT NULL;

@@ -24,6 +24,25 @@ return [
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'var_5',
+    ],
+    /*[
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'job_id',
+        'value'=>function ($model, $key, $index, $widget) { 
+            return $model->produk ?$model->produk->nama :'';
+        },
+    ],*/
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'var_1',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'var_2',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'status',
     ],
     [
