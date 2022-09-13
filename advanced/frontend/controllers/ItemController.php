@@ -121,6 +121,15 @@ class ItemController extends Controller
     public function actionTotal($id){
         $id=Itemmasterd::find()->where(['idmaster'=>$id])->count();
         return 'TOTAL '.$id;
+    }  
+    public function actionStatus($id){
+        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>0])->orderBy(['id'=>SORT_ASC])->One();
+        $model=$this->findModel($id->iddetail);
+        if($model->status<>1){
+            $model->status=1;
+            $model->save();            
+        }
+        return 'jalan';
     }
     public function actionPass($id){
         $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->count();
@@ -138,6 +147,7 @@ class ItemController extends Controller
 
     public function actionGetjob($id){
         $job=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->limit(1)->orderBy(['id'=>SORT_DESC])->one();
+        if(isset($job)){
         $model=Item::findOne($job->iddetail);
         $gabung ="(90)".$model->var_1."(01)".$model->var_2."(10)".$model->var_3."(17)".$model->var_4."(21)".$model->var_5;
          $resp='<div class="col-5">';
@@ -165,6 +175,9 @@ class ItemController extends Controller
         ]); 
         $resp.='</div>';
         return $resp;
+        } else {
+            return '';
+        }
     }
 
       public function actionUploadcsv()

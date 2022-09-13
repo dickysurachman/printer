@@ -7,6 +7,7 @@ $this->title="Serialization and Inspection";
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
 $url1 = Yii::$app->homeUrl.'/site/tanggal.html';
+$urlst = Yii::$app->homeUrl.'/item/status.html?id='.$models->id;
 $url2 = Yii::$app->homeUrl.'/item/table.html?id='.$models->id;
 $url3 = Yii::$app->homeUrl.'/item/getjob.html?id='.$models->id;
 $urlpass = Yii::$app->homeUrl.'/item/pass.html?id='.$models->id;
@@ -102,6 +103,14 @@ $this->registerJs(
         url: '".$urltotal."',
         success: function(data) {
           $('#total').html(data); 
+          
+        }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '".$urlst."',
+        success: function(data) {
+          $('#aaa').html(data); 
           
         }
       });
