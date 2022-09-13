@@ -79,4 +79,22 @@ class Item extends \yii\db\ActiveRecord
             'edit_date' => Yii::t('yii', 'Last Update'),
         ];
     }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            // Place your custom code here
+            if($this->isNewRecord)
+                    {
+                        $this->edit_date = date('Y-m-d H:i:s',time());
+                    }
+                    else
+                    {
+                        $this->edit_date = date('Y-m-d H:i:s',time());
+                    }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -36,7 +36,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup','settingsave','scan','settingcamera','scanm','scanm2'],
+                'only' => ['logout', 'signup','settingsave','scan','settingcamera','scanm','scanm2','password','camera'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -44,7 +44,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout','settingsave','scan','settingcamera','scanm','scanm2'],
+                        'actions' => ['logout','settingsave','scan','settingcamera','scanm','scanm2','password','camera'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

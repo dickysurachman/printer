@@ -150,11 +150,13 @@ class JobController extends Controller
     }
      public function actionStart($id)
     {
-        $model=$this->findModel($id);
+        $models=$this->findModel($id);
+        $model=Item::find()->one();
         if(isset($model)){
-            $this->layout=false;
-            return $this->render('viewpr', [
+            //$this->layout=false;
+            return $this->render('serial', [
                 'model' => $model,
+                'models' => $models,
             ]);
 
         }
