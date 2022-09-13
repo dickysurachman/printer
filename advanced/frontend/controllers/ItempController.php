@@ -261,6 +261,7 @@ class ItempController extends Controller
                     $mdet->save();
                 }
                     $transaction->commit();
+                    $mulai1=$mulai1-1;
                     Yii::$app->session->setFlash('success', $mulai1.' rows Generate Success ');
                 }
                 catch(Exception $e)

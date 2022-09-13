@@ -130,6 +130,7 @@ class ItemkController extends Controller
                     $mdet->iddetail=$barang->id;
                     $mdet->save();
                 }
+                    $mulai=$mulai-1;
                     $transaction->commit();
                     Yii::$app->session->setFlash('success', $mulai1.' rows Generate Success ');
                 }
