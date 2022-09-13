@@ -17,7 +17,7 @@ class Setting extends Model
     public $ip_alat;
     public $port_alat;
     public $buffer;
-
+    public $key;
 
     /**
      * @inheritdoc
@@ -33,7 +33,7 @@ class Setting extends Model
             //[['gambar'],'file', 'extensions' => 'csv', 'mimeTypes' => 'image/jpeg, image/png'], 
             //[['gambar'], 'file', 'extensions' => 'jpg,jpeg,png'],
             [['timer','port_alat','buffer'],'integer'],
-            [['url1','url2','url3','ip_alat'],'safe'],
+            [['url1','url2','url3','ip_alat','key'],'safe'],
             // verifyCode needs to be entered correctly
         ];
     }
@@ -51,6 +51,7 @@ class Setting extends Model
                     'ip_alat'=> Yii::t('yii', 'Printer IP'),
                     'port_alat'=> Yii::t('yii', 'Printer Port'),
                     'buffer'=> Yii::t('yii', 'Buffer'),
+                    'key'=> Yii::t('yii', 'Key'),
                     ];
      
     }

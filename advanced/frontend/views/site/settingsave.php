@@ -26,6 +26,7 @@ $this->title=Yii::t('yii', 'Setting Printer');
         $model->ip_alat=$dua[3];
         $model->port_alat=$dua[4];
         $model->buffer=$dua[5];
+        $model->key=$dua[6];
         //$model['url1']=$satu[0];
         //var_dump($satu);
 
@@ -43,10 +44,12 @@ $this->title=Yii::t('yii', 'Setting Printer');
     <?= $form->field($model, 'ip_alat')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'port_alat')->textInput() ?>
     <?= $form->field($model, 'buffer')->textInput() ?>
+    <?= $form->field($model, 'key')->textInput() ?>
 
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
 	        <?= Html::submitButton(Yii::t('yii', 'Update'), ['class' => 'btn btn-success']) ?>
+             <?= Html::a(Yii::t('yii', 'Download Program'), ['site/getprint'], ['class' => 'btn btn-danger']) ?>
 	    </div>
 	<?php } ?>
 

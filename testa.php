@@ -36,6 +36,14 @@ $(document).ready(function() {
 	<h2><span id="servertime"></span></h2>
 	<span id="clock"></span></h2>
 	</center>
+
+	<button id="klik">START</button>
+	<button id="klik">STOP</button>
+	<button id="klik">RESET</button>
+	<button id="klik">RESUME</button>
+	<?php 
+		echo  $_SERVER['REMOTE_ADDR'];
+	?>
 </div> 
 </body>
 </html>

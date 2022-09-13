@@ -5,23 +5,21 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Itemmaster;
+use app\models\Machine;
 
 /**
- * ItemmasterSearch represents the model behind the search form about `app\models\Itemmaster`.
+ * MachineSearch represents the model behind the search form about `app\models\Machine`.
  */
-class ItemmasterSearch extends Itemmaster
+class MachineSearch extends Machine
 {
     /**
      * @inheritdoc
      */
-     public $tgl_a;
-    public $tgl_b;
     public function rules()
     {
         return [
-            [['id', 'status','shift','machine'], 'integer'],
-            [['tanggal','tgl_a','tgl_b',  'nama','linenm'], 'safe'],
+            [['id', 'status'], 'integer'],
+            [['tanggal', 'nama', 'ip', 'key'], 'safe'],
         ];
     }
 
@@ -43,7 +41,7 @@ class ItemmasterSearch extends Itemmaster
      */
     public function search($params)
     {
-        $query = Itemmaster::find();
+        $query = Machine::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,14 +59,11 @@ class ItemmasterSearch extends Itemmaster
             'id' => $this->id,
             'tanggal' => $this->tanggal,
             'status' => $this->status,
-            'shift' => $this->shift,
-            'machine' => $this->machine,
         ]);
 
         $query->andFilterWhere(['like', 'nama', $this->nama])
-         ->andFilterWhere(['like', 'linenm', $this->linenm])
-         ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
-            ->andFilterWhere(['<=', 'tanggal', $this->tgl_b]);
+            ->andFilterWhere(['like', 'ip', $this->ip])
+            ->andFilterWhere(['like', 'key', $this->key]);
 
         return $dataProvider;
     }

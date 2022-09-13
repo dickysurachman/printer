@@ -5,10 +5,10 @@ data=b"\00\00\00\00\00?\01d\00;\01E\01\00\00\00\00\00\00\00\00\00\00\00\00\00\00
 print(data.hex())
 data2=binascii.hexlify(data).decode()
 print(data2)
-
+file_object = open('sample.txt', 'a')
 print(data2[62:66])
 print(data2[70:74])
-
+file_object.write(str(int(data2[70:74],16))+"\n")
 print( int(data2[62:66],16))
 print( int(data2[70:74],16))
 #print(p)
@@ -18,7 +18,11 @@ x1=0
 while awal>akhir:
 		akhir +=1
 		print("counter printer akhir ",akhir)
+		file_object.write("counter printer akhir "+str(akhir)+"\n")
 if(x1>0): 
+	file_object.write("data berhasil diterima"+"\n")
 	print("data berhasil diterima")
 else:
+	file_object.write("data gagal dikirim"+"\n")
 	print("data gagal dikirim")
+file_object.close()

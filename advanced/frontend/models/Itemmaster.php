@@ -29,8 +29,8 @@ class Itemmaster extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status'], 'integer'],
-            [['nama'], 'string', 'max' => 100],
+            [['status','shift','machine'], 'integer'],
+            [['nama','linenm'], 'string', 'max' => 100],
         ];
     }
 
@@ -43,9 +43,13 @@ class Itemmaster extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'tanggal' => Yii::t('yii', 'Tanggal'),
-            'nama' => Yii::t('yii', 'Nama'),
+            'tanggal' => Yii::t('yii', 'Date'),
+            'nama' => Yii::t('yii', 'Name'),
             'status' => Yii::t('yii', 'Status'),
+            'shift' => Yii::t('yii', 'Shift'),
+            'machine' => Yii::t('yii', 'Machine'),
+            'linenm' => Yii::t('yii', 'Line Name'),
+
         ];
     }
 

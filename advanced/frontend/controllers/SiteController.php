@@ -20,6 +20,8 @@ use app\models\Logitem;
 use frontend\models\Setting;
 use app\models\Scanlog;
 use Da\QrCode\QrCode;
+use ZipArchive;
+use app\models\Machine;
 /**
  * Site controller
  */
@@ -72,7 +74,24 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionInfo(){
+    public function actionInfo($key){
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+        $ipx=$h->ip;
+        $ipy=$_SERVER['REMOTE_ADDR'];
+        if(($ipx==$ipy) or ($ipy=="::1")) {        
+            $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(1)->all();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+            'message' => $res,
+            'code' => 100,
+            ];
+            $h->status=1;
+            $h->save();
+        }
+        }
+    }
+    public function actionInfox(){
         $res=Item::find()->where(['status'=>1])->limit(50)->all();
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     return [
@@ -194,7 +213,36 @@ class SiteController extends Controller
         ]);
     } 
 
-    public function actionHitung($id,$status,string $logbaca=""){
+    public function actionHitung($id,$status,string $logbaca="", string $key){
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+        $ipx=$h->ip;
+        $ipy=$_SERVER['REMOTE_ADDR'];
+        if(($ipx==$ipy) or ($ipy=="::1")) {   
+            if($status=="failure") {
+            $new1=new Logitem();
+            $new1->logbaca=$logbaca;
+            $new1->save();
+            } else {
+            $ja=Item::findOne($id);
+            if(isset($ja)){
+            $total=$ja->hitung+$ja->gagal;
+            if($status=="sukses") {
+            $ja->hitung = $ja->hitung+1;
+            $total+=1;
+            if($total>=$ja->ulang) $ja->status=2;
+            } else {
+            $ja->gagal= $ja->gagal+1;
+            $total+=1;
+            if($total>=$ja->ulang) $ja->status=2;
+            }
+            $ja->save();
+            }
+            }
+        }
+        }
+    } 
+    public function actionHitungx($id,$status,string $logbaca=""){
         if($status=="failure") {
             $new1=new Logitem();
             $new1->logbaca=$logbaca;
@@ -331,6 +379,23 @@ public function actionEksekusi()
         ]);
     }
 
+    public function actionGetprint(){
+        $filename=Yii::$app->security->generateRandomString() . '0-' . time().".zip";
+        $zip = new \ZipArchive(); 
+        $zip->open($filename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $zip->addFile('runprinter.bat'); 
+        $zip->addFile('programprint.py'); 
+        $zip->addFile('setting.txt'); 
+        $zip->close();
+        //$zip->createZip($zip,$filename);
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+        header('Content-Length: ' . filesize($filename));
+        header("Pragma: no-cache"); 
+        header("Expires: 0"); 
+        readfile("$filename");
+
+    }
      public function actionSettingsave()
     {
         $model = new Setting();
@@ -344,8 +409,10 @@ public function actionEksekusi()
             fwrite($myfile, $model->ip_alat."\n");
             fwrite($myfile, $model->port_alat."\n");
             fwrite($myfile, $model->buffer."\n");
+            fwrite($myfile, $model->key."\n");
             fclose($myfile);
-            return $this->goHome();
+            //return $this->goHome();
+            return $this->redirect(['site/settingsave']);
         }
 
         return $this->render('settingsave', [

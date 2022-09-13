@@ -226,3 +226,18 @@ ALTER TABLE `itemmasterpd`
 CREATE TRIGGER `deletep` AFTER DELETE ON `itemmasterp` FOR EACH ROW DELETE from itemmasterpd where idmaster=old.id;
 CREATE TRIGGER `deletepm` AFTER DELETE ON `itemmasterpd` FOR EACH ROW delete from itempallet where id=old.iddetail;
 
+
+alter table `itemmaster` add `linenm` varchar(100) DEFAULT NULL, add `shift` int(2) DEFAULT '0', add `machine` int(11) DEFAULT NULL;
+
+CREATE TABLE `machine` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `nama` varchar(100) DEFAULT NULL,
+  `ip` varchar(100) DEFAULT NULL,
+  `key` varchar(100) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `machine`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `machine`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
