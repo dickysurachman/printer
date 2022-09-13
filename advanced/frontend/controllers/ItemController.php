@@ -109,7 +109,7 @@ class ItemController extends Controller
         $tab.= "<td>".$value->itemd->var_3."</td>";
         $tab.= "<td>".$value->itemd->var_4."</td>";
         $tab.= "<td>".$value->itemd->var_5."</td>";
-        $tab.= "<td>".$value->itemd->tanggal."</td>";
+        $tab.= "<td>".$value->itemd->edit_date."</td>";
         $tab.= "<td>".$value->itemd->statusname."</td></tr>";
         $i++;
      }

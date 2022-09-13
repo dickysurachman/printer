@@ -211,7 +211,7 @@ $this->registerJs(
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_4."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
-        echo "<td>".$value->itemd->tanggal."</td>";
+        echo "<td>".$value->itemd->edit_date."</td>";
         echo "<td>".$value->itemd->statusname."</td></tr>";
         $i++;
     }
