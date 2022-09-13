@@ -236,6 +236,7 @@ class ItemController extends Controller
                 {
                 $kodesn=$serial. substr("000000".$mulai1,-3);
                 $barang = New Item();
+                $barang->machine=$model->machine;
                 $barang->var_1 = $nie;
                 $barang->var_2 = $gtin;
                 $barang->var_3 = $model->lot;

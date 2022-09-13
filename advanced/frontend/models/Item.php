@@ -33,7 +33,7 @@ class Item extends \yii\db\ActiveRecord
         return [
             [['tanggal','edit_date'], 'safe'],
             [['ulang','var_1','var_2','var_3','var_4','var_5'], 'required'],
-            [['status','ulang','hitung','gagal'], 'integer'],
+            [['status','ulang','hitung','gagal','machine'], 'integer'],
             //[['var_2'], 'string', 'max' => 200],
             //[['var_1'], 'string', 'max' => 200],
             [['var_1','var_2'], 'string','min' => 14, 'max' => 14],
@@ -77,9 +77,14 @@ class Item extends \yii\db\ActiveRecord
             'gagal' => Yii::t('yii', 'Failure'),
             'status' => Yii::t('yii', 'Status'),
             'edit_date' => Yii::t('yii', 'Last Update'),
+            'machine' => Yii::t('yii', 'Machine'),
         ];
     }
 
+     public function getMesin(){
+
+        return $this->hasOne(Machine::className(), ['id' => 'machine']);
+    }
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {

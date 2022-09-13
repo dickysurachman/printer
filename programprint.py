@@ -54,7 +54,8 @@ file_object.write("KEY "+ str(keyyy)+"\n")
 while True:
     #y += 1
     sleep(int(settt[2]) - time() % int(settt[2]))
-    url = str(settt[0])+"&key="+str(keyyy)
+    url = str(settt[0])+"?key="+str(keyyy)
+    file_object.write(str(url)+"\n")
     response = request.urlopen(url)
     data = json.loads(response.read())
     baca=""

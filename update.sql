@@ -259,3 +259,4 @@ ALTER TABLE `linenm`
 
   alter table `itemmaster` add `id_line` int(11) DEFAULT NULL;
   alter table `item` add `edit_date` datetime DEFAULT NULL;
+  alter table `item` add `machine` int(11) DEFAULT NULL;
