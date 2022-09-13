@@ -67,6 +67,10 @@ class Itemmaster extends \yii\db\ActiveRecord
 
         return $this->hasOne(Line::className(), ['id' => 'id_line']);
     }
+    public function getMesin(){
+
+        return $this->hasOne(Machine::className(), ['id' => 'machine']);
+    }
 
     public function getDetail()
     {

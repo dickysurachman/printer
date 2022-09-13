@@ -15,6 +15,8 @@ use yii\web\UploadedFile;
 use app\models\Itemmaster;
 use app\models\Itemmasterd;
 use app\models\Jobs;
+use app\models\Line;
+use app\models\Machine;
 /**
  * ItemController implements the CRUD actions for Item model.
  */
@@ -97,6 +99,8 @@ class ItemController extends Controller
                 $nie=$jobini->nie;
                 $gtin=$jobini->gtin;
                 $i++;
+                $line=Line::findOne($model->linenm);
+                $machine=Machine::findOne($model->machine);
                 $lot=$model->lot;
                 $expire=$model->expired;
                 $serial=substr($nie, 5,6).substr($lot,3,3);
@@ -109,6 +113,9 @@ class ItemController extends Controller
                 $job->var_3=$model->expired;
                 $job->var_4=$model->lot;
                 $job->var_5=$namapr;
+                $job->linenm=$line->nama;
+                $job->id_line=$model->linenm;
+                $job->machine=$model->machine;
                 $job->save();
                 $idmaster=$job->id;
                 $belakang=-1*$mulai2;
