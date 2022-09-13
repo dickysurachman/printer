@@ -22,6 +22,8 @@ class Csv extends Model
     public $gtin;
     public $namav;
     public $csv;
+    public $linenm;
+    public $machine;
 
 
     /**
@@ -41,7 +43,7 @@ class Csv extends Model
             [['lot'], 'string', 'max' => 12],
             //[['gambar'],'file', 'extensions' => 'csv', 'mimeTypes' => 'image/jpeg, image/png'], 
             //[['gambar'], 'file', 'extensions' => 'jpg,jpeg,png'],
-            [['nie','namav','nama','gtin','alamat','phone','lot','expired','tanggal','nama'],'safe'],
+            [['nie','namav','linenm','machine','nama','gtin','linenm','alamat','phone','lot','expired','tanggal','nama'],'safe'],
             // verifyCode needs to be entered correctly
         ];
     }
@@ -65,6 +67,8 @@ class Csv extends Model
                     'nama'=>'JOB NAME',
                     'namav'=>'PRODUCT NAME',
                     'gtin'=>'GTIN',
+                    'machine'=>'Machine Name',
+                    'linenm'=>'Line Name',
                     ];
      
     }

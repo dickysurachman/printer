@@ -245,3 +245,16 @@ ALTER TABLE `machine`
 alter table `itemmaster` add `var_1` varchar(100) DEFAULT NULL,add `var_2` varchar(100) DEFAULT NULL,
 add `var_3` varchar(100) DEFAULT NULL,add `var_4` varchar(100) DEFAULT NULL,add `var_5` varchar(100) DEFAULT NULL,
 add `job_id` int(11) DEFAULT NULL;
+
+CREATE TABLE `linenm` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `nama` varchar(100) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `linenm`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `linenm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+  alter table `itemmaster` add `id_line` int(11) DEFAULT NULL;

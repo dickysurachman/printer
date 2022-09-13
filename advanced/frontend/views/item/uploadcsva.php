@@ -9,6 +9,8 @@ use yii\web\View;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
 use app\models\Jobs;
+use app\models\Machine;
+use app\models\Line;
 //use yii\jui\DatePicker;
 //use kartik\file\FileInput;
 //use yii\helpers\Url;
@@ -21,6 +23,8 @@ use yii\web\JsExpression;
 $usr=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id', 'nama');
 $data=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id', 'nie');
 $data2=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id', 'gtin');
+$line=ArrayHelper::map(Line::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
+$machine=ArrayHelper::map(Machine::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
 
 
 $this->title="Generate Jobs";
@@ -44,9 +48,18 @@ $this->title="Generate Jobs";
     ?>
     </div> */?>
     <div class="row" style="margin:0px !important;">
-    <div class="col-3">
+    <div class="col-2">
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
         
+    </div>
+    <div class="col-2">
+    <?php    
+         echo $form->field($model, 'linenm')->widget(Select2::classname(), [
+        'data'=>$line,
+        //'initValueText' => $cityDesc2, 
+        'options' => ['placeholder' => 'Search for Line Name  ...'],
+        ]);
+        ?>
     </div>
     <div class="col-3">
     <?php    
@@ -73,7 +86,7 @@ $this->title="Generate Jobs";
     ?>
         
     </div>
-    <div class="col-3">
+    <div class="col-2">
     <?php
     echo $form->field($model, 'gtin')->widget(DepDrop::classname(), [
     'data'=>$data2,
@@ -93,16 +106,23 @@ $this->title="Generate Jobs";
     <div class="col-3">
     <?= $form->field($model, 'jumlah')->textInput(['maxlength' => true]) ?>
     </div>
-    <div class="col-3">
+    <div class="col-2">
     <?= $form->field($model, 'expired')->textInput(['maxlength' => true]) ?>
         
     </div>
-    <div class="col-3">
+    <div class="col-2">
     <?= $form->field($model, 'lot')->textInput(['maxlength' => true]) ?>
         
     </div>
-    <div class="col-3">
-        
+    
+    <div class="col-2">
+        <?php    
+         echo $form->field($model, 'machine')->widget(Select2::classname(), [
+        'data'=>$machine,
+        //'initValueText' => $cityDesc2, 
+        'options' => ['placeholder' => 'Search for Machine Name  ...'],
+        ]);
+        ?>
     </div>
     </div>
     <div class="form-group">

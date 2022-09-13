@@ -29,7 +29,7 @@ class Itemmaster extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status','shift','machine','job_id'], 'integer'],
+            [['status','shift','machine','job_id','id_line'], 'integer'],
             [['nama','linenm','var_1','var_2','var_3','var_4','var_5'], 'string', 'max' => 100],
         ];
     }
@@ -55,12 +55,17 @@ class Itemmaster extends \yii\db\ActiveRecord
             'var_4' => Yii::t('yii', 'EXP DATE'),
             'var_5' => Yii::t('yii', 'Product Name'),
             'job_id' => Yii::t('yii', 'Product Name'),
+            'id_line' => Yii::t('yii', 'Line Name'),
         ];
     }
 
     public function getProduk(){
 
         return $this->hasOne(Jobs::className(), ['id' => 'job_id']);
+    }
+    public function getLine(){
+
+        return $this->hasOne(Line::className(), ['id' => 'id_line']);
     }
 
     public function getDetail()
