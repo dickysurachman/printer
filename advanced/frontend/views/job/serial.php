@@ -14,6 +14,7 @@ $urlpass = Yii::$app->homeUrl.'/item/pass.html?id='.$models->id;
 $urlfail = Yii::$app->homeUrl.'/item/fail.html?id='.$models->id;
 $urltotal = Yii::$app->homeUrl.'/item/total.html?id='.$models->id;
 $urlprogress = Yii::$app->homeUrl.'/item/progress.html?id='.$models->id;
+$urlstop = Yii::$app->homeUrl.'/item/stop.html?id='.$models->id;
 $this->registerJs(
     "let statusx = false;
     let status = false;
@@ -28,9 +29,23 @@ $this->registerJs(
         $('#recum').text('PAUSE');
         clearInterval(status);
         $('#servertime').html(''); 
+        $.ajax({
+        type: 'POST',
+        url: '".$urlstop."',
+        success: function(data) {
+          console.log(data); 
+        }
+        });
     });
     $('#reset').click(function(){
-        $('#servertime').html(''); 
+        $('#servertime').html('');
+        $.ajax({
+        type: 'POST',
+        url: '".$urlstop."',
+        success: function(data) {
+          console.log(data); 
+        }
+        });
     });
     $('#recum').click(function(){
         var title=$('#recum').text();

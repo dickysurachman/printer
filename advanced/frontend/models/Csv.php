@@ -24,6 +24,7 @@ class Csv extends Model
     public $csv;
     public $linenm;
     public $machine;
+    public $shift;
 
 
     /**
@@ -37,7 +38,7 @@ class Csv extends Model
             
             //[['csv'],'file'], 
             [['machine','lot','expired','nie','linenm','nama','jumlah','namav'],'required'],
-            [['jumlah'],'integer'],
+            [['jumlah','shift'],'integer'],
 			//[['csv'], 'file', 'extensions' => 'csv',],
             [['alamat'], 'string', 'max' => 2],
             [['expired'], 'string', 'max' => 12],
@@ -70,6 +71,7 @@ class Csv extends Model
                     'gtin'=>'GTIN',
                     'machine'=>'Machine Name',
                     'linenm'=>'Line Name',
+                    'shift'=>'Shift',
                     ];
      
     }

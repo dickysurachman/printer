@@ -11,6 +11,7 @@ use yii\helpers\Url;
 use app\models\Jobs;
 use app\models\Machine;
 use app\models\Line;
+
 //use yii\jui\DatePicker;
 //use kartik\file\FileInput;
 //use yii\helpers\Url;
@@ -25,7 +26,7 @@ $data=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id
 $data2=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id', 'gtin');
 $line=ArrayHelper::map(Line::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
 $machine=ArrayHelper::map(Machine::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
-
+$shift=['1'=>'1','2'=>'2','3'=>'3'];
 
 $this->title="Aggregation Case Carton";
 ?>
@@ -115,7 +116,7 @@ $this->title="Aggregation Case Carton";
         
     </div>
     
-    <div class="col-2">
+    <div class="col-3">
         <?php    
          echo $form->field($model, 'machine')->widget(Select2::classname(), [
         'data'=>$machine,
@@ -123,6 +124,10 @@ $this->title="Aggregation Case Carton";
         'options' => ['placeholder' => 'Search for Machine Name  ...'],
         ]);
         ?>
+    </div>
+    <div class="col-2"> 
+    <?= $form->field($model, 'shift')->dropDownList($shift) ?>
+
     </div>
     </div>
     <div class="form-group">

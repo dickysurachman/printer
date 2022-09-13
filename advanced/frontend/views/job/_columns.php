@@ -47,7 +47,7 @@ return [
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'status',
+        'attribute'=>'shift',
     ],
     [
         'class' => 'kartik\grid\ActionColumn',

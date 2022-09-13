@@ -131,6 +131,23 @@ class ItemController extends Controller
         }
         return 'jalan';
     }
+    public function actionStop($id){
+        $id=Itemmasterd::find()->where(['idmaster'=>$id])->orderBy(['id'=>SORT_ASC])->all();
+        foreach ($id as $value){
+            $model=$this->findModel($value->iddetail);
+            if(isset($model))
+            {
+                $model->hitung=0;
+                $model->gagal=0;
+                $model->status=0;
+                $model->save();
+            }
+            $value->status=0;
+            $value->save();
+        }
+        return 'stop';
+    }
+
     public function actionPass($id){
         $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->count();
         return 'PASS    :'.$id;
@@ -207,6 +224,7 @@ class ItemController extends Controller
                 $job->var_2=$gtin;
                 $job->var_3=$model->expired;
                 $job->var_4=$model->lot;
+                $job->shift=$model->shift;
                 $job->var_5=$namapr;
                 $job->linenm=$line->nama;
                 $job->id_line=$model->linenm;
@@ -382,6 +400,7 @@ class ItemController extends Controller
                     $mdet->save();
                 }
                     $transaction->commit();
+                    $mulai1 = $mulai1-1;
                     Yii::$app->session->setFlash('success', $mulai1.' rows Generate Success ');
                 }
                 catch(Exception $e)
