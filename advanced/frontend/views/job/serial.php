@@ -36,6 +36,13 @@ $this->registerJs(
           console.log(data); 
         }
         });
+        $.ajax({
+        type: 'POST',
+        url: '".$url2."',
+        success: function(data) {
+          $('#tableantrian').html(data);   
+        }
+        });        
     });
     $('#reset').click(function(){
         $('#servertime').html('');
@@ -46,6 +53,14 @@ $this->registerJs(
           console.log(data); 
         }
         });
+        $.ajax({
+                type: 'POST',
+                url: '".$url2."',
+                success: function(data) {
+                  $('#tableantrian').html(data); 
+                  
+                }
+              });        
     });
     $('#recum').click(function(){
         var title=$('#recum').text();
