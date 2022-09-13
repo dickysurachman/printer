@@ -37,7 +37,7 @@ class Csv2 extends Model
             // name, email, subject and body are required
             
             //[['csv'],'file'], 
-             [['jumlah','qty','company','expired','lot','namav','berat','nama'],'required']
+             [['jumlah','qty','company','expired','lot','namav','berat','nama'],'required'],
             [['jumlah','qty','company'],'integer'],
 			//[['csv'], 'file', 'extensions' => 'csv',],
             [['alamat'], 'string', 'max' => 2],
