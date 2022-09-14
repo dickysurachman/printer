@@ -15,6 +15,7 @@ use app\models\Jobs;
 use app\models\Line;
 use app\models\Machine;
 use app\models\Item;
+use app\models\Scanlog;
 /**
  * JobscanController implements the CRUD actions for Itemmasterscan model.
  */
@@ -135,11 +136,74 @@ class JobscanController extends Controller
     {
         $models=$this->findModel($id);
         $model=Item::find()->one();
+        $barcode= new Scanlog();
+        if (Yii::$app->request->isAjax) {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if (Yii::$app->request->post()) {
+            $resp="";
+            //$hasil = explode(PHP_EOL,$_POST['Inputan']['barcode']);
+            $hasil = explode("\n",$_POST['Inputan']['barcode']);
+            foreach($hasil as $value){
+            if($value<>" " or $value<>""){
+                $value = preg_replace("/\r|\n/", "", $value);
+                $value =trim($value);
+                if($value<>""){
+                $jj=new Scanlog();
+                $jj->scan=$value;
+                if($jj->save()) {
+                    $resp.=$value." berhasil diinput <br/>";
+                    $item=$value;
+                    $data=explode("(", $item);
+                    if(count($data)==6){
+                        $dat1=explode(")",$data[1]);
+                        $var1=$dat1[1];
+                        $dat1=explode(")",$data[2]);
+                        $var2=$dat1[1];
+                        $dat1=explode(")",$data[3]);
+                        $var3=$dat1[1];
+                        $dat1=explode(")",$data[4]);
+                        $var4=$dat1[1];
+                        $dat1=explode(")",$data[5]);
+                        $var5=$dat1[1];
+                        $gabung ="(90)".$var1."(01)".$var2."(10)".$var3."(17)".$var4."(21)".$var5;
+                        $qrCode = (new QrCode($gabung))
+                            ->setSize(170)
+                            ->setMargin(5)
+                            ->useForegroundColor(13, 13, 13);
+                        $qrCode->writeFile('code.png'); // writer defaults to PNG when none is specified
+                        header('Content-Type: '.$qrCode->getContentType());
+                        $resp.='<div class="row">
+                        <div class="col-3">
+                        <img src="' . $qrCode->writeDataUri() . '">
+                        </div>
+                        <div class="col-4">
+                        <table id="w0" class="table table-striped table-bordered detail-view"><tbody><tr><th>NIE</th><td>'.$var1.'</td></tr>
+<tr><th>GTIN</th><td>'.$var2.'</td></tr>
+<tr><th>LOT NO</th><td>'.$var3.'</td></tr>
+<tr><th>EXP DATE</th><td>'.$var4.'</td></tr>
+<tr><th>S / N</th><td>'.$var5.'</td></tr></tbody></table>
+                        </div></div>';
+                    }
+                } else {
+                    $resp.=$value." gagal diinput <br/>";
+                }
+                }
+                
+            }
+            }
+            return $resp;
+            
+        } else {
+            return "data tidak berhasil diinput";
+        }
+        }
+        
         if(isset($model)){
             //$this->layout=false;
             return $this->render('serial', [
                 'model' => $model,
                 'models' => $models,
+                'barcode'=>$barcode
             ]);
 
         }

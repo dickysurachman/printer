@@ -3,6 +3,7 @@
 use yii\widgets\DetailView;
 use yii\helpers\Html;
 use Da\QrCode\QrCode;
+use yii\widgets\ActiveForm;
 $this->title="Serialization and Inspection";
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
@@ -15,6 +16,7 @@ $urlfail = Yii::$app->homeUrl.'/item/fail.html?id='.$models->id;
 $urltotal = Yii::$app->homeUrl.'/item/total.html?id='.$models->id;
 $urlprogress = Yii::$app->homeUrl.'/item/progress.html?id='.$models->id;
 $urlstop = Yii::$app->homeUrl.'/item/stop.html?id='.$models->id;
+$batas=10;
 $this->registerJs(
     "let statusx = false;
     let status = false;
@@ -146,11 +148,47 @@ $this->registerJs(
           
         }
       });
+    var formURL = $('#formSubmit').attr('action');
+    var msg=$('#scanlog-scan').val();  
+    if((msg.length>'".$batas."')){
+        var check =0;
+        var hit=0;
+        $.each(msg.split('\\n'), function(e, element) {
+            hit=hit+1;
+            if((element.length==0)) {
+                check=1;
+            } else {
+                check=0;                
+            }
+          });
+          if((check==1)&&(hit>1)){
+             var formData = new FormData();
+             var message = $('#scanlog-scan').val();
+             formData.append( 'Inputan[barcode]', message);
+             $.ajax({
+                    url : formURL,
+                    type: 'POST',
+                    data : formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(res){
+                       $('#room_type').html(res);
+                       $('#scanlog-scan').val('');
+                       $('#scanlog-scan').focus();
+                    },
+                    error: function(res){
+                        $('#room_type').text('Error!');                 
+                    }
+                });
+            }
+        }
+
     }"
 );
 
 ?>
 <div class="item-view">
+     
     <div class="row">
         <div class="col-5">
             <h3>Inspection Result</h3>
@@ -159,7 +197,12 @@ $this->registerJs(
             <h3 id="datess">Date Time : <?=date('d-m-Y H:i:s',time())?></h3>
         </div>
     </div>
-    <div class="row" id="qrinspeksi">
+    <?php $form = ActiveForm::begin(['id'=>'formSubmit']); ?>
+
+     <?= $form->field($barcode, 'scan')->textarea(['rows' => '3']) ?>
+
+    <?php ActiveForm::end(); ?>
+    <div class="row" id="room_type">
         <div class="col-5">
             <?php 
 
@@ -252,3 +295,6 @@ $this->registerJs(
     </div>
 
 </div>
+<script>
+  document.getElementById("scanlog-scan").focus();
+</script>
