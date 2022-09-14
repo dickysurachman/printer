@@ -59,7 +59,7 @@ class Csv extends Model
                     'tanggal'=>'Tanggal Scanning',
                     'gambar'=>'File Foto',
                     'nama'=>'Job Name',
-                    'jumlah'=>'Generate S/N Count',
+                    'jumlah'=>'Production Target',
                     'csv'=>'File CSV',
                     'alamat'=> 'Delimiter',
                     'phone'=>'Phone',

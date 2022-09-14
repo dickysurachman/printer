@@ -28,7 +28,7 @@ $line=ArrayHelper::map(Line::find()->where(['status'=>1])->asArray()->all(), 'id
 $machine=ArrayHelper::map(Machine::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
 $shift=['1'=>'1','2'=>'2','3'=>'3'];
 
-$this->title="Aggregation Case Carton";
+$this->title="Serialization and Inspection";
 ?>
 
 <div class="userprofile-form">
