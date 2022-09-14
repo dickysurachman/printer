@@ -260,3 +260,40 @@ ALTER TABLE `linenm`
   alter table `itemmaster` add `id_line` int(11) DEFAULT NULL;
   alter table `item` add `edit_date` datetime DEFAULT NULL;
   alter table `item` add `machine` int(11) DEFAULT NULL;
+
+
+CREATE TABLE `itemmasterscan` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `nama` varchar(100) DEFAULT NULL,
+  `status` int(2) DEFAULT 0,
+  `linenm` varchar(100) DEFAULT NULL,
+  `shift` int(2) DEFAULT 0,
+  `machine` int(11) DEFAULT NULL,
+  `var_1` varchar(100) DEFAULT NULL,
+  `var_2` varchar(100) DEFAULT NULL,
+  `var_3` varchar(100) DEFAULT NULL,
+  `var_4` varchar(100) DEFAULT NULL,
+  `var_5` varchar(100) DEFAULT NULL,
+  `job_id` int(11) DEFAULT NULL,
+  `id_line` int(11) DEFAULT NULL
+) ENGINE=InnoDB ;
+CREATE TRIGGER `deletesc` AFTER DELETE ON `itemmasterscan` FOR EACH ROW DELETE from itemmasterscand where idmaster=old.id;
+
+CREATE TABLE `itemmasterscand` (
+  `id` int(11) NOT NULL,
+  `idmaster` int(11) DEFAULT NULL,
+  `iddetail` int(11) DEFAULT NULL,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB;
+
+CREATE TRIGGER `deletescm` AFTER DELETE ON `itemmasterscand` FOR EACH ROW delete from itemcamera where id=old.iddetail;
+ALTER TABLE `itemmasterscan`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemmasterscand`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `itemmasterscan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `itemmasterscand`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
