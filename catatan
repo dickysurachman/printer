@@ -1,0 +1,16 @@
+serializasi
+print - camera
+pass => print dan scan selesai
+fail => data print ada, scan tidak ada atau failed
+
+fitur => reject dan print ulang
+
+trace and track
+
+item ke dus ke pallet
+
+bisa seacrh by item (ada di dus dan pallet mana) , dus (detail item), pallet (detail dus dan item)
+
+Aggregasi
+item ke karton
+karton ke pallet
