@@ -10,13 +10,16 @@ use yii2ajaxcrud\ajaxcrud\BulkButtonWidget;
 /* @var $searchModel app\models\ItemmasterscanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yii', 'Itemmasterscans');
+$this->title = Yii::t('yii', 'Job Scan');
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
 ?>
 <div class="itemmasterscan-index">
+    <?= Html::a(Yii::t('yii', 'Aggregation Case Carton'), ['jobscan/aggregation'], ['class' => 'btn btn-success']) ?>
+
+    <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
@@ -26,8 +29,6 @@ CrudAsset::register($this);
             'columns' => require(__DIR__.'/_columns.php'),
             'toolbar'=> [
                 ['content'=>
-                    Html::a(Yii::t('yii2-ajaxcrud', 'Create New'), ['create'],
-                    ['role'=>'modal-remote','title'=> Yii::t('yii2-ajaxcrud', 'Create New').' Itemmasterscans','class'=>'btn btn-outline-primary']).
                     Html::a('<i class="fa fa-redo"></i>', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-success', 'title' => Yii::t('yii2-ajaxcrud', 'Reset Grid')]).
                     '{toggleData}'.

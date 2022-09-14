@@ -44,4 +44,8 @@ class Itemmasterscand extends \yii\db\ActiveRecord
             'status' => Yii::t('yii', 'Status'),
         ];
     }
+     public function getItemd()
+    {
+        return $this->hasOne(Itemscan::className(), ['id' => 'iddetail']);
+    }
 }

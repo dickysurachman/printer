@@ -10,7 +10,11 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
-
+use frontend\models\Csv;
+use app\models\Jobs;
+use app\models\Line;
+use app\models\Machine;
+use app\models\Item;
 /**
  * JobscanController implements the CRUD actions for Itemmasterscan model.
  */
@@ -70,6 +74,74 @@ class JobscanController extends Controller
             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
+        }
+    }
+
+     public function actionAggregation()
+    {
+        $model= new Csv();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $i=0;
+                $j=0;
+                $transaction = Yii::$app->db->beginTransaction();
+                try
+                {
+                $jobini=Jobs::findOne($model->namav);
+                $namapr=$jobini->nama;
+                $nie=$jobini->nie;
+                $gtin=$jobini->gtin;
+                $i++;
+                $line=Line::findOne($model->linenm);
+                $machine=Machine::findOne($model->machine);
+                $lot=$model->lot;
+                $expire=$model->expired;
+                $serial=substr($nie, 5,6).substr($lot,3,3);
+                $mulai2=intval($model->jumlah);
+                $job =new Itemmasterscan();
+                $job->nama=$model->nama;
+                $job->job_id=$model->namav;
+                $job->var_1=$nie;
+                $job->var_2=$gtin;
+                $job->var_3=$model->expired;
+                $job->var_4=$model->lot;
+                $job->shift=$model->shift;
+                $job->var_5=$namapr;
+                $job->linenm=$line->nama;
+                $job->id_line=$model->linenm;
+                $job->machine=$model->machine;
+                $job->save();
+                
+                    $transaction->commit();
+                    //$mulai1 = $mulai1-1;
+                    Yii::$app->session->setFlash('success', 'Generate Success ');
+                }
+                catch(Exception $e)
+                {
+                    $transaction->rollBack();
+                    Yii::$app->session->setFlash('danger', 'Failed import '.$e.getMessage());
+
+                }
+            return $this->redirect(['jobscan/index']); 
+        }
+        // Yii::$app->session->setFlash('success', ' rows Success ');
+        return $this->render('uploadcsva', [
+        'model' => $model,
+        ]);
+
+    }
+
+
+    public function actionStart($id)
+    {
+        $models=$this->findModel($id);
+        $model=Item::find()->one();
+        if(isset($model)){
+            //$this->layout=false;
+            return $this->render('serial', [
+                'model' => $model,
+                'models' => $models,
+            ]);
+
         }
     }
 

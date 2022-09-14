@@ -41,7 +41,7 @@ use hscstudio\mimin\components\Mimin;
             echo \hail812\adminlte\widgets\Menu::widget(
                 [
                 'items' => [
-                     ['label' => \Yii::t('yii', 'Users'), 'url' => ['/userk/index'], 'icon' => 'fas fa-portrait','visible'=>Mimin::checkRoute('userk/create')],
+                     ['label' => \Yii::t('yii', 'Users'), 'url' => ['/userk/index'], 'icon' => 'user','visible'=>Mimin::checkRoute('userk/create')],
                      ['label' => \Yii::t('yii', 'Role'), 'url' => ['/mimin/role/index'], 'icon' => 'fas fa-bug','visible'=>Mimin::checkRoute('mimin/role')],
                     ['label' => \Yii::t('yii', 'Routes'), 'url' => ['/mimin/route/index'], 'icon' => 'fas fa-angle-double-right','visible'=>Mimin::checkRoute('mimin/route')],
                     ['label' => 'Master Machine', 'url'=>['/machine/index'],'icon' => 'microchip', 'visible' => Mimin::checkRoute('machine/index')],
@@ -49,6 +49,7 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => 'Company', 'url'=>['/perusahaan/index'],'icon' => 'address-book', 'visible' => Mimin::checkRoute('perusahaan/index')],
                      ['label' => \Yii::t('yii', 'Master Product'), 'url' => ['/jobs/index'], 'icon' => 'file','visible'=>Mimin::checkRoute('jobs/index')],
                      ['label' => \Yii::t('yii', 'Job List'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
+                     ['label' => \Yii::t('yii', 'Serialization and Inspection'), 'url' => ['/item/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
                     ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],
                      ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
                     ['label' => 'Item Kardus', 'url'=>['/itemk/index'],'icon' => 'code', 'visible' => Mimin::checkRoute('itemk/index')],
@@ -57,6 +58,8 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => 'Printer Configuration', 'url'=>['/site/settingsave'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Connect to Printer', 'url'=>['/site/eksekusi'],'target'=>'_blank','icon' => 'print', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Log Error Printer', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => Mimin::checkRoute('loge/index')],
+                     ['label' => \Yii::t('yii', 'Job Scan'), 'url' => ['/jobscan/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
+                     ['label' => \Yii::t('yii', 'Aggregation Case Carton'), 'url' => ['/jobscan/aggregation'], 'icon' => 'file','visible'=>Mimin::checkRoute('job/index')],
                     ['label' => 'Camera Configuration', 'url'=>['/site/settingcamera'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Server Camera', 'url'=>Yii::$app->homeUrl.'/servercamera.py','target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],
                     //['label' => 'Server Camera', 'url'=>['/site/scan'],'target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],

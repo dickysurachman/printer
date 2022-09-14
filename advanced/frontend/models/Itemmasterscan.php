@@ -50,20 +50,38 @@ class Itemmasterscan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('yii', 'ID'),
-            'tanggal' => Yii::t('yii', 'Tanggal'),
-            'nama' => Yii::t('yii', 'Nama'),
+           'id' => Yii::t('yii', 'ID'),
+            'tanggal' => Yii::t('yii', 'Date'),
+            'nama' => Yii::t('yii', 'Name'),
             'status' => Yii::t('yii', 'Status'),
-            'linenm' => Yii::t('yii', 'Linenm'),
             'shift' => Yii::t('yii', 'Shift'),
             'machine' => Yii::t('yii', 'Machine'),
-            'var_1' => Yii::t('yii', 'Var 1'),
-            'var_2' => Yii::t('yii', 'Var 2'),
-            'var_3' => Yii::t('yii', 'Var 3'),
-            'var_4' => Yii::t('yii', 'Var 4'),
-            'var_5' => Yii::t('yii', 'Var 5'),
-            'job_id' => Yii::t('yii', 'Job ID'),
-            'id_line' => Yii::t('yii', 'Id Line'),
+            'linenm' => Yii::t('yii', 'Line Name'),
+            'var_1' => Yii::t('yii', 'NIE'),
+            'var_2' => Yii::t('yii', 'GTIN'),
+            'var_3' => Yii::t('yii', 'LOT NO'),
+            'var_4' => Yii::t('yii', 'EXP DATE'),
+            'var_5' => Yii::t('yii', 'Product Name'),
+            'job_id' => Yii::t('yii', 'Product Name'),
+            'id_line' => Yii::t('yii', 'Line Name'),
         ];
+    }
+
+      public function getProduk(){
+
+        return $this->hasOne(Jobs::className(), ['id' => 'job_id']);
+    }
+    public function getLine(){
+
+        return $this->hasOne(Line::className(), ['id' => 'id_line']);
+    }
+    public function getMesin(){
+
+        return $this->hasOne(Machine::className(), ['id' => 'machine']);
+    }
+
+    public function getDetail()
+    {
+        return $this->hasMany(Itemmasterscand::className(), ['idmaster' => 'id']);
     }
 }

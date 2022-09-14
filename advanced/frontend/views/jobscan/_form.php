@@ -11,7 +11,6 @@ use yii\bootstrap4\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'tanggal')->textInput() ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 

@@ -15,11 +15,13 @@ class ItemmasterscanSearch extends Itemmasterscan
     /**
      * @inheritdoc
      */
+      public $tgl_a;
+    public $tgl_b;
     public function rules()
     {
         return [
             [['id', 'status', 'shift', 'machine', 'job_id', 'id_line'], 'integer'],
-            [['tanggal', 'nama', 'linenm', 'var_1', 'var_2', 'var_3', 'var_4', 'var_5'], 'safe'],
+            [['tanggal', 'nama','tgl_a','tgl_b',  'linenm', 'var_1', 'var_2', 'var_3', 'var_4', 'var_5'], 'safe'],
         ];
     }
 
@@ -71,6 +73,8 @@ class ItemmasterscanSearch extends Itemmasterscan
             ->andFilterWhere(['like', 'var_2', $this->var_2])
             ->andFilterWhere(['like', 'var_3', $this->var_3])
             ->andFilterWhere(['like', 'var_4', $this->var_4])
+            ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
+            ->andFilterWhere(['<=', 'tanggal', $this->tgl_b])
             ->andFilterWhere(['like', 'var_5', $this->var_5]);
 
         return $dataProvider;
