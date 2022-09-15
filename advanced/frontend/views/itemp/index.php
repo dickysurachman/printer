@@ -25,7 +25,7 @@ CrudAsset::register($this);
 
 <div class="item-index">
     <?php //= Html::a(Yii::t('yii', 'Import Job'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>
-     <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemk/uploadcsv'], ['class' => 'btn btn-success']) ?>
+     <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemp/uploadcsv'], ['class' => 'btn btn-success']) ?>
     <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([

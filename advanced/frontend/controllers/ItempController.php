@@ -14,6 +14,11 @@ use frontend\models\Csv3;
 use app\models\Itemmasterp;
 use app\models\Itemmasterpd;
 use app\models\Jobs;
+use app\models\Line;
+use app\models\Machine;
+use yii\widgets\DetailView;
+use Da\QrCode\QrCode;
+use app\models\Scanlogpallet;
 
 /**
  * ItempController implements the CRUD actions for Itempallet model.
@@ -228,8 +233,11 @@ class ItempController extends Controller
                 try
                 {
                 $jobini=Jobs::findOne($model->namav);
+                $namapr=$jobini->nama;
                 $nie=$jobini->nie;
                 $gtin=$jobini->gtin;
+                $line=Line::findOne($model->linenm);
+                $machine=Machine::findOne($model->machine);                
                 $i++;
                 $lot=$model->lot;
                 $expire=$model->expired;
@@ -237,6 +245,17 @@ class ItempController extends Controller
                 $mulai2=intval($model->jumlah);
                 $job =new Itemmasterp();
                 $job->nama=$model->nama;
+                $job->job_id=$model->namav;
+                $job->var_1=$nie;
+                $job->var_2=$gtin;
+                $job->var_3=$model->expired;
+                $job->var_4=$model->lot;
+                $job->shift=$model->shift;
+                $job->var_5=$namapr;
+                $job->linenm=$line->nama;
+                $job->id_line=$model->linenm;
+                $job->machine=$model->machine;
+
                 $job->save();
                 $idmaster=$job->id;
                 $belakang=-1*$mulai2;

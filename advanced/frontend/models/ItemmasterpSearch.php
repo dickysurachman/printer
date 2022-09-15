@@ -20,8 +20,8 @@ class ItemmasterpSearch extends Itemmasterp
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
-            [['tanggal', 'nama','tgl_a','tgl_b'], 'safe'],
+            [['id', 'status','shift','machine','job_id','id_line'], 'integer'],
+            [['tanggal','tgl_a','tgl_b',  'nama','linenm','var_1','var_2','var_3','var_4','var_5'], 'safe'],
         ];
     }
 
@@ -61,9 +61,21 @@ class ItemmasterpSearch extends Itemmasterp
             'id' => $this->id,
             'tanggal' => $this->tanggal,
             'status' => $this->status,
+             'job_id' => $this->job_id,
+            'status' => $this->status,
+            'id_line' => $this->id_line,
+            'shift' => $this->shift,
+            'machine' => $this->machine,              
         ]);
 
         $query->andFilterWhere(['like', 'nama', $this->nama])
+        ->andFilterWhere(['like', 'linenm', $this->linenm])
+         ->andFilterWhere(['like', 'var_1', $this->var_1])
+         ->andFilterWhere(['like', 'var_2', $this->var_2])
+         ->andFilterWhere(['like', 'var_3', $this->var_3])
+         ->andFilterWhere(['like', 'var_4', $this->var_4])
+         ->andFilterWhere(['like', 'var_5', $this->var_5])
+         ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
           ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
             ->andFilterWhere(['<=', 'tanggal', $this->tgl_b]);
 

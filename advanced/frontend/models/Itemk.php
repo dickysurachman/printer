@@ -29,8 +29,8 @@ class Itemk extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status'], 'integer'],
-            [['nama'], 'string', 'max' => 100],
+           [['status','shift','machine','job_id','id_line'], 'integer'],
+            [['nama','linenm','var_1','var_2','var_3','var_4','var_5'], 'string', 'max' => 100],
         ];
     }
 
@@ -41,8 +41,18 @@ class Itemk extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'tanggal' => Yii::t('yii', 'Tanggal'),
-            'nama' => Yii::t('yii', 'Nama'),
+            'tanggal' => Yii::t('yii', 'Add Date'),
+            'nama' => Yii::t('yii', 'Name'),
+            'shift' => Yii::t('yii', 'Shift'),
+            'machine' => Yii::t('yii', 'Machine'),
+            'linenm' => Yii::t('yii', 'Line Name'),
+            'var_1' => Yii::t('yii', 'NIE'),
+            'var_2' => Yii::t('yii', 'GTIN'),
+            'var_3' => Yii::t('yii', 'LOT NO'),
+            'var_4' => Yii::t('yii', 'EXP DATE'),
+            'var_5' => Yii::t('yii', 'Product Name'),
+            'job_id' => Yii::t('yii', 'Product Name'),
+            'id_line' => Yii::t('yii', 'Line Name'),            
             'status' => Yii::t('yii', 'Status'),
         ];
     }

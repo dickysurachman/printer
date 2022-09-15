@@ -14,6 +14,11 @@ use frontend\models\Csv2;
 use app\models\Itemk;
 use app\models\Itemkd;
 use app\models\Jobs;
+use app\models\Line;
+use app\models\Machine;
+use yii\widgets\DetailView;
+use Da\QrCode\QrCode;
+use app\models\Scanlogcarton;
 /**
  * ItemkController implements the CRUD actions for Itemkardus model.
  */
@@ -98,15 +103,29 @@ class ItemkController extends Controller
                 try
                 {
                 $jobini=Jobs::findOne($model->namav);
+                $namapr=$jobini->nama;
                 $nie=$jobini->nie;
                 $gtin=$jobini->gtin;
                 $i++;
+                $line=Line::findOne($model->linenm);
+                $machine=Machine::findOne($model->machine);
                 $lot=$model->lot;
                 $expire=$model->expired;
                 $serial=substr($nie, 5,6).substr($lot,3,3);
                 $mulai2=intval($model->jumlah);
                 $job =new Itemk();
                 $job->nama=$model->nama;
+                $job->job_id=$model->namav;
+                $job->var_1=$nie;
+                $job->var_2=$gtin;
+                $job->var_3=$model->expired;
+                $job->var_4=$model->lot;
+                $job->shift=$model->shift;
+                $job->var_5=$namapr;
+                $job->linenm=$line->nama;
+                $job->id_line=$model->linenm;
+                $job->machine=$model->machine;
+
                 $job->save();
                 $idmaster=$job->id;
                 $belakang=-1*$mulai2;
@@ -130,7 +149,7 @@ class ItemkController extends Controller
                     $mdet->iddetail=$barang->id;
                     $mdet->save();
                 }
-                    $mulai=$mulai-1;
+                    $mulai1=$mulai1-1;
                     $transaction->commit();
                     Yii::$app->session->setFlash('success', $mulai1.' rows Generate Success ');
                 }

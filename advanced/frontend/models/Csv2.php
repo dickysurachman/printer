@@ -26,7 +26,9 @@ class Csv2 extends Model
     public $varian;
     public $qty;
     public $berat;
-
+   public $linenm;
+    public $machine;
+    public $shift;
     /**
      * @inheritdoc
      */
@@ -38,14 +40,14 @@ class Csv2 extends Model
             
             //[['csv'],'file'], 
              [['jumlah','qty','company','expired','lot','namav','berat','nama','varian'],'required'],
-            [['jumlah','qty','company'],'integer'],
+            [['jumlah','qty','company','shift'],'integer'],
 			//[['csv'], 'file', 'extensions' => 'csv',],
             [['alamat'], 'string', 'max' => 2],
             [['expired'], 'string', 'max' => 12],
             [['lot'], 'string', 'max' => 12],
             //[['gambar'],'file', 'extensions' => 'csv', 'mimeTypes' => 'image/jpeg, image/png'], 
             //[['gambar'], 'file', 'extensions' => 'jpg,jpeg,png'],
-            [['nie','namav','varian','berat','nama','gtin','alamat','phone','lot','expired','tanggal','nama'],'safe'],
+            [['nie','namav','linenm','machine','varian','berat','nama','gtin','alamat','phone','lot','expired','tanggal','nama'],'safe'],
             // verifyCode needs to be entered correctly
         ];
     }
@@ -73,7 +75,9 @@ class Csv2 extends Model
                     'varian' => Yii::t('yii', 'Varian Name'),
                     'qty' => Yii::t('yii', 'Qty'),
                     'berat' => Yii::t('yii', 'Weight (kg)'),
-
+                    'machine'=>'Machine Name',
+                    'linenm'=>'Line Name',
+                    'shift'=>'Shift',
                     ];
      
     }

@@ -10,6 +10,8 @@ use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
 use app\models\Jobs;
 use app\models\Perusahaan;
+use app\models\Line;
+use app\models\Machine;
 //use yii\jui\DatePicker;
 //use kartik\file\FileInput;
 //use yii\helpers\Url;
@@ -23,9 +25,11 @@ $usr=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id'
 $data=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id', 'nie');
 $data2=ArrayHelper::map(Jobs::find()->where(['status'=>0])->asArray()->all(), 'id', 'gtin');
 $datap=ArrayHelper::map(Perusahaan::find()->orderBy(['nama' => SORT_ASC])->asArray()->all(), 'id', 'nama');
+$line=ArrayHelper::map(Line::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
+$machine=ArrayHelper::map(Machine::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
+$shift=['1'=>'1','2'=>'2','3'=>'3'];
 
-
-$this->title="Generate Jobs";
+$this->title="Aggregation Carton";
 ?>
 
 <div class="userprofile-form">
@@ -50,6 +54,15 @@ $this->title="Generate Jobs";
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
         
     </div>
+    <div class="col-2">
+    <?php    
+         echo $form->field($model, 'linenm')->widget(Select2::classname(), [
+        'data'=>$line,
+        //'initValueText' => $cityDesc2, 
+        'options' => ['placeholder' => 'Search for Line Name  ...'],
+        ]);
+        ?>
+    </div>
     <div class="col-3">
     <?php    
          echo $form->field($model, 'namav')->widget(Select2::classname(), [
@@ -60,7 +73,7 @@ $this->title="Generate Jobs";
     ]);
     ?>
     </div>
-    <div class="col-3">
+    <div class="col-2">
     <?php
     echo $form->field($model, 'nie')->widget(DepDrop::classname(), [
     'data'=>$data,
@@ -75,7 +88,7 @@ $this->title="Generate Jobs";
     ?>
         
     </div>
-    <div class="col-3">
+    <div class="col-2">
     <?php
     echo $form->field($model, 'gtin')->widget(DepDrop::classname(), [
     'data'=>$data2,
@@ -125,16 +138,26 @@ $this->title="Generate Jobs";
     <div class="col-3">
     <?= $form->field($model, 'varian')->textInput(['maxlength' => true]) ?>
     </div>
-    <div class="col-3">
+    <div class="col-2">
     <?= $form->field($model, 'qty')->textInput() ?>
         
     </div>
-    <div class="col-3">
+    <div class="col-2">
     <?= $form->field($model, 'berat')->textInput(['maxlength' => true]) ?>
         
     </div>
     <div class="col-3">
-        
+        <?php    
+         echo $form->field($model, 'machine')->widget(Select2::classname(), [
+        'data'=>$machine,
+        //'initValueText' => $cityDesc2, 
+        'options' => ['placeholder' => 'Search for Machine Name  ...'],
+        ]);
+        ?>
+    </div>
+    <div class="col-2"> 
+    <?= $form->field($model, 'shift')->dropDownList($shift) ?>
+
     </div>
     </div>
     <div class="form-group">
