@@ -1,5 +1,5 @@
-https://printer.gso.co.id/site/info.html
-https://printer.gso.co.id/site/hitung.html
+http://localhost/printer/printer/site/info.html
+http://localhost/printer/printer/site/hitung.html
 5
 172.16.20.8
 25001

@@ -46,9 +46,9 @@ class Itemmasterd extends \yii\db\ActiveRecord
     }
 
     public function getStatusname(){
-        if($this->status==0){
+        if($this->statusc==0){
             return "PROGRESS";
-        } elseif($this->status==1)
+        } elseif($this->statusc==1) {
             return "PASS";
         } else {
             return "FAIL";

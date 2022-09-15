@@ -401,9 +401,9 @@ public function actionEksekusi()
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionAbout($pesan)
     {
-        return $this->render('about');
+        return $this->render('about',['pesan'=>$pesan]);
     }
 
     /**

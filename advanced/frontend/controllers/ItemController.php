@@ -123,7 +123,7 @@ class ItemController extends Controller
                 $sc->status=2;
                 $sc->save();
                 $det=Itemmasterd::find()->where(['iddetail'=>$sc->id])->one();
-                $det->status=1;
+                $det->statusc=1;
                 $det->save();
             }
             $ver1="PASS";
@@ -134,10 +134,10 @@ class ItemController extends Controller
             $j=1;
             foreach($itemd as $vall){
                 if($i==$j){
-                    $vall->status=2;
+                    $vall->statusc=2;
                     $vall->save();
                 }
-                $j++:
+                $j++;
             }
             $value->process=1;
             $value->save();
@@ -180,11 +180,11 @@ class ItemController extends Controller
             $model=$this->findModel($value->iddetail);
             if(isset($model))
             {
-                $model->status=2;
-                $model->save();
+                //$model->status=2;
+                //$model->save();
             }
-            $value->status=1;
-            $value->save();
+            //$value->status=1;
+            //$value->save();
         }
         return 'stop';
         }
@@ -212,9 +212,28 @@ class ItemController extends Controller
 
 
     public function actionGetjob($id){
-        $job=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->limit(1)->orderBy(['id'=>SORT_DESC])->one();
+        $master=Itemmaster::findOne($id);
+        if(isset($master)) {
+        $job=Scanlog::find()->where(['machine'=>$master->machine,'process'=>1])->orderBy(['id'=>SORT_DESC])->One();
+
+        //$job=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->limit(1)->orderBy(['id'=>SORT_DESC])->one();
         if(isset($job)){
-        $model=Item::findOne($job->iddetail);
+        ///$model=Item::findOne($job->iddetail);
+        $data=explode("(", $job->scan);
+        if(count($data)==6){
+            $dat1=explode(")",$data[1]);
+            $var1=$dat1[1];
+            $dat1=explode(")",$data[2]);
+            $var2=$dat1[1]; 
+            $dat1=explode(")",$data[3]);
+            $var3=$dat1[1];
+            $dat1=explode(")",$data[4]);
+            $var4=$dat1[1];
+            $dat1=explode(")",$data[5]);
+            $var5=$dat1[1];
+        $model=Item::find()->where(['var_5'=>$var5,'machine'=>$master->machine])->one();
+        if(isset($model)){
+
         $gabung ="(90)".$model->var_1."(01)".$model->var_2."(10)".$model->var_3."(17)".$model->var_4."(21)".$model->var_5;
          $resp='<div class="col-5">';
             $qrCode = (new QrCode($gabung))
@@ -241,9 +260,13 @@ class ItemController extends Controller
         ]); 
         $resp.='</div>';
         return $resp;
+        } else { return '' ;}   
+        } else { return '' ;}
+        } else { return '' ;}
         } else {
             return '';
         }
+
     }
 
       public function actionUploadcsv()

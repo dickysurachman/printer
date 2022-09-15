@@ -16,6 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 
 ?>
+<style type="text/css">
+    .modal-dialog {
+        max-width: 80% !important;
+        width: 80% !important;
+    }
+</style>
 <div class="item-index">
     <?= Html::a(Yii::t('yii', 'Generate Job'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>
 

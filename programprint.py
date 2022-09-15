@@ -49,10 +49,11 @@ file_object.write("URL API "+ str(settt[0])+"\n")
 file_object.write("Durasi Timer (second) "+ str(settt[2])+"\n")
 file_object.write("KEY "+ str(keyyy)+"\n")
 #print("URL API COUNTER",settt[6])
-
+file_object.close()
 
 while True:
     #y += 1
+    file_object = open('log-print.txt', 'a')
     sleep(int(settt[2]) - time() % int(settt[2]))
     url = str(settt[0])+"?key="+str(keyyy)
     file_object.write(str(url)+"\n")
@@ -144,9 +145,10 @@ while True:
                 print ('koneksi error')
                 file_object.write("koneksi error \n")
                 file_object.write("sending to server " + str(url1))
+                file_object.close()    
                 break
             finally:
                 s.close()
 
-file_object.close()              
+          
         

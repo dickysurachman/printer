@@ -61,6 +61,10 @@ class Item extends \yii\db\ActiveRecord
 
     }
 
+    public function getScan(){
+        $gabung ="(90)".$this->var_1."(01)".$this->var_2."(10)".$this->var_3."(17)".$this->var_4."(21)".$this->var_5;
+        return $gabung;
+    }
     public function attributeLabels()
     {
         return [

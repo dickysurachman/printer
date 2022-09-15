@@ -15,6 +15,7 @@ $urlfail = Yii::$app->homeUrl.'/item/fail.html?id='.$models->id;
 $urltotal = Yii::$app->homeUrl.'/item/total.html?id='.$models->id;
 $urlprogress = Yii::$app->homeUrl.'/item/progress.html?id='.$models->id;
 $urlstop = Yii::$app->homeUrl.'/item/stop.html?id='.$models->id;
+$urlreset = Yii::$app->homeUrl.'/item/reset.html?id='.$models->id;
 $this->registerJs(
     "let statusx = false;
     let status = false;
@@ -48,7 +49,7 @@ $this->registerJs(
         $('#servertime').html('');
         $.ajax({
         type: 'POST',
-        url: '".$urlstop."',
+        url: '".$urlreset."',
         success: function(data) {
           console.log(data); 
         }
@@ -56,7 +57,7 @@ $this->registerJs(
         $.ajax({
                 type: 'POST',
                 url: '".$url2."',
-                success: function(data) {
+                success:  function(data) {
                   $('#tableantrian').html(data); 
                   
                 }
