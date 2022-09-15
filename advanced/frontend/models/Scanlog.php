@@ -29,8 +29,9 @@ class Scanlog extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status','machine','process'], 'integer'],
+            [['status','machine','process','id_job','id_item'], 'integer'],
             [['scan'], 'string', 'max' => 300],
+            [['dbs','stat'], 'string', 'max' => 10],
         ];
     }
 
@@ -46,6 +47,16 @@ class Scanlog extends \yii\db\ActiveRecord
             'status' => Yii::t('yii', 'Status'),
             'machine' => Yii::t('yii', 'Machine'),
             'process' => Yii::t('yii', 'Process'),
+            'id_job' => Yii::t('yii', 'Job Master'),
+            'id_item' => Yii::t('yii', 'Item'),
         ];
     }
+
+    public function getJob(){
+        return $this->hasOne(Itemmaster::className(), ['id' => 'id_job']);
+    }
+    public function getItem(){
+        return $this->hasOne(Item::className(), ['id' => 'id_item']);
+    }
+
 }

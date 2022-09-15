@@ -29,8 +29,8 @@ class Logitem extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status'], 'integer'],
-            [['logbaca'], 'string'],
+            [['status','machine'], 'integer'],
+            [['logbaca','ip'], 'string'],
         ];
     }
 
@@ -44,6 +44,13 @@ class Logitem extends \yii\db\ActiveRecord
             'tanggal' => Yii::t('yii', 'Tanggal'),
             'status' => Yii::t('yii', 'Status'),
             'logbaca' => Yii::t('yii', 'Error Log'),
+            'machine' => Yii::t('yii', 'Machine'),
+            'ip' => Yii::t('yii', 'IP Alat'),
         ];
+    }
+
+    public function getMesin(){
+
+        return $this->hasOne(Machine::className(), ['id' => 'machine']);
     }
 }

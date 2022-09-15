@@ -18,8 +18,8 @@ class LogitemSearch extends Logitem
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
-            [['tanggal', 'logbaca'], 'safe'],
+            [['id', 'status','machine'], 'integer'],
+            [['tanggal', 'logbaca','ip'], 'safe'],
         ];
     }
 
@@ -59,9 +59,12 @@ class LogitemSearch extends Logitem
             'id' => $this->id,
             'tanggal' => $this->tanggal,
             'status' => $this->status,
+            'machine' => $this->machine,
         ]);
 
-        $query->andFilterWhere(['like', 'logbaca', $this->logbaca]);
+        $query->andFilterWhere(['like', 'logbaca', $this->logbaca])
+        ->andFilterWhere(['like', 'ip', $this->ip])
+        ;
 
         return $dataProvider;
     }

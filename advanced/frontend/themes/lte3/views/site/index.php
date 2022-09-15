@@ -2,13 +2,15 @@
 use app\models\Item;
 use yii\helpers\Html;
 use yii\web\View;
-
+use app\models\Itemmaster;
+use app\models\Itemmasterd;
 $this->title = 'Dashboard';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
-$job=Item::find()->count();
-    $sukses=Item::find()->sum('hitung');
-    $gagal=Item::find()->sum('gagal');
-    $run=Item::find()->sum('ulang');
+$job=Itemmaster::find()->count();
+
+$sukses=Itemmasterd::find()->where(['statusc'=>1])->count();
+$gagal=Itemmasterd::find()->where(['statusc'=>2])->count();
+$run=Itemmasterd::find()->where(['statusc'=>0])->count();
     if($run==0) $run=1;
 //$script = <<< JS JS;
 $script= "$(document).ready(function(){
@@ -26,7 +28,7 @@ $script= "$(document).ready(function(){
 
 
     var areaChartData = {
-      labels  : ['Total', 'Success', 'Fail'],
+      labels  : ['Total', 'PASS', 'FAIL'],
       datasets: [
         {
           label               : 'Bar Grafik',
@@ -89,8 +91,8 @@ $script= "$(document).ready(function(){
     var donutData1 = {
       labels: [
           'Total Count',
-          'Success',
-          'Fail',
+          'PASS',
+          'FAIL',
       ],
       datasets: [
         {
@@ -319,17 +321,17 @@ $this->registerJs($script, View::POS_END);
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-remove"></i> Total Success</span>
+    <span class="count_top"><i class="fa fa-remove"></i> PASS</span>
     <div class="count red"><?php echo $sukses //echo $totalreject; ?></div>
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-camera"></i> Total Failure</span>
+    <span class="count_top"><i class="fa fa-camera"></i> FAIL</span>
     <div class="count blue"><?php echo $gagal//echo $totaltrigger; ?></div>
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-check"></i> Total Loop</span>
+    <span class="count_top"><i class="fa fa-check"></i> PROGRESS</span>
     <div class="count purple"><?php  echo $run//custom_echo($readrate,5); ?></div>
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>

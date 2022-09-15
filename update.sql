@@ -301,3 +301,10 @@ alter table `scanlog` add machine int(11) DEFAULT NULL;
 ALTER TABLE `item` ADD INDEX(`var_5`);
 alter table `scanlog` add process int(2) DEFAULT '0';
 alter table `itemmasterd` add `statusc` int(2) DEFAULT '0';
+alter table `scanlog` add dbs varchar(10) DEFAULT NULL;
+alter table `scanlog` add stat varchar(10) DEFAULT NULL;
+
+alter table `scanlog` add id_job int(11) DEFAULT NULL;
+alter table `scanlog` add id_item int(11) DEFAULT NULL;
+alter table `logitem` add machine int(11) DEFAULT NULL;
+alter table `logitem` add ip varchar(30) DEFAULT NULL;

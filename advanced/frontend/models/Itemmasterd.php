@@ -28,7 +28,7 @@ class Itemmasterd extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['iddetail','idmaster','status'], 'integer'],
+            [['iddetail','idmaster','status','statusc'], 'integer'],
         ];
     }
 

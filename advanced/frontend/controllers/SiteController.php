@@ -248,7 +248,7 @@ class SiteController extends Controller
         ]);
     } 
 
-    public function actionHitung($id,$status,string $logbaca="", string $key){
+    public function actionHitung($id,$status,string $logbaca="", string $key) {
         $h=Machine::find()->where(['key'=>$key])->one();
         if(isset($h)) {
         $ipx=$h->ip;
@@ -257,36 +257,40 @@ class SiteController extends Controller
             if($status=="failure") {
             $new1=new Logitem();
             $new1->logbaca=$logbaca;
+            $new1->machine=$h->id;
+            $new1->ip=$ipy;
             $new1->save();
             } else {
             $ja=Item::findOne($id);
             if(isset($ja)){
             $total=$ja->hitung+$ja->gagal;
             if($status=="sukses") {
-            $ja->hitung = $ja->hitung+1;
-            $total+=1;
-            if($total>=$ja->ulang) 
-            {
+
+            //$ja->hitung = $ja->hitung+1;
+            //$total+=1;
+            //if($total>=$ja->ulang) 
+            //{
                 $ja->status=2;
-                $det=Itemmasterd::findOne($ja->id);
+                $det=Itemmasterd::findOne(['iddetail'=>$ja->id]);
+                //if(isset($det)) {                    
                 $det->status=1;
                 $det->save();
-            }
+            //    }
+            //}
             } else {
-            $ja->gagal= $ja->gagal+1;
-            $total+=1;
-            if($total>=$ja->ulang) {
+            //$ja->gagal= $ja->gagal+1;
+            //$total+=1;
+            //if($total>=$ja->ulang) {
                 $ja->status=2;
                 $det=Itemmasterd::findOne($ja->id);
                 $det->status=2;
                 $det->save();                
-            }
+            //}
             }
             $ja->save();
             }
-            }
         }
-        }
+    } } 
     } 
     public function actionHitungx($id,$status,string $logbaca=""){
         if($status=="failure") {

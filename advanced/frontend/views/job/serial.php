@@ -23,9 +23,11 @@ $this->registerJs(
         status=setInterval(update,2000);
         statusx=true;
         $('#recum').removeAttr('disabled');
+        $('#setar').attr('disabled','disabled');
     });
     $('#setop').click(function(){
         statusx=false;
+        $('#setar').removeAttr('disabled');
         $('#recum').attr('disabled','disabled');
         $('#recum').text('PAUSE');
         clearInterval(status);

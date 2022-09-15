@@ -101,6 +101,8 @@ class ItemController extends Controller
     $i=1;
     $master=Itemmaster::findOne($id);
     $models=Scanlog::find()->where(['machine'=>$master->machine,'status'=>'0'])->orderBy(['id'=>SORT_ASC])->all();
+     $ver="False";
+    $ver1="FAIL";
     foreach($models as $value){
         if($value->process==0) {
         $data=explode("(", $value->scan);
@@ -118,17 +120,29 @@ class ItemController extends Controller
             $var4=$dat1[1];
             $dat1=explode(")",$data[5]);
             $var5=$dat1[1];
-            $sc=Item::find()->where(['var_5'=>$var5,'status'=>1])->one();
+            $sc=Item::find()->where(['var_5'=>$var5,'status'=>2])->one();
             if(isset($sc)){
                 $sc->status=2;
                 $sc->save();
                 $det=Itemmasterd::find()->where(['iddetail'=>$sc->id])->one();
                 $det->statusc=1;
                 $det->save();
+                $value->id_job=$det->idmaster;
+                $value->id_item=$sc->id;
+                $ver1="PASS";
+                $value->dbs="True";
+                $value->stat="PASS";
+                $value->process=1;
+                $value->save();
+            } else {
+                $ver1="FAIL";
+                $var="True";
+                $value->dbs="False";
+                $value->stat="FAIL";
+                $value->process=1;
+                $value->save();
+
             }
-            $ver1="PASS";
-            $value->process=1;
-            $value->save();
         } else {
             $itemd=Itemmasterd::find()->where(['idmaster'=>$id])->orderBy(['id'=>SORT_ASC])->all();
             $j=1;
@@ -136,13 +150,20 @@ class ItemController extends Controller
                 if($i==$j){
                     $vall->statusc=2;
                     $vall->save();
+                    $value->id_job=$vall->idmaster;
+                    $value->id_item=$vall->id;
                 }
                 $j++;
             }
+            $valus->dbs="False";
+            $value->stat="FAIL";
             $value->process=1;
             $value->save();
 
         }
+        } else {
+            $ver=$value->dbs;
+            $ver1=$value->stat;
         }
         $tab.="<tr><td>".$i."</td>";
         $tab.= "<td>".$value->scan."</td>";
@@ -198,15 +219,15 @@ class ItemController extends Controller
     }
 
     public function actionPass($id){
-        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>1])->count();
+        $id=Itemmasterd::find()->where(['idmaster'=>$id,'statusc'=>1])->count();
         return 'PASS    :'.$id;
     }
     public function actionFail($id){
-        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>2])->count();
+        $id=Itemmasterd::find()->where(['idmaster'=>$id,'statusc'=>2])->count();
         return 'FAIL    :'.$id;
     }
     public function actionProgress($id){
-        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>0])->count();
+        $id=Itemmasterd::find()->where(['idmaster'=>$id,'statusc'=>0])->count();
         return 'PROGRESS :'.$id;
     }
 

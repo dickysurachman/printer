@@ -29,9 +29,9 @@ use yii\widgets\DetailView;
                 <th>GTIN</th>
                 <th>LOT</th>
                 <th>S/N</th>
-                <th>status</th>
-                <th>status</th>
-                <th>status</th>
+                <th>Scan Status</th>
+                <th>QR DATA</th>
+                <th>Print Status</th>
             </tr>
         <?php
     foreach($model->detail as $value){
@@ -40,9 +40,9 @@ use yii\widgets\DetailView;
         echo "<td>".$value->itemd->var_2."</td>";
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
-        echo "<td>".$value->statusname."</td></tr>";
-        echo "<td>".$value->id."</td></tr>";
-        echo "<td>".$value->itemd->scan."</td></tr>";
+        echo "<td>".$value->statusname."</td>";
+        echo "<td>".$value->itemd->scan."</td>";
+        echo "<td>".$value->itemd->statusname."</td></tr>";
         $i++;
     }
     }

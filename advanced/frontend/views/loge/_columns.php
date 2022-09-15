@@ -17,6 +17,17 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal',
+    ],    
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'ip',
+    ],    
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'machine',
+        'value'=>function ($model, $key, $index, $widget) { 
+            return $model->mesin ?$model->mesin->nama :'';
+        },
     ],
 //    [
 //        'class'=>'\kartik\grid\DataColumn',
@@ -25,7 +36,7 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'logbaca',
-        'contentOptions' => [ 'style'=>'max-width: 350px; overflow: auto; word-wrap: break-word;' ],
+        'contentOptions' => [ 'style'=>'max-width: 250px; overflow: auto; word-wrap: break-word;' ],
     ],
     [
         'class' => 'kartik\grid\ActionColumn',
