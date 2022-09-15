@@ -44,6 +44,17 @@ class Itemmasterd extends \yii\db\ActiveRecord
             'status' => Yii::t('yii', 'Status'),
         ];
     }
+
+    public function getStatusname(){
+        if($this->status==0){
+            return "PROGRESS";
+        } elseif($this->status==1)
+            return "PASS";
+        } else {
+            return "FAIL";
+
+        }
+    }
     public function getItemd()
     {
         return $this->hasOne(Item::className(), ['id' => 'iddetail']);

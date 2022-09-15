@@ -37,7 +37,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup','settingsave','scan','settingcamera','scanm','scanm2','password','camera'],
+                'only' => ['logout', 'signup','settingsave','scan','settingcamera','scanm','scanm2','password'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -45,7 +45,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout','settingsave','scan','settingcamera','scanm','scanm2','password','camera'],
+                        'actions' => ['logout','settingsave','scan','settingcamera','scanm','scanm2','password'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -123,7 +123,19 @@ class SiteController extends Controller
         return "Date Time : ".date('d-m-Y H:i:s',time());
     }
 
-    public function actionCamera($status){        
+    public function actionCamera($status,$key){        
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+            if(trim($status)<>""){
+                $mm=new Scanlog;
+                $mm->scan =$status;
+                $mm->machine =$h->id;
+                $mm->save();
+                return "save";
+            }
+        }
+    }    
+    public function actionCamerac($status){        
         if(trim($status)<>""){
             $mm=new Scanlog;
             $mm->scan =$status;
@@ -430,6 +442,23 @@ public function actionEksekusi()
         readfile("$filename");
 
     }
+    public function actionGetcamera(){
+        $filename=Yii::$app->security->generateRandomString() . '0-' . time().".zip";
+        $zip = new \ZipArchive(); 
+        $zip->open($filename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $zip->addFile('runcamera.bat'); 
+        $zip->addFile('camerasrv.py'); 
+        $zip->addFile('setting2.txt'); 
+        $zip->close();
+        //$zip->createZip($zip,$filename);
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+        header('Content-Length: ' . filesize($filename));
+        header("Pragma: no-cache"); 
+        header("Expires: 0"); 
+        readfile("$filename");
+
+    }
      public function actionSettingsave()
     {
         $model = new Setting();
@@ -463,8 +492,10 @@ public function actionEksekusi()
             //$txt = "Mickey Mouse\n";
             fwrite($myfile, $model->url2."\n");
             fwrite($myfile, $model->port_alat."\n");
+            fwrite($myfile, $model->key."\n");
             fclose($myfile);
-            return $this->goHome();
+            //return $this->goHome();
+            return $this->redirect(['site/settingcamera']);
         }
 
         return $this->render('settingcamera', [

@@ -22,6 +22,7 @@ $this->title=Yii::t('yii', 'Setting Printer');
         //var_dump($dua);
         $model->url2=$dua[0];
         $model->port_alat=$dua[1];
+        $model->key=$dua[2];
         //$model['url1']=$satu[0];
         //var_dump($satu);
 
@@ -33,10 +34,12 @@ $this->title=Yii::t('yii', 'Setting Printer');
 
     <?= $form->field($model, 'url2')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'port_alat')->textInput()->label('Camera Port') ?>
+    <?= $form->field($model, 'key')->textInput() ?>
 
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
 	        <?= Html::submitButton(Yii::t('yii', 'Update'), ['class' => 'btn btn-success']) ?>
+             <?= Html::a(Yii::t('yii', 'Download Program'), ['site/getcamera'], ['class' => 'btn btn-danger']) ?>
 	    </div>
 	<?php } ?>
 

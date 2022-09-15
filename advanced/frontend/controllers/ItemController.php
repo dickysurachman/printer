@@ -19,6 +19,7 @@ use app\models\Line;
 use app\models\Machine;
 use yii\widgets\DetailView;
 use Da\QrCode\QrCode;
+use app\models\Scanlog;
 
 /**
  * ItemController implements the CRUD actions for Item model.
@@ -92,25 +93,62 @@ class ItemController extends Controller
     $tab='<table class="table table-hover table-striped">
                <thead class="thead-dark">
                 <th>No</th>
-                <th>NIE</th>
-                <th>GTIN</th>
-                <th>LOT</th>
-                <th>EXP DATE</th>
-                <th>S/N</th>
+                <th>Log Scan</th>
+                <th>Database</th>
                 <th>Time Stamp</th>
-                <th>status</th>
+                <th>Status</th>
             </thead>';
-        $i=1;
-    $models=Itemmaster::findOne($id);
-    foreach($models->detail as $value){
+    $i=1;
+    $master=Itemmaster::findOne($id);
+    $models=Scanlog::find()->where(['machine'=>$master->machine,'status'=>'0'])->orderBy(['id'=>SORT_ASC])->all();
+    foreach($models as $value){
+        if($value->process==0) {
+        $data=explode("(", $value->scan);
+        $ver="False";
+        $ver1="FAIL";
+        if(count($data)==6){
+            $ver="True";
+            $dat1=explode(")",$data[1]);
+            $var1=$dat1[1];
+            $dat1=explode(")",$data[2]);
+            $var2=$dat1[1]; 
+            $dat1=explode(")",$data[3]);
+            $var3=$dat1[1];
+            $dat1=explode(")",$data[4]);
+            $var4=$dat1[1];
+            $dat1=explode(")",$data[5]);
+            $var5=$dat1[1];
+            $sc=Item::find()->where(['var_5'=>$var5,'status'=>1])->one();
+            if(isset($sc)){
+                $sc->status=2;
+                $sc->save();
+                $det=Itemmasterd::find()->where(['iddetail'=>$sc->id])->one();
+                $det->status=1;
+                $det->save();
+            }
+            $ver1="PASS";
+            $value->process=1;
+            $value->save();
+        } else {
+            $itemd=Itemmasterd::find()->where(['idmaster'=>$id])->orderBy(['id'=>SORT_ASC])->all();
+            $j=1;
+            foreach($itemd as $vall){
+                if($i==$j){
+                    $vall->status=2;
+                    $vall->save();
+                }
+                $j++:
+            }
+            $value->process=1;
+            $value->save();
+
+        }
+        }
         $tab.="<tr><td>".$i."</td>";
-        $tab.= "<td>".$value->itemd->var_1."</td>";
-        $tab.= "<td>".$value->itemd->var_2."</td>";
-        $tab.= "<td>".$value->itemd->var_3."</td>";
-        $tab.= "<td>".$value->itemd->var_4."</td>";
-        $tab.= "<td>".$value->itemd->var_5."</td>";
-        $tab.= "<td>".$value->itemd->edit_date."</td>";
-        $tab.= "<td>".$value->itemd->statusname."</td></tr>";
+        $tab.= "<td>".$value->scan."</td>";
+        $tab.= "<td>".$ver."</td>";
+        $tab.= "<td>".date('d-m-Y H:i:s',strtotime($value->tanggal))."</td>";
+        $tab.= "<td>".$ver1."</td></tr>";
         $i++;
      }
         $tab.="</table>";
@@ -132,20 +170,31 @@ class ItemController extends Controller
         return 'jalan';
     }
     public function actionStop($id){
+        $job=Itemmaster::findOne($id);
+        if(isset($job)) {
+            $job->status=1;
+            $job->save();
+        $sql=Yii::$app->db->createCommand("update Scanlog set status=1 where machine=".$job->machine." and status=0")->execute();
         $id=Itemmasterd::find()->where(['idmaster'=>$id])->orderBy(['id'=>SORT_ASC])->all();
         foreach ($id as $value){
             $model=$this->findModel($value->iddetail);
             if(isset($model))
             {
-                $model->hitung=0;
-                $model->gagal=0;
-                $model->status=0;
+                $model->status=2;
                 $model->save();
             }
-            $value->status=0;
+            $value->status=1;
             $value->save();
         }
         return 'stop';
+        }
+    }
+    public function actionReset($id){
+        $job=Itemmaster::findOne($id);
+        if(isset($job)) {
+        $sql=Yii::$app->db->createCommand("delete from Scanlog where machine=".$job->machine." and status=0")->execute();
+        return 'resume';
+        }
     }
 
     public function actionPass($id){

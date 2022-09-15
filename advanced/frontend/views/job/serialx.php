@@ -224,16 +224,19 @@ $this->registerJs(
 
     <div class="row" id="tableantrian">
          <table class="table table-hover table-striped">
-           <thead class="thead-dark">
+            <thead class="thead-dark">
                 <th>No</th>
-                <th>Log Scan</th>
-                <th>Database</th>
+                <th>NIE</th>
+                <th>GTIN</th>
+                <th>LOT</th>
+                <th>EXP DATE</th>
+                <th>S/N</th>
                 <th>Time Stamp</th>
-                <th>Status</th>
+                <th>status</th>
             </thead>
         <?php
         $i=1;
-/*    foreach($models->detail as $value){
+    foreach($models->detail as $value){
         echo "<tr><td>".$i."</td>";
         echo "<td>".$value->itemd->var_1."</td>";
         echo "<td>".$value->itemd->var_2."</td>";
@@ -243,7 +246,7 @@ $this->registerJs(
         echo "<td>".$value->itemd->edit_date."</td>";
         echo "<td>".$value->itemd->statusname."</td></tr>";
         $i++;
-    }*/
+    }
     ?>
         </table>
     </div>

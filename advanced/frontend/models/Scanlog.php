@@ -29,7 +29,7 @@ class Scanlog extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status'], 'integer'],
+            [['status','machine','process'], 'integer'],
             [['scan'], 'string', 'max' => 300],
         ];
     }
@@ -41,9 +41,11 @@ class Scanlog extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'tanggal' => Yii::t('yii', 'Tanggal'),
+            'tanggal' => Yii::t('yii', 'Date'),
             'scan' => Yii::t('yii', 'Data'),
             'status' => Yii::t('yii', 'Status'),
+            'machine' => Yii::t('yii', 'Machine'),
+            'process' => Yii::t('yii', 'Process'),
         ];
     }
 }

@@ -297,3 +297,6 @@ ALTER TABLE `itemmasterscan`
 ALTER TABLE `itemmasterscand`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+alter table `scanlog` add machine int(11) DEFAULT NULL;
+ALTER TABLE `item` ADD INDEX(`var_5`);
+alter table `scanlog` add process int(2) DEFAULT '0';
