@@ -348,3 +348,8 @@ ALTER TABLE `scanlogpallet`
 
 ALTER TABLE `scanlogpallet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+alter table `scanlogcarton` add dbs varchar(10) DEFAULT NULL;
+alter table `scanlogcarton` add stat varchar(10) DEFAULT NULL;
+alter table `scanlogpallet` add dbs varchar(10) DEFAULT NULL;
+alter table `scanlogpallet` add stat varchar(10) DEFAULT NULL;

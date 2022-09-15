@@ -5,21 +5,27 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "scanlog".
+ * This is the model class for table "scanlogcarton".
  *
  * @property int $id
  * @property string|null $tanggal
  * @property string|null $scan
  * @property int|null $status
+ * @property int|null $machine
+ * @property int|null $process
+ * @property string|null $dbs
+ * @property string|null $stat
+ * @property int|null $id_job
+ * @property int|null $id_item
  */
-class Scanlog extends \yii\db\ActiveRecord
+class Scanlogcarton extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'scanlog';
+        return 'scanlogcarton';
     }
 
     /**
@@ -29,9 +35,9 @@ class Scanlog extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status','machine','process','id_job','id_item'], 'integer'],
+            [['status', 'machine', 'process', 'id_job', 'id_item'], 'integer'],
             [['scan'], 'string', 'max' => 300],
-            [['dbs','stat'], 'string', 'max' => 10],
+            [['dbs', 'stat'], 'string', 'max' => 10],
         ];
     }
 
@@ -40,7 +46,7 @@ class Scanlog extends \yii\db\ActiveRecord
      */
     public function attributeLabels()
     {
-        return [
+         return [
             'id' => Yii::t('yii', 'ID'),
             'tanggal' => Yii::t('yii', 'Date'),
             'scan' => Yii::t('yii', 'Data'),
@@ -51,14 +57,14 @@ class Scanlog extends \yii\db\ActiveRecord
             'id_item' => Yii::t('yii', 'Item'),
             'dbs' => Yii::t('yii', 'Verified'),
             'stat' => Yii::t('yii', 'Status'),
+
         ];
     }
-
     public function getJob(){
         return $this->hasOne(Itemmaster::className(), ['id' => 'id_job']);
     }
     public function getItem(){
-        return $this->hasOne(Item::className(), ['id' => 'id_item']);
+        return $this->hasOne(Itemkardus::className(), ['id' => 'id_item']);
     }
       public function getMesin(){
 

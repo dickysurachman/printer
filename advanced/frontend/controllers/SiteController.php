@@ -24,6 +24,8 @@ use ZipArchive;
 use app\models\User;
 use app\models\Machine;
 use app\models\Itemmasterd;
+use app\models\Scanlogcarton;
+use app\models\Scanlogpallet;
 /**
  * Site controller
  */
@@ -128,6 +130,30 @@ class SiteController extends Controller
         if(isset($h)) {
             if(trim($status)<>""){
                 $mm=new Scanlog;
+                $mm->scan =$status;
+                $mm->machine =$h->id;
+                $mm->save();
+                return "save";
+            }
+        }
+    }       
+    public function actionCamerakardus($status,$key){        
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+            if(trim($status)<>""){
+                $mm=new Scanlogcarton;
+                $mm->scan =$status;
+                $mm->machine =$h->id;
+                $mm->save();
+                return "save";
+            }
+        }
+    }       
+    public function actionCamerapallet($status,$key){        
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+            if(trim($status)<>""){
+                $mm=new Scanlogpallet;
                 $mm->scan =$status;
                 $mm->machine =$h->id;
                 $mm->save();
