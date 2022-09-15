@@ -308,3 +308,43 @@ alter table `scanlog` add id_job int(11) DEFAULT NULL;
 alter table `scanlog` add id_item int(11) DEFAULT NULL;
 alter table `logitem` add machine int(11) DEFAULT NULL;
 alter table `logitem` add ip varchar(30) DEFAULT NULL;
+
+
+
+CREATE TABLE `scanlogcarton` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `scan` varchar(300) DEFAULT NULL,
+  `status` int(2) DEFAULT 0,
+  `machine` int(11) DEFAULT NULL,
+  `process` int(2) DEFAULT 0,
+  `dbs` varchar(10) DEFAULT NULL,
+  `stat` varchar(10) DEFAULT NULL,
+  `id_job` int(11) DEFAULT NULL,
+  `id_item` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `scanlogcarton`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `scanlogcarton`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE `scanlogpallet` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime DEFAULT current_timestamp(),
+  `scan` varchar(300) DEFAULT NULL,
+  `status` int(2) DEFAULT 0,
+  `machine` int(11) DEFAULT NULL,
+  `process` int(2) DEFAULT 0,
+  `dbs` varchar(10) DEFAULT NULL,
+  `stat` varchar(10) DEFAULT NULL,
+  `id_job` int(11) DEFAULT NULL,
+  `id_item` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `scanlogpallet`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `scanlogpallet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
