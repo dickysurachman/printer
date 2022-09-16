@@ -88,6 +88,9 @@ class SiteController extends Controller
             foreach($res as $value){
                 $value->status=2;
                 $value->save();
+                $det=Itemmasterd::findOne(['iddetail'=>$value]);
+                $det->status=1;
+                $det->save();
             }
             $h->status=1;
             $h->save();
