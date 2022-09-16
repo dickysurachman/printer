@@ -83,8 +83,7 @@ class SiteController extends Controller
         if(isset($h)) {
         $ipx=$h->ip;
         $ipy=$_SERVER['REMOTE_ADDR'];
-        if(($ipx==$ipy) or ($ipy=="::1")) {
-            //$job=Itemmaster::findOne()        
+        if(($ipx==$ipy) or ($ipy=="::1")) {      
             $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(10)->all();
             foreach($res as $value){
                 $value->status=2;
