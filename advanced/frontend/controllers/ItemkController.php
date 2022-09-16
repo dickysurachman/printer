@@ -91,6 +91,7 @@ class ItemkController extends Controller
                 if($value<>""){
                 $jj=new Scanlog();
                 $jj->scan=$value;
+                $jj->machine =$item->machine;
                 if($jj->save()) {
                     $resp.=$value." berhasil diinput <br/>";
                     $item=$value;

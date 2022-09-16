@@ -120,7 +120,8 @@ class ItemController extends Controller
             $var4=$dat1[1];
             $dat1=explode(")",$data[5]);
             $var5=$dat1[1];
-            $sc=Item::find()->where(['var_5'=>$var5,'status'=>2])->one();
+            //$sc=Item::find()->where(['var_5'=>$var5,'status'=>2])->one();
+            $sc=Item::find()->where(['var_5'=>$var5,'machine'=>$master->machine])->one();
             if(isset($sc)){
                 $sc->status=2;
                 $sc->save();
