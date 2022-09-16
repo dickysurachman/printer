@@ -16,6 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 
 ?>
+<style type="text/css">
+    
+    .table-info, .table-info>td, .table-info>th {
+        background-color: white !important;
+    }
+</style>
 <div class="item-index">
     <?= Html::a(Yii::t('yii', 'Import Job'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>
 

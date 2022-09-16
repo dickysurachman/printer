@@ -48,4 +48,9 @@ class Itemkd extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Itemkardus::className(), ['id' => 'iddetail']);
     }
+     public function getJob()
+    {
+        return $this->hasOne(Itemk::className(), ['id' => 'idmaster']);
+    }
+
 }

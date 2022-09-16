@@ -89,6 +89,10 @@ class Item extends \yii\db\ActiveRecord
 
         return $this->hasOne(Machine::className(), ['id' => 'machine']);
     }
+     public function getJob(){
+
+        return $this->hasOne(itemmasterd::className(), ['iddetail' => 'id']);
+    }
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -105,5 +109,8 @@ class Item extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+    public function getKarton(){
+        return $this->hasOne(Kardusitem::className(), ['iddetail' => 'id']);
     }
 }

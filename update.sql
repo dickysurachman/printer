@@ -401,3 +401,10 @@ alter table `itemmasterp` add `linenm` varchar(100) DEFAULT NULL;
 alter table `kardusitem` add `tanggal` datetime DEFAULT current_timestamp();
 alter table `palletkardus` add `tanggal` datetime DEFAULT current_timestamp();
 
+
+17-9-2022
+
+
+CREATE TRIGGER `deleteki1` AFTER DELETE ON `itemkardus` FOR EACH ROW DELETE from kardusitem where idkardus=old.id;
+CREATE TRIGGER `deletepk1` AFTER DELETE ON `itempallet` FOR EACH ROW DELETE from palletkardus where idpallet=old.id;
+

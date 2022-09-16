@@ -58,5 +58,9 @@ class Itemmasterd extends \yii\db\ActiveRecord
     public function getItemd()
     {
         return $this->hasOne(Item::className(), ['id' => 'iddetail']);
+    } 
+    public function getMaster()
+    {
+        return $this->hasOne(Itemmaster::className(), ['id' => 'idmaster']);
     }
 }

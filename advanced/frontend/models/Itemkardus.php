@@ -93,4 +93,13 @@ class Itemkardus extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Perusahaan::className(), ['id' => 'var_6']);
     }
+    public function getMaster()
+    {
+        return $this->hasOne(Itemkd::className(), ['iddetail' => 'id']);
+    }
+
+     public function getDetail()
+    {
+        return $this->hasMany(Kardusitem::className(), ['idkardus' => 'id']);
+    }
 }

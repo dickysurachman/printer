@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
+use kartik\grid\GridView;
 $st=['Active','Progress Execution','Done'];
 return [
     [
@@ -14,6 +16,19 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id',
     // ],
+      [
+    'class' => 'kartik\grid\ExpandRowColumn',
+    'width' => '50px',
+    'header' => '<span class="fa fa-eye"></span>',
+    'value' => function ($model, $key, $index, $column) {
+        return GridView::ROW_COLLAPSED;
+    },
+    'detail' => function ($model, $key, $index, $column) {
+        return Yii::$app->controller->renderPartial('viewgrid', ['model' => $model]);
+    },
+    'headerOptions' => ['class' => 'kartik-sheet-style'] ,
+    'expandOneOnly' => true,
+    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal',
@@ -38,7 +53,7 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'var_5',
     ],
-    [
+    /*[
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'ulang',
     ],
@@ -49,7 +64,7 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'gagal',
-    ],
+    ],*/
     //[
     //    'class'=>'\kartik\grid\DataColumn',
     //    'attribute'=>'biner',
@@ -64,7 +79,7 @@ return [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'noWrap' => 'true',
-        'template' => '{view} {update} {delete}',
+        'template' => '{view} {delete}',//{update} {delete}
         'vAlign' => 'middle',
         'urlCreator' => function($action, $model, $key, $index) { 
                 return Url::to([$action,'id'=>$key]);

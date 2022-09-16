@@ -62,14 +62,10 @@ function cekdata(){
 
 <div class="scan-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'formSubmit']); ?>
+     <?php $form = ActiveForm::begin(['id'=>'formSubmit']); ?>
 
      <?= $form->field($model, 'scan')->textarea(['rows' => '10']) ?>
-   
-		
-    
-
-    <?php ActiveForm::end(); ?>
+      <?php ActiveForm::end(); ?>
     <div id="room_type" class="alert-success alert">Notifikasi</div>
 </div>
 </div>

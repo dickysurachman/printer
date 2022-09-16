@@ -19,6 +19,9 @@ use app\models\Machine;
 use yii\widgets\DetailView;
 use Da\QrCode\QrCode;
 use app\models\Scanlogcarton;
+use app\models\Scanlog;
+use app\models\Kardusitem;
+use app\models\Item;
 /**
  * ItemkController implements the CRUD actions for Itemkardus model.
  */
@@ -75,9 +78,9 @@ class ItemkController extends Controller
         }
     }
 
-    public function actionScanm2($id){
+    public function actionScanusb($id){
         $item=$this->findModel($id);
-        $model= new Scanlogcarton();
+        $model= new Scanlog();
         if (Yii::$app->request->isAjax) {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if (Yii::$app->request->post()) {
@@ -89,13 +92,13 @@ class ItemkController extends Controller
                 $value = preg_replace("/\r|\n/", "", $value);
                 $value =trim($value);
                 if($value<>""){
-                $jj=new Scanlog();
+                $jj=new Scanlogcarton();
                 $jj->scan=$value;
-                $jj->machine =$item->machine;
+                $jj->machine =$item->master->job->machine;
                 if($jj->save()) {
                     $resp.=$value." berhasil diinput <br/>";
-                    $item=$value;
-                    $data=explode("(", $item);
+                    //$item=$value;
+                    $data=explode("(", $value);
                     if(count($data)==6){
                         $dat1=explode(")",$data[1]);
                         $var1=$dat1[1];
@@ -107,6 +110,22 @@ class ItemkController extends Controller
                         $var4=$dat1[1];
                         $dat1=explode(")",$data[5]);
                         $var5=$dat1[1];
+                        $ii=Item::find()->where(['var_5'=>$var5])->one();
+                        if(isset($ii)) {
+                            $cek=Kardusitem::find()->where(['iddetail'=>$ii->id])->one();
+                            if(isset($cek)){
+
+                                return $value.' Data sudah pernah dimasukkan ke karton lain';
+                                break;
+                            } else {
+
+                                $kk=new Kardusitem();
+                                $kk->idkardus=$item->id;
+                                $kk->iddetail=$ii->id;
+                                $kk->save();
+                            }
+
+                        }
                         $gabung ="(90)".$var1."(01)".$var2."(10)".$var3."(17)".$var4."(21)".$var5;
                         $qrCode = (new QrCode($gabung))
                             ->setSize(170)
@@ -141,9 +160,34 @@ class ItemkController extends Controller
         }
         return $this->render('createscanm2', [
         'model' => $model,
+        'id'=>$id,
         ]);
     } 
 
+    public function actionTable($id){
+        $res='<table class="table table-hover table-striped" >
+            <thead  class="thead-dark">
+                <th>No</th>
+                <th>NIE</th>
+                <th>LOT</th>
+                <th>S/N Item</th>
+            </thead>';
+        $detail = Kardusitem::find()->where(['idkardus'=>$id])->all();
+        $i=1;
+        foreach($detail as $vie){
+            $res .="<tr>";
+            $res .="<td>".$i."</td>";
+            $res .="<td>".$vie->itemd->var_1."</td>";
+            $res .="<td>".$vie->itemd->var_3."</td>";
+            $res .="<td>".$vie->itemd->var_5."</td>";
+            $res .="</tr>";
+            $i++;
+        }
+        $res .="</table>";
+        return $res;
+
+
+    }
 
     public function actionView($id)
     {   

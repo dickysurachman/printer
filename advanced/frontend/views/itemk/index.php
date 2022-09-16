@@ -20,6 +20,9 @@ CrudAsset::register($this);
         max-width: 60% !important;
         width: 60% !important;
     }
+    .table-info, .table-info>td, .table-info>th {
+        background-color: white !important;
+    }
 </style>
 <div class="item-index">
     <?php //= Html::a(Yii::t('yii', 'Import Job'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>

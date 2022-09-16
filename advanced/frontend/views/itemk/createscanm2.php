@@ -4,11 +4,19 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Perusahaan;
 $this->title="Scan Barcode USB";
+$url = Yii::$app->homeUrl.'/itemk/table.html?id='.$id;
 
 $durasi=1000;
 $batas=10;
 $this->registerJs(
 '
+$.ajax({
+        type: "POST",
+        url: "'.$url.'",
+        success: function(data) {
+          $("#tableantrian").html(data);   
+        }
+        });
 var formURL = $("#formSubmit").attr("action");
 var pertama=setInterval(
 function cekdata(){ 
@@ -44,6 +52,13 @@ function cekdata(){
 						$("#room_type").text("Error!");					
 					}
                 });
+        $.ajax({
+        type: "POST",
+        url: "'.$url.'",
+        success: function(data) {
+          $("#tableantrian").html(data);   
+        }
+        });
             setTimeout(function(){}, '.$durasi.');
 			var pertama=setInterval(cekdata,'.$durasi.');
 			clearInterval(pertama);
@@ -62,14 +77,28 @@ function cekdata(){
 
 <div class="scan-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'formSubmit']); ?>
-
-     <?= $form->field($model, 'scan')->textarea(['rows' => '10']) ?>
+   
    
 		
-    
-
+    <div class="row">
+    <div class="col-8">
+    <?php $form = ActiveForm::begin(['id'=>'formSubmit']); ?>
+    <?= $form->field($model, 'scan')->textarea(['rows' => '10']) ?>
+   
     <?php ActiveForm::end(); ?>
+    	
+  	</div>
+  	<div id="tableantrian" class="col-4">
+  		<table class="table table-hover table-striped">
+  			<thead class="thead-dark">
+  				<th>NIE</th>
+  				<th>LOT</th>
+  				<th>S/N Item</th>
+  			</thead>
+  		</table>
+  	</div>
+    </div>
+
     <div id="room_type" class="alert-success alert">Notifikasi</div>
 </div>
 </div>
