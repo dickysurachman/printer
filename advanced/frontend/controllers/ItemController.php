@@ -196,7 +196,7 @@ class ItemController extends Controller
         if(isset($job)) {
             $job->status=1;
             $job->save();
-        $sql=Yii::$app->db->createCommand("update Scanlog set status=1 where machine=".$job->machine." and status=0")->execute();
+        $sql=Yii::$app->db->createCommand("update scanlog set status=1 where machine=".$job->machine." and status=0")->execute();
         $id=Itemmasterd::find()->where(['idmaster'=>$id])->orderBy(['id'=>SORT_ASC])->all();
         foreach ($id as $value){
             $model=$this->findModel($value->iddetail);
@@ -214,7 +214,7 @@ class ItemController extends Controller
     public function actionReset($id){
         $job=Itemmaster::findOne($id);
         if(isset($job)) {
-        $sql=Yii::$app->db->createCommand("delete from Scanlog where machine=".$job->machine." and status=0")->execute();
+        $sql=Yii::$app->db->createCommand("delete from scanlog where machine=".$job->machine." and status=0")->execute();
         return 'resume';
         }
     }
