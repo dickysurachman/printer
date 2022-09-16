@@ -88,23 +88,6 @@ while True:
             try:
                 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
                 s.connect((str(TCP_IP),int(TCP_PORT)))
-                #cek hitung pertama
-                printd="00 00 00 00 00 06 00 64 00 02 00 45"                
-                s.send(bytes.fromhex(printd))
-                data1=s.recv(int(BUFFER_SIZE))
-                data2=binascii.hexlify(data1).decode()
-                try :
-                    awal=int(data2[70:74],16)
-                except :
-                    print ("koneksi error")
-                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca=koneksierror"+str(baca.replace(" ",""))+"&key="+str(keyyy)
-                    response2 = request.urlopen(url1)
-                    print(str(y) + " sending to server " +url1)   
-                    file_object.write("koneksi error, send "+str(url1)+"\n")
-                    break                     
-                print("counter printer pertama ",awal)
-                file_object.write("counter printer pertama "+str(awal)+"\n")
-                file_object.write("\n")
                 #send data printer
                 s.send(bytes.fromhex(MESSAGE))
                 data=s.recv(int(BUFFER_SIZE))
@@ -115,20 +98,7 @@ while True:
                 x1= dua.find("01O")
                 #print(x)
                 #cek counter data
-                s.send(bytes.fromhex(printd))
-                data1=s.recv(int(BUFFER_SIZE))
-                data2=binascii.hexlify(data1).decode()
-                akhir=int(data2[70:74],16)
-                print("counter printer akhir ",akhir)
-                file_object.write("counter printer akhir "+str(akhir)+"\n")
-                while awal==akhir:
-                        s.send(bytes.fromhex(printd))
-                        data1=s.recv(int(BUFFER_SIZE))
-                        data2=binascii.hexlify(data1).decode()
-                        akhir=int(data2[70:74],16)
-                print("counter printer akhir ",akhir)
-                file_object.write("counter printer akhir "+str(akhir)+"\n")
-                        #sleep(int(settt[2]) - time() % int(settt[2]))
+                #sleep(int(settt[2]) - time() % int(settt[2]))
                 if(x1>0): 
                     print("data berhasil diterima")
                     url1 = str(settt[1])+"?id="+str(i['id'])+"&status=sukses"+"&key="+str(keyyy)

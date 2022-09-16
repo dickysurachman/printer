@@ -183,11 +183,13 @@ class ItemController extends Controller
         return 'TOTAL '.$id;
     }  
     public function actionStatus($id){
-        $id=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>0])->orderBy(['id'=>SORT_ASC])->One();
+        $value=Itemmasterd::find()->where(['idmaster'=>$id,'status'=>0])->limit(10)->orderBy(['id'=>SORT_ASC])->all();
+        foreach($value as $id) {            
         $model=$this->findModel($id->iddetail);
         if($model->status<>1){
             $model->status=1;
             $model->save();            
+        }
         }
         return 'jalan';
     }
