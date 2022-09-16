@@ -21,6 +21,10 @@ CrudAsset::register($this);
     .table-info, .table-info>td, .table-info>th {
         background-color: white !important;
     }
+    .modal-dialog {
+        max-width: 70% !important;
+        width: 70% !important;
+    }
 </style>
 <div class="itemk-index">
      <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemk/uploadcsv'], ['class' => 'btn btn-success']) ?>

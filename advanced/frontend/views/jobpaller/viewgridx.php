@@ -3,9 +3,9 @@
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Itemk */
+/* @var $model app\models\Itemmasterp */
 ?>
-<div class="itemk-view">
+<div class="itemmasterp-view">
  
     <?= DetailView::widget([
         'model' => $model,
@@ -28,7 +28,7 @@ use yii\widgets\DetailView;
                 <th>GTIN</th>
                 <th>LOT</th>
                 <th>S/N</th>
-                <th>QR Data</th>
+                <th>status</th>
             </tr>
         <?php
     foreach($model->detail as $value){
@@ -37,10 +37,11 @@ use yii\widgets\DetailView;
         echo "<td>".$value->itemd->var_2."</td>";
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
-        echo "<td>".$value->itemd->scan."</td></tr>";
+        echo "<td>".$value->itemd->statusname."</td></tr>";
         $i++;
-    }   ?>
-        </table>
+    }
+    ?>
+    </table>
     <?php }
     ?>
 </div>

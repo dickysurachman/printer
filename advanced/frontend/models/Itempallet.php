@@ -87,9 +87,23 @@ class Itempallet extends \yii\db\ActiveRecord
             'status' => Yii::t('yii', 'Status'),
         ];
     }
+     public function getScan(){
+        $gabung ="(90)".$this->var_1."(01)".$this->var_2."(10)".$this->var_3."(17)".$this->var_4."(21)".$this->var_5;
+        return $gabung;
+    }
 
      public function getPerusahaan()
     {
         return $this->hasOne(Perusahaan::className(), ['id' => 'var_6']);
+    }
+
+     public function getMaster()
+    {
+        return $this->hasOne(Itemmasterpd::className(), ['iddetail' => 'id']);
+    }
+
+     public function getDetail()
+    {
+        return $this->hasMany(Palletkardus::className(), ['idpallet' => 'id']);
     }
 }

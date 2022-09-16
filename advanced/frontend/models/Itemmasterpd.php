@@ -49,5 +49,8 @@ class Itemmasterpd extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Itempallet::className(), ['id' => 'iddetail']);
     }
-
+    public function getJob()
+    {
+        return $this->hasOne(Itemmasterp::className(), ['id' => 'idmaster']);
+    }
 }

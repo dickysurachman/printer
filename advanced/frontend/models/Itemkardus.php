@@ -88,7 +88,10 @@ class Itemkardus extends \yii\db\ActiveRecord
         }
 
     }
-
+     public function getScan(){
+        $gabung ="(90)".$this->var_1."(01)".$this->var_2."(10)".$this->var_3."(17)".$this->var_4."(21)".$this->var_5;
+        return $gabung;
+    }
     public function getPerusahaan()
     {
         return $this->hasOne(Perusahaan::className(), ['id' => 'var_6']);
@@ -98,6 +101,9 @@ class Itemkardus extends \yii\db\ActiveRecord
         return $this->hasOne(Itemkd::className(), ['iddetail' => 'id']);
     }
 
+      public function getPallet(){
+        return $this->hasOne(Palletkardus::className(), ['idkardus' => 'id']);
+    }
      public function getDetail()
     {
         return $this->hasMany(Kardusitem::className(), ['idkardus' => 'id']);

@@ -19,7 +19,9 @@ use app\models\Machine;
 use yii\widgets\DetailView;
 use Da\QrCode\QrCode;
 use app\models\Scanlogpallet;
-
+use app\models\Scanlog;
+use app\models\Palletkardus;
+use app\models\Itemkardus;
 /**
  * ItempController implements the CRUD actions for Itempallet model.
  */
@@ -93,6 +95,116 @@ class ItempController extends Controller
                 'model' => $this->findModel($id),
             ]);
         }
+    }
+
+    public function actionScanusb($id){
+        $item=$this->findModel($id);
+        $model= new Scanlog();
+        if (Yii::$app->request->isAjax) {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if (Yii::$app->request->post()) {
+            $resp="";
+            //$hasil = explode(PHP_EOL,$_POST['Inputan']['barcode']);
+            $hasil = explode("\n",$_POST['Inputan']['barcode']);
+            foreach($hasil as $value){
+            if($value<>" " or $value<>""){
+                $value = preg_replace("/\r|\n/", "", $value);
+                $value =trim($value);
+                if($value<>""){
+                $jj=new Scanlogpallet();
+                $jj->scan=$value;
+                $jj->machine =$item->master->job->machine;
+                if($jj->save()) {
+                    $resp.=$value." berhasil diinput <br/>";
+                    //$item=$value;
+                    $data=explode("(", $value);
+                    if(count($data)==6){
+                        $dat1=explode(")",$data[1]);
+                        $var1=$dat1[1];
+                        $dat1=explode(")",$data[2]);
+                        $var2=$dat1[1];
+                        $dat1=explode(")",$data[3]);
+                        $var3=$dat1[1];
+                        $dat1=explode(")",$data[4]);
+                        $var4=$dat1[1];
+                        $dat1=explode(")",$data[5]);
+                        $var5=$dat1[1];
+                        $ii=Itemkardus::find()->where(['var_5'=>$var5])->one();
+                        if(isset($ii)) {
+                            $cek=Palletkardus::find()->where(['idkardus'=>$ii->id])->one();
+                            if(isset($cek)){
+                                return $value.' Data sudah pernah dimasukkan ke karton lain';
+                                break;
+                            } else {
+
+                                $kk=new Palletkardus();
+                                $kk->idpallet=$item->id;
+                                $kk->idkardus=$ii->id;
+                                $kk->save();
+                            }
+
+                        }
+                        $gabung ="(90)".$var1."(01)".$var2."(10)".$var3."(17)".$var4."(21)".$var5;
+                        $qrCode = (new QrCode($gabung))
+                            ->setSize(170)
+                            ->setMargin(5)
+                            ->useForegroundColor(13, 13, 13);
+                        $qrCode->writeFile('code.png'); // writer defaults to PNG when none is specified
+                        header('Content-Type: '.$qrCode->getContentType());
+                        $resp.='<div class="row">
+                        <div class="col-3">
+                        <img src="' . $qrCode->writeDataUri() . '">
+                        </div>
+                        <div class="col-4">
+                        <table id="w0" class="table table-striped table-bordered detail-view"><tbody><tr><th>NIE</th><td>'.$var1.'</td></tr>
+<tr><th>GTIN</th><td>'.$var2.'</td></tr>
+<tr><th>LOT NO</th><td>'.$var3.'</td></tr>
+<tr><th>EXP DATE</th><td>'.$var4.'</td></tr>
+<tr><th>S / N</th><td>'.$var5.'</td></tr></tbody></table>
+                        </div></div>';
+                    }
+                } else {
+                    $resp.=$value." gagal diinput <br/>";
+                }
+                }
+                
+            }
+            }
+            return $resp;
+            
+        } else {
+            return "data tidak berhasil diinput";
+        }
+        }
+        return $this->render('createscanm2', [
+        'model' => $model,
+        'id'=>$id,
+        ]);
+    } 
+
+    public function actionTable($id){
+        $res='<table class="table table-hover table-striped" >
+            <thead  class="thead-dark">
+                <th>No</th>
+                <th>NIE</th>
+                <th>LOT</th>
+                <th>S/N Item</th>
+            </thead>';
+        $detail = Palletkardus::find()->where(['idpallet'=>$id])->all();
+        $i=1;
+        foreach($detail as $vie){
+            $res .="<tr>";
+            $res .="<td>".$i."</td>";
+            $res .="<td>".$vie->carton->var_1."</td>";
+            $res .="<td>".$vie->carton->var_3."</td>";
+            $res .="<td>".$vie->carton->var_5."</td>";
+            $res .="</tr>";
+            $i++;
+        }
+        $res .="</table>";
+        return $res;
+
+
     }
 
     /**
