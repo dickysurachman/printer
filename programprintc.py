@@ -48,15 +48,9 @@ file_object.write("BUFFER "+ str(BUFFER_SIZE)+"\n")
 file_object.write("URL API "+ str(settt[0])+"\n")
 file_object.write("Durasi Timer (second) "+ str(settt[2])+"\n")
 file_object.write("KEY "+ str(keyyy)+"\n")
-#print("URL API COUNTER",settt[6])
-file_object.close()
 
-while True:
-    #y += 1
-    file_object = open('log-print.txt', 'a')
-    sleep(int(settt[2]) - time() % int(settt[2]))
-    url = str(settt[0])+"?key="+str(keyyy)
-    file_object.write(str(url)+"\n")
+url = str(settt[0])+"?key="+str(keyyy)
+file_object.write(str(url)+"\n")
     try:
         response = request.urlopen(url)
         data = json.loads(response.read())
@@ -65,51 +59,53 @@ while True:
         print("koneksi internet error atau machine tidak terdaftar di server")
         file_object.write("internet koneksi error "+str(url)+"\n")
         break
-    if validateJSON(response.read())==False:
-        print("data kosong")
-    for i in data['message']:
-        print("data dari server")
-        print(i)
-        file_object.write("data dari server "+ str(i)+ "\n")
-        file_object.write("pengiriman data  s/n "+str(i['var_5']))
-        file_object.write("\n")
-        print("pengiriman data s/n",i['var_5'])
-        baca +="pengiriman data s/n"+str(i['var_5'])
-        print("batas ",i['ulang'])
-        file_object.write("batas pengiriman "+str(i['ulang']))
-        file_object.write("\n")
-        MESSAGE=i['biner']
-        batas=int(i['ulang'])
-        x = 1 
-        y=0
-        while x <= batas:
-            x += 1
-            y += 1
-            try:
-                s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-                s.connect((str(TCP_IP),int(TCP_PORT)))
-                #send data printer
-                s.send(bytes.fromhex(MESSAGE))
-                data=s.recv(int(BUFFER_SIZE))
-                print("receiveddata:")
-                print(data)
-                file_object.write("receiveddata :"+str(data)+"\n")
-                dua=str(data)
-                s.close()
-                file_object.write("send data printer" + str(data)+"\n")
-                file_object.write("receiveddata " + str(data)+"\n")
-                file_object.close()    
-            except socket.error:
-                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca=koneksierror"+str(baca.replace(" ",""))+"&key="+str(keyyy)
-                response2 = request.urlopen(url1)
-                print(str(y) + " sending to server " +url1)
-                print ('koneksi error')
-                file_object.write("koneksi error \n")
-                file_object.write("sending to server " + str(url1))
-                file_object.close()    
-                break
-            finally:
-                s.close()
+file_object.close()
+if validateJSON(response.read())==False:
+    print("data kosong")
+for i in data['message']:
+    file_object = open('log-print.txt', 'a')
+    print("data dari server")
+    print(i)
+    file_object.write("data dari server "+ str(i)+ "\n")
+    file_object.write("pengiriman data  s/n "+str(i['var_5']))
+    file_object.write("\n")
+    print("pengiriman data s/n",i['var_5'])
+    baca +="pengiriman data s/n"+str(i['var_5'])
+    print("batas ",i['ulang'])
+    file_object.write("batas pengiriman "+str(i['ulang']))
+    file_object.write("\n")
+    MESSAGE=i['biner']
+    batas=int(i['ulang'])
+    x = 1 
+    y=0
+    while x <= batas:
+        x += 1
+        y += 1
+        try:
+            s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+            s.connect((str(TCP_IP),int(TCP_PORT)))
+            #send data printer
+            s.send(bytes.fromhex(MESSAGE))
+            data=s.recv(int(BUFFER_SIZE))
+            print("receiveddata:")
+            print(data)
+            file_object.write("receiveddata :"+str(data)+"\n")
+            dua=str(data)
+            s.close()
+            file_object.write("send data printer" + str(data)+"\n")
+            file_object.write("receiveddata " + str(data)+"\n")
+            file_object.close()    
+        except socket.error:
+            url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca=koneksierror"+str(baca.replace(" ",""))+"&key="+str(keyyy)
+            response2 = request.urlopen(url1)
+            print(str(y) + " sending to server " +url1)
+            print ('koneksi error')
+            file_object.write("koneksi error \n")
+            file_object.write("sending to server " + str(url1))
+            file_object.close()    
+            break
+        finally:
+            s.close()
 
           
         
