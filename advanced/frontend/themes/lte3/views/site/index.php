@@ -10,7 +10,7 @@ $job=Itemmaster::find()->count();
 
 $sukses=Itemmasterd::find()->where(['statusc'=>1])->count();
 $gagal=Itemmasterd::find()->where(['statusc'=>2])->count();
-$run=Itemmasterd::find()->where(['statusc'=>0])->count();
+$run=Itemmasterd::find()->count();
     if($run==0) $run=1;
 //$script = <<< JS JS;
 $script= "$(document).ready(function(){
@@ -331,7 +331,7 @@ $this->registerJs($script, View::POS_END);
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
-    <span class="count_top"><i class="fa fa-check"></i> PROGRESS</span>
+    <span class="count_top"><i class="fa fa-check"></i> TOTAL ITEM</span>
     <div class="count purple"><?php  echo $run//custom_echo($readrate,5); ?></div>
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
