@@ -37,6 +37,8 @@ def client_handler(connection):
             print(message)
             message= str(message)
             message= message.replace(' ','')
+            message= message.replace('\n','')
+            message= message.replace('\t','')
             url1=url+"?status="+str(message)+"&key="+str(key)
             file_object.write("sending to server "+str(url1)+"\n")
             response2 = request.urlopen(url1)

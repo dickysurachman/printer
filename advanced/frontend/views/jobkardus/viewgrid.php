@@ -39,7 +39,8 @@ use yii\helpers\Html;
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
         echo "<td>".$value->itemd->statusname."</td>";
-         echo "<td>".Html::a('<span class="fas fa-plane" style="font-size:10pt;" title="Start Input"></span> '.\Yii::t('yii', 'Input'), ['itemk/view', 'id' => $value->itemd->id], ['data-pjax' => "0",'class'=>'btn btn-success','target'=>"_blank"])."&nbsp;&nbsp;".
+         echo "<td>".Html::a('<span class="fas fa-barcode" style="font-size:10pt;" title="Start Input"></span> '.\Yii::t('yii', 'USB'), ['itemk/view', 'id' => $value->itemd->id], ['data-pjax' => "0",'class'=>'btn btn-success','target'=>"_blank"])."&nbsp;&nbsp;".
+         Html::a('<span class="fas fa-barcode" style="font-size:10pt;" title="Start Input"></span> '.\Yii::t('yii', 'LAN'), ['itemk/view', 'id' => $value->itemd->id], ['data-pjax' => "0",'class'=>'btn btn-danger','target'=>"_blank"])."&nbsp;&nbsp;".
          Html::a('<span class="fas fa-print" style="font-size:10pt;" title="print item"></span> '.\Yii::t('yii', 'Print'), ['itemk/print', 'id' => $value->itemd->id], ['data-pjax' => "0",'class'=>'btn btn-info','target'=>"_blank"]).
                     "</td></tr>";
         $i++;
