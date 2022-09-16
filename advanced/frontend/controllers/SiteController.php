@@ -142,6 +142,18 @@ class SiteController extends Controller
                 return "save";
             }
         }
+    }        
+    public function actionCamerax($status,$key){        
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+            if(trim($status)<>""){
+                $mm=new Scanlog;
+                $mm->scan =$status;
+                $mm->machine =$h->id;
+                $mm->save();
+                return "save";
+            }
+        }
     }       
     public function actionCamerakardus($status,$key){        
         $h=Machine::find()->where(['key'=>$key])->one();

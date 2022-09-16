@@ -28,12 +28,12 @@ def client_handler(connection):
         try:
             data = connection.recv(2048)
             message = data.decode('utf-8')
-            file_object = open('log-camera.txt', 'a')
+            #file_object = open('log-camera.txt', 'a')
             now = datetime.now()
             current_time = now.strftime(" %d-%M-%Y %H:%M:%S")
             print("Time =", current_time)
-            file_object.write("Time ="+str(current_time)+"\n")
-            file_object.write(str(message)+"\n")
+            #file_object.write("Time ="+str(current_time)+"\n")
+            #file_object.write(str(message)+"\n")
             print(message)
             message= str(message)
             message= message.replace(' ','')
@@ -44,22 +44,22 @@ def client_handler(connection):
             message = message.strip('\t')            
             message = message.strip('\r')            
             url1=url+"?status="+str(message)+"&key="+str(key)
-            file_object.write("sending to server "+str(url1)+"\n")
+            #file_object.write("sending to server "+str(url1)+"\n")
             response2 = request.urlopen(url1)
             print("sending to server " +url1)
             print (" response "+str(response2))
-            file_object.write("response "+str(response2)+"\n")
+            #file_object.write("response "+str(response2)+"\n")
             if message == 'BYE':
                 break
             reply = f'Server: {message}'
             connection.sendall(str.encode(reply))
-            file_object.close()  
+            #file_object.close()  
         except socket.error:
              print ('koneksi error')
              break
         finally: 
             connection.close()
-            file_object.close()   
+            #file_object.close()   
 
 def accept_connections(ServerSocket):
     Client, address = ServerSocket.accept()
