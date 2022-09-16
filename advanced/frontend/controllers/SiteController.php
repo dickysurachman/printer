@@ -91,6 +91,10 @@ class SiteController extends Controller
             'message' => $res,
             'code' => 100,
             ];
+            foreach($res as $value){
+                $value->status=2;
+                $value->save();
+            }
             $h->status=1;
             $h->save();
         }
