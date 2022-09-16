@@ -86,17 +86,17 @@ class SiteController extends Controller
         if(($ipx==$ipy) or ($ipy=="::1")) {
             //$job=Itemmaster::findOne()        
             $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(10)->all();
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-            return [
-            'message' => $res,
-            'code' => 100,
-            ];
             foreach($res as $value){
                 $value->status=2;
                 $value->save();
             }
             $h->status=1;
             $h->save();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+            'message' => $res,
+            'code' => 100,
+            ];
         }
         }
     }
