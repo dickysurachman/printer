@@ -98,7 +98,7 @@ while True:
                     file_object.write("koneksi error, send "+str(url1)+"\n")
                     break                     
                 print("counter printer pertama ",awal)
-                file_object.write("counter printer pertama ",str(i['ulang']))
+                file_object.write("counter printer pertama "+str(awal))
                 file_object.write("\n")
                 #send data printer
                 s.send(bytes.fromhex(MESSAGE))
