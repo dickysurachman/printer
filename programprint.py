@@ -121,7 +121,7 @@ while True:
                 akhir=int(data2[70:74],16)
                 print("counter printer akhir ",akhir)
                 file_object.write("counter printer akhir "+str(akhir)+"\n")
-                while awal<=akhir:
+                while awal==akhir:
                         s.send(bytes.fromhex(printd))
                         data1=s.recv(int(BUFFER_SIZE))
                         data2=binascii.hexlify(data1).decode()

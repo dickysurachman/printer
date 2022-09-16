@@ -20,7 +20,7 @@ $this->registerJs(
     "let statusx = false;
     let status = false;
     $('#setar').click(function(){
-        status=setInterval(update,2000);
+        status=setInterval(update,500);
         statusx=true;
         $('#recum').removeAttr('disabled');
         $('#setar').attr('disabled','disabled');
@@ -68,7 +68,7 @@ $this->registerJs(
     $('#recum').click(function(){
         var title=$('#recum').text();
         if (statusx === false) {
-        status = setInterval(update,2000);
+        status = setInterval(update,500);
         statusx=true;
         } else {
         statusx=false;
