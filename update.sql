@@ -349,15 +349,11 @@ ALTER TABLE `scanlogpallet`
 ALTER TABLE `scanlogpallet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-alter table `scanlogcarton` add dbs varchar(10) DEFAULT NULL;
-alter table `scanlogcarton` add stat varchar(10) DEFAULT NULL;
-alter table `scanlogpallet` add dbs varchar(10) DEFAULT NULL;
-alter table `scanlogpallet` add stat varchar(10) DEFAULT NULL;
 
 
 
 
-alter table `itemk` add `var_1` varchar(100) DEFAULT NULL,add `var_2` varchar(100) DEFAULT NULL,
+alter table `itemmasterk` add `var_1` varchar(100) DEFAULT NULL,add `var_2` varchar(100) DEFAULT NULL,
 add `var_3` varchar(100) DEFAULT NULL,add `var_4` varchar(100) DEFAULT NULL,add `var_5` varchar(100) DEFAULT NULL,
 add `job_id` int(11) DEFAULT NULL, add `id_line` int(11) DEFAULT NULL;
 alter table `itemmasterp` add `var_1` varchar(100) DEFAULT NULL,add `var_2` varchar(100) DEFAULT NULL,
