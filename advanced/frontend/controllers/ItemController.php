@@ -134,6 +134,7 @@ class ItemController extends Controller
                 $value->dbs="True";
                 $value->stat="PASS";
                 $value->process=1;
+                $value->status=1;
                 $value->save();
             } else {
                 $ver1="FAIL";
@@ -141,6 +142,7 @@ class ItemController extends Controller
                 $value->dbs="False";
                 $value->stat="FAIL";
                 $value->process=1;
+                $value->status=1;
                 $value->save();
 
             }
@@ -159,6 +161,7 @@ class ItemController extends Controller
             $valus->dbs="False";
             $value->stat="FAIL";
             $value->process=1;
+            $value->status=1;
             $value->save();
 
         }
@@ -190,8 +193,8 @@ class ItemController extends Controller
             $model->status=1;
             $model->save();            
         }
-        }
-        return 'jalan';
+        
+}        return 'jalan';
     }
     public function actionStop($id){
         $job=Itemmaster::findOne($id);

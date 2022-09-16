@@ -95,24 +95,10 @@ while True:
                 print(data)
                 file_object.write("receiveddata :"+str(data)+"\n")
                 dua=str(data)
-                x1= dua.find("01O")
-                #print(x)
-                #cek counter data
-                #sleep(int(settt[2]) - time() % int(settt[2]))
-                if(x1>0): 
-                    print("data berhasil diterima")
-                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=sukses"+"&key="+str(keyyy)
-                    file_object.write("data berhasil diterima \n")
-                    file_object.write(str(url1)+"\n")
-                else:
-                    print("data gagal dikirim")
-                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=gagal"+"&key="+str(keyyy)
-                    file_object.write("data gagal dikirim \n")
-                    file_object.write(str(url1)+"\n")
-                print(url1)
-                response2 = request.urlopen(url1)
-                print(str(y) + " sending to server " +url1)
                 s.close()
+                file_object.write("send data printer" + str(data)+"\n")
+                file_object.write("receiveddata " + str(data)+"\n")
+                file_object.close()    
             except socket.error:
                 url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca=koneksierror"+str(baca.replace(" ",""))+"&key="+str(keyyy)
                 response2 = request.urlopen(url1)
