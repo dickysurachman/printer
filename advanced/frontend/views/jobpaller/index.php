@@ -16,6 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 
 ?>
+<style type="text/css">
+    
+    .table-info, .table-info>td, .table-info>th {
+        background-color: white !important;
+    }
+</style>
 <div class="itemmasterp-index">
      <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemp/uploadcsv'], ['class' => 'btn btn-success']) ?>
     <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>

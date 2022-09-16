@@ -39,9 +39,9 @@ use yii\widgets\DetailView;
         echo "<td>".$value->itemd->var_5."</td>";
         echo "<td>".$value->itemd->statusname."</td></tr>";
         $i++;
-    }?>
+    }
+    ?>
     </table>
     <?php }
-    
     ?>
 </div>

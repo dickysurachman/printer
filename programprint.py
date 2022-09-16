@@ -126,7 +126,7 @@ while True:
                         sleep(int(settt[2]) - time() % int(settt[2]))
                 if(x1>0): 
                     print("data berhasil diterima")
-                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=sukses"+"&key="++str(keyyy)
+                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=sukses"+"&key="+str(keyyy)
                     file_object.write("data berhasil diterima \n")
                     file_object.write(str(url1)+"\n")
                 else:
