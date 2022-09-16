@@ -23,6 +23,7 @@ $this->title=Yii::t('yii', 'Setting Printer');
         $model->url2=$dua[0];
         $model->port_alat=$dua[1];
         $model->key=$dua[2];
+        $model->ip_alat=$dua[3];
         //$model['url1']=$satu[0];
         //var_dump($satu);
 
@@ -33,6 +34,7 @@ $this->title=Yii::t('yii', 'Setting Printer');
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'url2')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ip_alat')->textInput()->label('IP server Camera') ?>
     <?= $form->field($model, 'port_alat')->textInput()->label('Camera Port') ?>
     <?= $form->field($model, 'key')->textInput() ?>
 

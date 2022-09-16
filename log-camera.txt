@@ -1,0 +1,4 @@
+Time = 16-36-2022 10:36:02
+test
+sending to server http://localhost/printer/printer/site/camera.html?status=test&key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+response <http.client.HTTPResponse object at 0x000001CD1E1A60B0>

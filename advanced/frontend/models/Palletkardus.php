@@ -29,6 +29,7 @@ class Palletkardus extends \yii\db\ActiveRecord
     {
         return [
             [['idpallet', 'idkardus', 'status'], 'integer'],
+            [['tanggal'], 'safe'],            
         ];
     }
 
@@ -39,9 +40,20 @@ class Palletkardus extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'idpallet' => Yii::t('yii', 'Idpallet'),
-            'idkardus' => Yii::t('yii', 'Idkardus'),
+            'idpallet' => Yii::t('yii', 'Pallet'),
+            'idkardus' => Yii::t('yii', 'Carton'),
             'status' => Yii::t('yii', 'Status'),
+            'tanggal' => Yii::t('yii', 'Add Date '),
         ];
     }
+
+    public function getCarton()
+    {
+        return $this->hasOne(Itemkardus::className(), ['id' => 'idkardus']);
+    }
+    public function getPallet()
+    {
+        return $this->hasOne(Itempallet::className(), ['id' => 'idpallet']);
+    }
+
 }

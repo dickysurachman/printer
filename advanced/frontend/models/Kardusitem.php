@@ -29,6 +29,7 @@ class Kardusitem extends \yii\db\ActiveRecord
     {
         return [
             [['idkardus', 'iddetail', 'status'], 'integer'],
+            [['tanggal'], 'safe'],
         ];
     }
 
@@ -39,9 +40,19 @@ class Kardusitem extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'idkardus' => Yii::t('yii', 'Idkardus'),
-            'iddetail' => Yii::t('yii', 'Iddetail'),
+            'idkardus' => Yii::t('yii', 'Carton'),
+            'iddetail' => Yii::t('yii', 'Item'),
             'status' => Yii::t('yii', 'Status'),
+            'tanggal' => Yii::t('yii', 'Add Date '),
         ];
+    }
+
+    public function getItemd()
+    {
+        return $this->hasOne(Item::className(), ['id' => 'iddetail']);
+    }    
+    public function getCarton()
+    {
+        return $this->hasOne(Itemkardus::className(), ['id' => 'idkardus']);
     }
 }

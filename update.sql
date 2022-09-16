@@ -395,3 +395,9 @@ alter table `itemmasterp` add machine int(11) DEFAULT NULL;
 
 alter table `itemmasterk` add `linenm` varchar(100) DEFAULT NULL;
 alter table `itemmasterp` add `linenm` varchar(100) DEFAULT NULL;
+
+
+16-9-2022
+alter table `kardusitem` add `tanggal` datetime DEFAULT current_timestamp();
+alter table `palletkardus` add `tanggal` datetime DEFAULT current_timestamp();
+

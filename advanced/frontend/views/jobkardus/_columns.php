@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-
+use kartik\grid\GridView;
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -15,6 +15,19 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id',
     // ],
+    [
+    'class' => 'kartik\grid\ExpandRowColumn',
+    'width' => '50px',
+    'header' => '<span class="fa fa-eye"></span>',
+    'value' => function ($model, $key, $index, $column) {
+        return GridView::ROW_COLLAPSED;
+    },
+    'detail' => function ($model, $key, $index, $column) {
+        return Yii::$app->controller->renderPartial('viewgrid', ['model' => $model]);
+    },
+    'headerOptions' => ['class' => 'kartik-sheet-style'] ,
+    'expandOneOnly' => true,
+    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal',

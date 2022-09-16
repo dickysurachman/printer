@@ -15,12 +15,13 @@ for line in Lines:
     count += 1
     settt.append(line.strip())    #print("Line{}: {}".format(count, line.strip()))
 
-host = socket.gethostname() 
 #port = 5000
 ThreadCount = 0
 url = str(settt[0])
 port=int(settt[1])
 key=settt[2]
+#host = socket.gethostname() 
+host =str(settt[3])
 def client_handler(connection):
     connection.send(str.encode('You are now connected to server...'))
     while True:
@@ -65,7 +66,7 @@ def start_server(host, port):
         ServerSocket.bind((host, port))
     except socket.error as e:
         print(str(e))
-    print(f'Server is listing on the port {port}...')
+    print(f'Server is listing on {host} the port {port}...')
     ServerSocket.listen()
 
     while True:

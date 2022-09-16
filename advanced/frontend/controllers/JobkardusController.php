@@ -72,6 +72,12 @@ class JobkardusController extends Controller
             ]);
         }
     }
+    public function actionViewdetail($id)
+    {   
+            return $this->render('viewgrid', [
+                'model' => $this->findModel($id),
+            ]);
+    }
 
     /**
      * Creates a new Itemk model.

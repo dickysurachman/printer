@@ -523,6 +523,7 @@ public function actionEksekusi()
             fwrite($myfile, $model->url2."\n");
             fwrite($myfile, $model->port_alat."\n");
             fwrite($myfile, $model->key."\n");
+            fwrite($myfile, $model->ip_alat."\n");
             fclose($myfile);
             //return $this->goHome();
             return $this->redirect(['site/settingcamera']);
