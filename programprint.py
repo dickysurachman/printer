@@ -57,9 +57,14 @@ while True:
     sleep(int(settt[2]) - time() % int(settt[2]))
     url = str(settt[0])+"?key="+str(keyyy)
     file_object.write(str(url)+"\n")
-    response = request.urlopen(url)
-    data = json.loads(response.read())
-    baca=""
+    try:
+        response = request.urlopen(url)
+        data = json.loads(response.read())
+        baca=""
+    except:
+        print("koneksi internet error atau machine tidak terdaftar di server")
+        file_object.write("internet koneksi error "+str(url)+"\n")
+        break
     if validateJSON(response.read())==False:
         print("data kosong")
     for i in data['message']:
@@ -116,7 +121,7 @@ while True:
                 akhir=int(data2[70:74],16)
                 print("counter printer akhir ",akhir)
                 file_object.write("counter printer akhir "+str(akhir)+"\n")
-                while awal>=akhir:
+                while awal<=akhir:
                         s.send(bytes.fromhex(printd))
                         data1=s.recv(int(BUFFER_SIZE))
                         data2=binascii.hexlify(data1).decode()

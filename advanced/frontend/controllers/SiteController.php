@@ -85,7 +85,7 @@ class SiteController extends Controller
         $ipy=$_SERVER['REMOTE_ADDR'];
         if(($ipx==$ipy) or ($ipy=="::1")) {
             //$job=Itemmaster::findOne()        
-            $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(1)->all();
+            $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(10)->all();
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
             'message' => $res,
