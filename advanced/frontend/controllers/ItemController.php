@@ -221,9 +221,20 @@ class ItemController extends Controller
         if(isset($job)) {
         $sql=Yii::$app->db->createCommand("delete from scanlog where machine=".$job->machine." and status=0")->execute();
         $sql=Yii::$app->db->createCommand("update itemmasterd set status=0 where idmaster=".$$id)->execute();
+        return 'reset';
+        }
+    }
+
+
+     public function actionResume($id){
+        $job=Itemmaster::findOne($id);
+        if(isset($job)) {
+        //$sql=Yii::$app->db->createCommand("delete from scanlog where machine=".$job->machine." and status=0")->execute();
+        $sql=Yii::$app->db->createCommand("update itemmasterd set status=0 where statusc=0 and idmaster=".$id)->execute();
         return 'resume';
         }
     }
+
 
     public function actionPass($id){
         $id=Itemmasterd::find()->where(['idmaster'=>$id,'statusc'=>1])->count();

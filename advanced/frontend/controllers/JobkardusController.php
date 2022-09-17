@@ -72,6 +72,23 @@ class JobkardusController extends Controller
             ]);
         }
     }
+     public function actionStart($id)
+    {
+        $models=$this->findModel($id);
+        if($models->status==1) {
+            return $this->redirect(['site/about','pesan'=>'The Job Already Close / Stop']);
+        } else {
+            $model=Item::find()->one();
+            if(isset($model)){
+                //$this->layout=false;
+                return $this->render('serial', [
+                    'model' => $model,
+                    'models' => $models,
+                ]);
+
+            }            
+        }
+    }
     public function actionViewdetail($id)
     {   
             return $this->render('viewgrid', [
