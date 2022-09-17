@@ -354,6 +354,12 @@ class ItempController extends Controller
                 $lot=$model->lot;
                 $expire=$model->expired;
                 $serial=substr($nie, 5,6).substr($lot,3,3);
+                $cekserial=Itempallet::find()->where(['var_5'=>$serial.substr("0000001",-3)])->one();
+                if($cekserial){
+                     Yii::$app->session->setFlash('danger', 'S/N sudah pernah diinput');
+                     return $this->redirect(['itemp/uploadcsv']);
+                     die();
+                }
                 $mulai2=intval($model->jumlah);
                 $job =new Itemmasterp();
                 $job->nama=$model->nama;
