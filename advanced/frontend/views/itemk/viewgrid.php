@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Itemk */
 ?>
 <div class="itemk-view">
-  <h4>This Carton is in Pallet S/N (<?=$model->pallet->pallet->var_5?>)</h4>
+  <h4>This Carton is in Pallet S/N (<?=isset($model->pallet->pallet)?$model->pallet->pallet->var_5:''?>)</h4>
 
   Item on this Carton
   <table class="table">
