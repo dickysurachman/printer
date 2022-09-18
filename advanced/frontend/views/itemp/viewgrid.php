@@ -40,7 +40,7 @@ All Item on this Pallet
         <?php $i=1;
     foreach($model->detail as $value){
         foreach($value->carton->detail as $val){
-        if(isset($val->itemd){          
+        if(isset($val->itemd)){          
         //Html::a('<span class="fas fa-barcode" style="font-size:10pt;" title="Start Input"></span> '.\Yii::t('yii', 'LAN'), ['itemk/view', 'id' => $value->itemd->id], ['data-pjax' => "0",'class'=>'btn btn-danger','target'=>"_blank"])."&nbsp;&nbsp;".
         echo "<tr><td>".$i."</td>";
         echo "<td>".(isset($val->itemd)?$val->itemd->var_1:'')."</td>";

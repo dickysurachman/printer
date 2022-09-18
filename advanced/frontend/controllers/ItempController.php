@@ -67,15 +67,20 @@ class ItempController extends Controller
     public function actionPrint($id)
     {
         $model=$this->findModel($id);
+        $cc=Palletkardus::find()->where(['idpallet'=>$id])->count();
+        if($model->var_8==$cc){
         if(isset($model)){
             $this->layout=false;
             return $this->render('viewpr', [
                 'model' => $model,
-//                'searchModel' => $searchModel,
-//                'dataProvider' => $dataProvider,
             ]);
 
         }
+        } else {
+            return $this->redirect(['site/about','pesan'=>'Target not finish']);
+        }
+
+
     }
     public function actionView($id)
     {   
