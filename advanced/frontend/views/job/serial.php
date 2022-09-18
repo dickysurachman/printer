@@ -27,9 +27,13 @@ $this->registerJs(
         $('#setar').attr('disabled','disabled');
     });
     $('#setop').click(function(){
+        if(confirm('Are you sure you want to stop this job?')){
         statusx=false;
         $('#setar').removeAttr('disabled');
+        $('#setar').attr('disabled','disabled');
         $('#recum').attr('disabled','disabled');
+        $('#reset').attr('disabled','disabled');
+        $('#setop').attr('disabled','disabled');
         $('#recum').text('PAUSE');
         clearInterval(status);
         $('#servertime').html(''); 
@@ -46,7 +50,8 @@ $this->registerJs(
         success: function(data) {
           $('#tableantrian').html(data);   
         }
-        });        
+        });
+        }        
     });
     $('#reset').click(function(){
         $('#servertime').html('');

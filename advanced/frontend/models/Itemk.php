@@ -57,6 +57,10 @@ class Itemk extends \yii\db\ActiveRecord
         ];
     }
       
+      public function getTarget(){
+                return $this->hasMany(Itemkd::className(), ['idmaster' => 'id'])->count();
+
+      }
       public function getDetail()
     {
         return $this->hasMany(Itemkd::className(), ['idmaster' => 'id']);

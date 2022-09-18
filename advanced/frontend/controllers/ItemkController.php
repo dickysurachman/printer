@@ -67,6 +67,9 @@ class ItemkController extends Controller
      public function actionPrint($id)
     {
         $model=$this->findModel($id);
+        $cc=Kardusitem::find()->where(['idkardus'=>$id])->count();
+        if($model->var_8==$cc){
+
         if(isset($model)){
             $this->layout=false;
             return $this->render('viewpr', [
@@ -75,6 +78,9 @@ class ItemkController extends Controller
 //                'dataProvider' => $dataProvider,
             ]);
 
+        }
+        } else {
+            return $this->redirect(['site/about','pesan'=>'Target not finish']);
         }
     }
 
@@ -161,32 +167,42 @@ class ItemkController extends Controller
         return $this->render('createscanm2', [
         'model' => $model,
         'id'=>$id,
+        'item'=>$item,
         ]);
     } 
 
     public function actionTable($id){
         $res='<table class="table table-hover table-striped" >
             <thead  class="thead-dark">
-                <th>No</th>
-                <th>NIE</th>
-                <th>LOT</th>
-                <th>S/N Item</th>
+                <th>NO</th>
+                <th>QR DATA</th>
+                <th>TIME STAMP</th>
             </thead>';
         $detail = Kardusitem::find()->where(['idkardus'=>$id])->all();
         $i=1;
         foreach($detail as $vie){
             $res .="<tr>";
             $res .="<td>".$i."</td>";
-            $res .="<td>".$vie->itemd->var_1."</td>";
-            $res .="<td>".$vie->itemd->var_3."</td>";
-            $res .="<td>".$vie->itemd->var_5."</td>";
+            $res .="<td>".$vie->itemd->scan."</td>";
+            $res .="<td>".$vie->tanggal."</td>";
             $res .="</tr>";
             $i++;
         }
         $res .="</table>";
         return $res;
+    }
 
+    public function actionScanhitung($id){
+        $detail = Kardusitem::find()->where(['idkardus'=>$id])->count();
+        return '<h5 id="scan" style="color:red">Scan :'.$detail.'</h5>';        
+    }
+    public function actionTarget($id){
+        $job=$this->findModel($id);
+        if($job){
 
+            return '<h5 id="target" style="color:blue;">Target :'.$job->var_8.'</h5>';
+        }
+        
     }
 
     public function actionView($id)

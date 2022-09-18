@@ -186,18 +186,16 @@ class ItempController extends Controller
         $res='<table class="table table-hover table-striped" >
             <thead  class="thead-dark">
                 <th>No</th>
-                <th>NIE</th>
-                <th>LOT</th>
-                <th>S/N Item</th>
+                <th>QR DATA</th>
+                <th>TIME STAMP</th>
             </thead>';
         $detail = Palletkardus::find()->where(['idpallet'=>$id])->all();
         $i=1;
         foreach($detail as $vie){
             $res .="<tr>";
             $res .="<td>".$i."</td>";
-            $res .="<td>".$vie->carton->var_1."</td>";
-            $res .="<td>".$vie->carton->var_3."</td>";
-            $res .="<td>".$vie->carton->var_5."</td>";
+            $res .="<td>".$vie->carton->scan."</td>";
+            $res .="<td>".$vie->tanggal."</td>";
             $res .="</tr>";
             $i++;
         }
