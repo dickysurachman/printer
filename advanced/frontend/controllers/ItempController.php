@@ -82,6 +82,19 @@ class ItempController extends Controller
 
 
     }
+
+     public function actionScanhitung($id){
+        $detail = Palletkardus::find()->where(['idpallet'=>$id])->count();
+        return '<h5 id="scan" style="color:red">Scan :'.$detail.'</h5>';        
+    }
+    public function actionTarget($id){
+        $job=$this->findModel($id);
+        if($job){
+
+            return '<h5 id="target" style="color:blue;">Target :'.$job->var_8.'</h5>';
+        }
+        
+    }
     public function actionView($id)
     {   
         $request = Yii::$app->request;
@@ -184,6 +197,7 @@ class ItempController extends Controller
         return $this->render('createscanm2', [
         'model' => $model,
         'id'=>$id,
+        'item'=>$item,
         ]);
     } 
 

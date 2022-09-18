@@ -4,9 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Perusahaan;
 $this->title="Scan Barcode USB";
-$url = Yii::$app->homeUrl.'/itemk/table.html?id='.$id;
-$url1 = Yii::$app->homeUrl.'/itemk/scanhitung.html?id='.$id;
-$url2 = Yii::$app->homeUrl.'/itemk/target.html?id='.$id;
+$url = Yii::$app->homeUrl.'/itemp/table.html?id='.$id;
 
 $durasi=1000;
 $batas=10;
@@ -17,20 +15,6 @@ $.ajax({
         url: "'.$url.'",
         success: function(data) {
           $("#tableantrian").html(data);   
-        }
-        });
-        $.ajax({
-        type: "POST",
-        url: "'.$url1.'",
-        success: function(data) {
-          $("#scan").html(data);   
-        }
-        });
-        $.ajax({
-        type: "POST",
-        url: "'.$url2.'",
-        success: function(data) {
-          $("#target").html(data);   
         }
         });
 var formURL = $("#formSubmit").attr("action");
@@ -99,18 +83,12 @@ function cekdata(){
     <div class="row">
     <div class="col-8">
     <?php $form = ActiveForm::begin(['id'=>'formSubmit']); ?>
-    <?= $form->field($model, 'scan')->textarea(['rows' => '3']) ?>
+    <?= $form->field($model, 'scan')->textarea(['rows' => '10']) ?>
    
     <?php ActiveForm::end(); ?>
     	
   	</div>
-  	<div class="col-4">
-  		<h5 id="target" style="color:blue;">Target</h5>
-  		<h5 id="scan" style="color:red">Scan</h5>
-  		 <?=Html::a('<span class="fas fa-print" style="font-size:10pt;" title="Print Label"></span> '.\Yii::t('yii', 'Print Label'), ['itemk/print', 'id' => $item->id], ['class'=>'btn btn-info','target'=>"_blank"])?>
-  	</div>
-    </div>
-  	<div id="tableantrian" class="col-12">
+  	<div id="tableantrian" class="col-4">
   		<table class="table table-hover table-striped">
   			<thead class="thead-dark">
   				<th>NIE</th>
@@ -123,7 +101,7 @@ function cekdata(){
 
     <div id="room_type" class="alert-success alert">Notifikasi</div>
 </div>
-
+</div>
 <script>
   document.getElementById("scanlog-scan").focus();
 </script>
