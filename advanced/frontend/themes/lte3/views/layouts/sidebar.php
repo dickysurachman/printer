@@ -41,22 +41,52 @@ use hscstudio\mimin\components\Mimin;
             echo \hail812\adminlte\widgets\Menu::widget(
                 [
                 'items' => [
-                     ['label' => \Yii::t('yii', 'Users'), 'url' => ['/userk/index'], 'icon' => 'user','visible'=>Mimin::checkRoute('userk/create')],
+                     [
+                        'label' => 'Master Data',
+                        'icon' => 'bookmark',
+                        'items' => [
+                    ['label' => \Yii::t('yii', 'Users'), 'url' => ['/userk/index'], 'icon' => 'user','visible'=>Mimin::checkRoute('userk/create')],
                      ['label' => \Yii::t('yii', 'Role'), 'url' => ['/mimin/role/index'], 'icon' => 'fas fa-bug','visible'=>Mimin::checkRoute('mimin/role')],
                     ['label' => \Yii::t('yii', 'Routes'), 'url' => ['/mimin/route/index'], 'icon' => 'fas fa-angle-double-right','visible'=>Mimin::checkRoute('mimin/route')],
                     ['label' => 'Master Machine', 'url'=>['/machine/index'],'icon' => 'microchip', 'visible' => Mimin::checkRoute('machine/index')],
                     ['label' => 'Master Line', 'url'=>['/line/index'],'icon' => 'bookmark', 'visible' => Mimin::checkRoute('machine/index')],
                     ['label' => 'Company', 'url'=>['/perusahaan/index'],'icon' => 'address-book', 'visible' => Mimin::checkRoute('perusahaan/index')],
                      ['label' => \Yii::t('yii', 'Master Product'), 'url' => ['/jobs/index'], 'icon' => 'file','visible'=>Mimin::checkRoute('jobs/index')],
-                     ['label' => \Yii::t('yii', 'Job List'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
-                     ['label' => \Yii::t('yii', 'Serialization and Inspection'), 'url' => ['/item/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
-                    ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],
-                     ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
-                     ['label' => \Yii::t('yii', 'Aggregation Carton'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
-                    ['label' => 'Item Kardus', 'url'=>['/itemk/index'],'icon' => 'code', 'visible' => Mimin::checkRoute('itemk/index')],
-                     ['label' => \Yii::t('yii', 'Pallet Job List '), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
-                     ['label' => \Yii::t('yii', 'Aggregation Pallet'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
-                    ['label' => 'Item Pallet', 'url'=>['/itemp/index'],'icon' => 'folder', 'visible' => Mimin::checkRoute('itemp/index')],
+                        ]
+                    ],
+
+                    [
+                        'label' => 'Serialization & Inspection',
+                        'icon'=>'eye',
+                        'items' => [
+                        ['label' => \Yii::t('yii', 'Job List'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
+                        ['label' => \Yii::t('yii', 'Create Job'), 'url' => ['/item/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
+                        ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],
+                        ]
+                    ],
+                    
+                     [
+                        'label' => 'Carton Aggregation',
+                        'icon'=>'bolt',
+                        'items' => [
+                             ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
+                             ['label' => \Yii::t('yii', 'Aggregation Carton'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
+                            ['label' => 'Item Kardus', 'url'=>['/itemk/index'],'icon' => 'code', 'visible' => Mimin::checkRoute('itemk/index')],
+                        
+                        ]
+                    ],
+                    [
+                        'label' => 'Pallet Aggregation',
+                        'icon'=>'clipboard',
+                        'items' => [
+                             ['label' => \Yii::t('yii', 'Pallet Job List '), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
+                             ['label' => \Yii::t('yii', 'Aggregation Pallet'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
+                            ['label' => 'Item Pallet', 'url'=>['/itemp/index'],'icon' => 'folder', 'visible' => Mimin::checkRoute('itemp/index')],
+                        
+                        ]
+                    ],
+                    
+                    
                     ['label' => 'Printer Configuration', 'url'=>['/site/settingsave'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
                     //['label' => 'Connect to Printer', 'url'=>['/site/eksekusi'],'target'=>'_blank','icon' => 'print', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Log Error Printer', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => Mimin::checkRoute('loge/index')],

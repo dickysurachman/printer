@@ -158,7 +158,7 @@ class ItemController extends Controller
                 }
                 $j++;
             }
-            $valus->dbs="False";
+            $value->dbs="False";
             $value->stat="FAIL";
             $value->process=1;
             ////$value->status=1;
@@ -220,8 +220,18 @@ class ItemController extends Controller
         $job=Itemmaster::findOne($id);
         if(isset($job)) {
         $sql=Yii::$app->db->createCommand("delete from scanlog where machine=".$job->machine." and status=0")->execute();
-        $sql=Yii::$app->db->createCommand("update itemmasterd set status=0 where idmaster=".$$id)->execute();
+        $sql=Yii::$app->db->createCommand("update itemmasterd set status=0,statusc=0 where idmaster=".$id)->execute();
+        $sql=Yii::$app->db->createCommand("update item set status=0 where id in (select iddetail from itemmasterd where idmaster=".$id.")")->execute();
         return 'reset';
+        }
+    }
+    public function actionFailed($id){
+        $job=Itemmaster::findOne($id);
+        if(isset($job)) {
+        //$sql=Yii::$app->db->createCommand("delete from scanlog where machine=".$job->machine." and status=0")->execute();
+        $sql=Yii::$app->db->createCommand("update itemmasterd set status=0,statusc=0 where statusc=2 and idmaster=".$id)->execute();
+        $sql=Yii::$app->db->createCommand("update item set status=0 where id in (select iddetail from itemmasterd where statusc=2 and idmaster=".$id.")")->execute();
+        return 'failed';
         }
     }
 

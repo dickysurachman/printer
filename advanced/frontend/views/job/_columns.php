@@ -48,6 +48,11 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'shift',
+    ],[
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'status',
+        'value'=>'statusname',
+        'filter'=>['On Progress','Done']
     ],
     [
         'class' => 'kartik\grid\ActionColumn',

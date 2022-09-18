@@ -1,4 +1,3 @@
-#! C:/python/python.exe 
 from socket import *
 from urllib import request
 file1 = open('setting2.txt', 'r')
@@ -41,6 +40,7 @@ while True:
             x = cmd.split("(90)")
             i=1
             for y in x:
+                i+=1
                 message= str(y)
                 message= message.replace(' ','')
                 message= message.replace('\n','')
@@ -48,11 +48,13 @@ while True:
                 message= message.replace('\r','')
                 message = message.strip('\n')
                 message = message.strip('\t')            
-                message = message.strip('\r')  
-                if len(message) >=5:          
-                    i+=1
-                    url1=url+"?status=(90)"+str(message)+"&key="+str(key)
-                    response2 = request.urlopen(url1)
-                    print (str(i)+" "+ url1)
-           
+                message = message.strip('\r')            
+                url1=url+"?status=(90)"+str(message)+"&key="+str(key)
+                response2 = request.urlopen(url1)
+                print (str(i)+" "+ url1)
+            if cmd == 'LIST':
+                write.write('C1\nC2\nC3\nDONE\n')
+                write.flush()
+
+
     print(f'disconnect: {a}')

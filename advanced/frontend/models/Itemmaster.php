@@ -58,7 +58,15 @@ class Itemmaster extends \yii\db\ActiveRecord
             'id_line' => Yii::t('yii', 'Line Name'),
         ];
     }
+    public function getStatusname(){
+        if($this->status==1){
 
+            return "Done";
+        } else {
+            return "On Progress";
+        }
+
+    }
     public function getProduk(){
 
         return $this->hasOne(Jobs::className(), ['id' => 'job_id']);

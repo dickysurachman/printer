@@ -17,6 +17,7 @@ $urlresume = Yii::$app->homeUrl.'/item/resume.html?id='.$models->id;
 $urlprogress = Yii::$app->homeUrl.'/item/progress.html?id='.$models->id;
 $urlstop = Yii::$app->homeUrl.'/item/stop.html?id='.$models->id;
 $urlreset = Yii::$app->homeUrl.'/item/reset.html?id='.$models->id;
+$urlfailed = Yii::$app->homeUrl.'/item/failed.html?id='.$models->id;
 $this->registerJs(
     "let statusx = false;
     let status = false;
@@ -26,6 +27,17 @@ $this->registerJs(
         $('#recum').removeAttr('disabled');
         $('#setar').attr('disabled','disabled');
     });
+    $('#restart').click(function(){
+        if(confirm('Are you sure you want restart failed job?')){
+        $.ajax({
+        type: 'POST',
+        url: '".$urlfailed."',
+        success: function(data) {
+          console.log(data); 
+        }
+        });
+        }
+    });
     $('#setop').click(function(){
         if(confirm('Are you sure you want to stop this job?')){
         statusx=false;
@@ -34,6 +46,7 @@ $this->registerJs(
         $('#recum').attr('disabled','disabled');
         $('#reset').attr('disabled','disabled');
         $('#setop').attr('disabled','disabled');
+        $('#restart').attr('disabled','disabled');
         $('#recum').text('PAUSE');
         clearInterval(status);
         $('#servertime').html(''); 
@@ -54,6 +67,7 @@ $this->registerJs(
         }        
     });
     $('#reset').click(function(){
+        if(confirm('Are you sure you want to reset this job?')){
         $('#servertime').html('');
         $.ajax({
         type: 'POST',
@@ -69,7 +83,8 @@ $this->registerJs(
                   $('#tableantrian').html(data); 
                   
                 }
-              });        
+              });  
+        }      
     });
     $('#recum').click(function(){
         var title=$('#recum').text();
@@ -233,6 +248,7 @@ $this->registerJs(
             <button id="setop" class="btn btn-danger"><i class="fas fa-stop"></i>&nbsp;STOP</button>
             <button id="reset" class="btn btn-info"><i class="fas fa-circle"></i>&nbsp;RESET</button>
             <button id="recum"  class="btn btn-danger" disabled><i class="fas fa-pause"></i>&nbsp;PAUSE</button>
+            <button id="restart"  class="btn btn-success" ><i class="fas fa-reply"></i>&nbsp;RESTART FAILED</button>
         </div>
 
 
