@@ -147,6 +147,14 @@ class ItempController extends Controller
                         $var4=$dat1[1];
                         $dat1=explode(")",$data[5]);
                         $var5=$dat1[1];
+                        $ini=$this->findModel($id);
+                        $cc=Palletkardus::find()->where(['idpallet'=>$id])->count();
+                        if($ini->var_8==$cc){
+                            return 'Target Already Finish';
+                            break;
+                        }
+
+
                         $ii=Itemkardus::find()->where(['var_5'=>$var5])->one();
                         if(isset($ii)) {
                             $cek=Palletkardus::find()->where(['idkardus'=>$ii->id])->one();
