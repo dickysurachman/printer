@@ -37,10 +37,12 @@ def client_handler(connection):
             print(message)
             message= str(message)
             message= message.replace(' ','')
+            message= message.replace('@','')
             message= message.replace('\n','')
             message= message.replace('\t','')
             message= message.replace('\r','')
             message = message.strip('\n')
+            message = message.strip('@')
             message = message.strip('\t')            
             message = message.strip('\r')            
             url1=url+"?status="+str(message)+"&key="+str(key)
@@ -68,6 +70,7 @@ def accept_connections(ServerSocket):
 
 def start_server(host, port):
     ServerSocket = socket.socket()
+    ServerSocket.setblocking(False)
     try:
         ServerSocket.bind((host, port))
     except socket.error as e:

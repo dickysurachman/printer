@@ -41,7 +41,7 @@ class Logitem extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'tanggal' => Yii::t('yii', 'Tanggal'),
+            'tanggal' => Yii::t('yii', 'Add Date'),
             'status' => Yii::t('yii', 'Status'),
             'logbaca' => Yii::t('yii', 'Error Log'),
             'machine' => Yii::t('yii', 'Machine'),

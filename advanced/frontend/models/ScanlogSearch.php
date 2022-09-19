@@ -18,7 +18,7 @@ class ScanlogSearch extends Scanlog
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
+            [['id', 'status','process','id_job','id_item'], 'integer'],
             [['tanggal', 'scan'], 'safe'],
         ];
     }
@@ -59,6 +59,9 @@ class ScanlogSearch extends Scanlog
             'id' => $this->id,
             'tanggal' => $this->tanggal,
             'status' => $this->status,
+            'process' => $this->process,
+            'id_job' => $this->id_job,
+            'id_item' => $this->id_item,
         ]);
 
         $query->andFilterWhere(['like', 'scan', $this->scan]);
