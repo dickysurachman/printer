@@ -31,13 +31,15 @@ while True:
     print(f'connect: {a}')
     read  = c.makefile('r')
     write = c.makefile('w')
-
     with c,read,write:
         while True:
             data = read.readline()
             if not data: break
             cmd = data.strip()
             print(f'cmd: {cmd}')
+            reply = f'Server: {message}'
+            c.sendall(str.encode(reply))
+            #s.send("test")
             x = cmd.split("@")
             i=1
             for y in x:
