@@ -38,7 +38,7 @@ while True:
             if not data: break
             cmd = data.strip()
             print(f'cmd: {cmd}')
-            x = cmd.split("(90)")
+            x = cmd.split("@")
             i=1
             for y in x:
                 message= str(y)
@@ -48,11 +48,12 @@ while True:
                 message= message.replace('\r','')
                 message = message.strip('\n')
                 message = message.strip('\t')            
-                message = message.strip('\r')  
+                message = message.strip('\r')
+                print(str(message)+"\n")  
                 if len(message) >=5:          
-                    i+=1
-                    url1=url+"?status=(90)"+str(message)+"&key="+str(key)
+                    #i+=1
+                    url1=url+"?status="+str(message)+"&key="+str(key)
                     response2 = request.urlopen(url1)
-                    print (str(i)+" "+ url1)
+                    print (url1)
            
     print(f'disconnect: {a}')

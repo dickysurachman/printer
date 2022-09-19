@@ -407,4 +407,6 @@ alter table `palletkardus` add `tanggal` datetime DEFAULT current_timestamp();
 
 CREATE TRIGGER `deleteki1` AFTER DELETE ON `itemkardus` FOR EACH ROW DELETE from kardusitem where idkardus=old.id;
 CREATE TRIGGER `deletepk1` AFTER DELETE ON `itempallet` FOR EACH ROW DELETE from palletkardus where idpallet=old.id;
+CREATE TRIGGER `deleteki1a` AFTER DELETE ON `item` FOR EACH ROW DELETE from kardusitem where iddetail=old.id;
+CREATE TRIGGER `deletepk1a` AFTER DELETE ON `itemkardus` FOR EACH ROW DELETE from palletkardus where idkardus=old.id;
 

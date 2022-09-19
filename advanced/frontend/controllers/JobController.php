@@ -157,7 +157,8 @@ class JobController extends Controller
         if($models->status==1) {
             return $this->redirect(['site/about','pesan'=>'The Job Already Close / Stop']);
         } else {
-            $model=Item::find()->one();
+            $kk=Itemmasterd::findOne(['idmaster'=>$id]);
+            $model=Item::find()->where(['id'=>$kk->iddetail])->one();
             if(isset($model)){
                 //$this->layout=false;
                 return $this->render('serial', [
