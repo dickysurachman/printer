@@ -198,6 +198,13 @@ class ItemkController extends Controller
         return $res;
     }
 
+    public function actionReset($id){
+        $job=$this->findModel($id);
+        if(isset($job)) {
+        $sql=Yii::$app->db->createCommand("delete from kardusitem where idkardus=".$job->id)->execute();
+        return 'reset';
+        }
+    }    
     public function actionScanhitung($id){
         $detail = Kardusitem::find()->where(['idkardus'=>$id])->count();
         return '<h5 id="scan" style="color:red">Scan :'.$detail.'</h5>';        

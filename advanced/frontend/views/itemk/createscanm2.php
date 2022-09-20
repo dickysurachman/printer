@@ -7,12 +7,13 @@ $this->title="Scan Barcode USB";
 $url = Yii::$app->homeUrl.'/itemk/table.html?id='.$id;
 $url1 = Yii::$app->homeUrl.'/itemk/scanhitung.html?id='.$id;
 $url2 = Yii::$app->homeUrl.'/itemk/target.html?id='.$id;
-
+$urlreset = Yii::$app->homeUrl.'/itemk/reset.html?id='.$id;
 $durasi=1000;
 $batas=10;
 $this->registerJs(
 '
-$.ajax({
+function resetall(){
+					$.ajax({
         type: "POST",
         url: "'.$url.'",
         success: function(data) {
@@ -33,6 +34,43 @@ $.ajax({
           $("#target").html(data);   
         }
         });
+
+}
+				$.ajax({
+        type: "POST",
+        url: "'.$url.'",
+        success: function(data) {
+          $("#tableantrian").html(data);   
+        }
+        });
+        $.ajax({
+        type: "POST",
+        url: "'.$url1.'",
+        success: function(data) {
+          $("#scan").html(data);   
+        }
+        });
+        $.ajax({
+        type: "POST",
+        url: "'.$url2.'",
+        success: function(data) {
+          $("#target").html(data);   
+        }
+        });
+$("#reset").click(function(){
+        if(confirm("Are you sure you want to reset this job?")){
+        $("#servertime").html("");
+        $.ajax({
+        type: "POST",
+        url: "'.$urlreset.'",
+        success: function(data) {
+          console.log(data); 
+        }
+        });
+       	resetall();
+       	$("#room_type").html("");
+        }      
+    });        
 var formURL = $("#formSubmit").attr("action");
 var pertama=setInterval(
 function cekdata(){ 
@@ -63,18 +101,13 @@ function cekdata(){
 						$("#room_type").html(res);
 					   $("#scanlog-scan").val("");
 					   $("#scanlog-scan").focus();
+					   resetall();
 					},
 					error: function(res){
 						$("#room_type").text("Error!");					
 					}
                 });
-        $.ajax({
-        type: "POST",
-        url: "'.$url.'",
-        success: function(data) {
-          $("#tableantrian").html(data);   
-        }
-        });
+        
             setTimeout(function(){}, '.$durasi.');
 			var pertama=setInterval(cekdata,'.$durasi.');
 			clearInterval(pertama);
@@ -108,6 +141,7 @@ function cekdata(){
   		<h5 id="target" style="color:blue;">Target</h5>
   		<h5 id="scan" style="color:red">Scan</h5>
   		 <?=Html::a('<span class="fas fa-print" style="font-size:10pt;" title="Print Label"></span> '.\Yii::t('yii', 'Print Label'), ['itemk/print', 'id' => $item->id], ['class'=>'btn btn-info','target'=>"_blank"])?>
+  		 <button id="reset" class="btn btn-danger"><i class="fas fa-circle"></i>&nbsp;RESET</button>
   	</div>
     </div>
   	<div id="tableantrian" class="col-12">

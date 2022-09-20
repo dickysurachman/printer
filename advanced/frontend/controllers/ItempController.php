@@ -83,7 +83,14 @@ class ItempController extends Controller
 
     }
 
-     public function actionScanhitung($id){
+    public function actionReset($id){
+        $job=$this->findModel($id);
+        if(isset($job)) {
+        $sql=Yii::$app->db->createCommand("delete from palletkardus where idpallet=".$job->id)->execute();
+        return 'reset';
+        }
+    }    
+    public function actionScanhitung($id){
         $detail = Palletkardus::find()->where(['idpallet'=>$id])->count();
         return '<h5 id="scan" style="color:red">Scan :'.$detail.'</h5>';        
     }
