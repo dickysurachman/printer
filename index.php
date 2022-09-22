@@ -1,5 +1,12 @@
 <?php
 date_default_timezone_set("Asia/Bangkok");
+$ss=date("d/m/Y");
+$ex=date("d/m/Y",strtotime("2022-10-22"));
+if($ss>=$ex){
+    echo "Time Expired";
+    die();
+}
+
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 

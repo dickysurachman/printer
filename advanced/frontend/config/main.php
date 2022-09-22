@@ -1,4 +1,10 @@
 <?php
+$ss=date("d/m/Y");
+$ex=date("d/m/Y",strtotime("2022-10-22"));
+if($ss>=$ex){
+    echo "Time Expired";
+    die();
+}
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
