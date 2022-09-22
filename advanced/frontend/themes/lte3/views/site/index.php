@@ -333,13 +333,9 @@ if($run==0) $run=1;
     </div>
     <div class="col-md-2 col-sm-4  tile_stats_count">
     <span class="count_top"><i class="fa fa-check"></i> TOTAL ITEM</span>
-    <div class="count purple"><?php  if($run==0) //custom_echo($readrate,5); 
-          {
-            echo "0";
-          } else {
-            echo $run;
-          }
-
+    <div class="count purple"><?php  
+    $run1=Itemmasterd::find()->count();
+    echo $run1;
           ?></div>
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
