@@ -26,6 +26,7 @@ use app\models\Machine;
 use app\models\Itemmasterd;
 use app\models\Scanlogcarton;
 use app\models\Scanlogpallet;
+use hscstudio\mimin\components\Mimin;
 /**
  * Site controller
  */
@@ -368,7 +369,11 @@ class SiteController extends Controller
         if(Yii::$app->user->isGuest){
             return $this->redirect(['site/login']);
         } else {
+            if(Mimin::checkRoute('userk/create')){
+            return $this->render('indexmimin');
+            } else {
             return $this->render('index');
+            }
         }
     }
     public function actionScan(){
