@@ -19,7 +19,8 @@ $urlstop = Yii::$app->homeUrl.'/item/stop.html?id='.$models->id;
 $urlreset = Yii::$app->homeUrl.'/item/reset.html?id='.$models->id;
 $urlfailed = Yii::$app->homeUrl.'/item/failed.html?id='.$models->id;
 $this->registerJs(
-    "let statusx = false;
+"
+let statusx = false;
     let status = false;
     $('#setar').click(function(){
         status=setInterval(update,1000);
@@ -280,5 +281,17 @@ $this->registerJs(
     ?>
         </table>
     </div>
-
+  
 </div>
+<script>
+window.onbeforeunload = function (event) {
+    var message = 'Please click on Save button to leave this page';
+    if (typeof event == 'undefined') {
+        event = window.event;
+    }
+    if (event) {
+        event.returnValue = message;
+    }
+    return message;
+};
+</script>

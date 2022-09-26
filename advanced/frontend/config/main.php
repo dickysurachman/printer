@@ -1,7 +1,7 @@
 <?php
-$ss=date("d/m/Y");
-$ex=date("d/m/Y",strtotime("2022-10-22"));
-if($ss>=$ex){
+$ss=date("Y-m-d");
+$ex=date("Y-m-d",strtotime("2022-10-22"));
+if(strtotime($ss)>=strtotime($ex)){
     echo "Time Expired";
     die();
 }
