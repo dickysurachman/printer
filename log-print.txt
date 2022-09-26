@@ -452,3 +452,150 @@ http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV
 http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
 http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
 internet koneksi error http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+Start Time  = 27-00-2022 05:00:21
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+internet koneksi error http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+Start Time  = 27-04-2022 05:04:24
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+internet koneksi error http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+Start Time  = 27-04-2022 05:04:29
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+internet koneksi error http://localhost/printer/printer/site/info.html?key=QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387
+Start Time  = 27-05-2022 05:05:34
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+internet koneksi error http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+Start Time  = 27-05-2022 05:05:42
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+internet koneksi error http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+Start Time  = 27-06-2022 05:06:15
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+internet koneksi error http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+Start Time  = 27-06-2022 05:06:17
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+internet koneksi error http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+Start Time  = 27-06-2022 05:06:19
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/printer/site/info.html
+Durasi Timer (second) 5
+KEY r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+internet koneksi error http://localhost/printer/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+Start Time  = 27-06-2022 05:06:48
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/site/info.html
+Durasi Timer (second) 5
+KEY r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+http://localhost/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+data dari server {'id': 529, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 31  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010001', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010001
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=529&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 530, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 32  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010002', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010002
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=530&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 531, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 33  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010003', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010003
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=531&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 532, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 34  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010004', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010004
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=532&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003pengirimandatas/n4829010004&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 533, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 35  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010005', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010005
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=533&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003pengirimandatas/n4829010004pengirimandatas/n4829010005&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 534, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 36  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010006', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010006
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=534&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003pengirimandatas/n4829010004pengirimandatas/n4829010005pengirimandatas/n4829010006&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 535, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 37  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010007', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010007
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=535&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003pengirimandatas/n4829010004pengirimandatas/n4829010005pengirimandatas/n4829010006pengirimandatas/n4829010007&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 536, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 38  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010008', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010008
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=536&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003pengirimandatas/n4829010004pengirimandatas/n4829010005pengirimandatas/n4829010006pengirimandatas/n4829010007pengirimandatas/n4829010008&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 537, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 30 39  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010009', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010009
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=537&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003pengirimandatas/n4829010004pengirimandatas/n4829010005pengirimandatas/n4829010006pengirimandatas/n4829010007pengirimandatas/n4829010008pengirimandatas/n4829010009&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 538, 'tanggal': '2022-09-17 15:52:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 04 31 30 31 30 0a 32 30 2e 32 30 2e 32 30 33 34 0a 34 38 32 39 30 31 30 30 31 30  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': '1010', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20.20.2034', 'var_5': '4829010010', 'gagal': 0, 'edit_date': '2022-09-27 05:06:48', 'machine': 1}
+pengiriman data  s/n 4829010010
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=538&status=failure&logbaca=koneksierrorpengirimandatas/n4829010001pengirimandatas/n4829010002pengirimandatas/n4829010003pengirimandatas/n4829010004pengirimandatas/n4829010005pengirimandatas/n4829010006pengirimandatas/n4829010007pengirimandatas/n4829010008pengirimandatas/n4829010009pengirimandatas/n4829010010&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482http://localhost/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+data dari server {'id': 539, 'tanggal': '2022-09-17 20:02:20', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 55 00 64 00 51 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 07 58 41 58 41 58 41 58 08 32 30 30 34 32 30 32 32 0c 34 38 32 39 30 31 41 58 41 30 30 31  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': 'XAXAXAX', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20042022', 'var_5': '482901AXA001', 'gagal': 0, 'edit_date': '2022-09-27 05:10:20', 'machine': 1}
+pengiriman data  s/n 482901AXA001
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=539&status=failure&logbaca=koneksierrorpengirimandatas/n482901AXA001&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 540, 'tanggal': '2022-09-17 20:02:20', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 55 00 64 00 51 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 07 58 41 58 41 58 41 58 08 32 30 30 34 32 30 32 32 0c 34 38 32 39 30 31 41 58 41 30 30 32  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': 'XAXAXAX', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20042022', 'var_5': '482901AXA002', 'gagal': 0, 'edit_date': '2022-09-27 05:10:20', 'machine': 1}
+pengiriman data  s/n 482901AXA002
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=540&status=failure&logbaca=koneksierrorpengirimandatas/n482901AXA001pengirimandatas/n482901AXA002&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 541, 'tanggal': '2022-09-17 20:02:20', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 55 00 64 00 51 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 07 58 41 58 41 58 41 58 08 32 30 30 34 32 30 32 32 0c 34 38 32 39 30 31 41 58 41 30 30 33  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': 'XAXAXAX', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '20042022', 'var_5': '482901AXA003', 'gagal': 0, 'edit_date': '2022-09-27 05:10:20', 'machine': 1}
+pengiriman data  s/n 482901AXA003
+batas pengiriman 1
+Start Time  = 27-12-2022 05:12:15
+IP Perangkat 172.16.20.8
+Port Perangkat 25001
+BUFFER 1024
+URL API http://localhost/printer/site/info.html
+Durasi Timer (second) 5
+KEY r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+http://localhost/printer/site/info.html?key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482
+data dari server {'id': 1554, 'tanggal': '2022-09-18 23:19:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 06 41 43 41 43 43 41 06 30 39 30 39 32 39 0c 34 38 32 39 30 31 43 43 41 30 30 31  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': 'ACACCA', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '090929', 'var_5': '482901CCA001', 'gagal': 0, 'edit_date': '2022-09-27 05:12:15', 'machine': 1}
+pengiriman data  s/n 482901CCA001
+batas pengiriman 1
+koneksi error 
+sending to server http://localhost/printer/site/hitung.html?id=1554&status=failure&logbaca=koneksierrorpengirimandatas/n482901CCA001&key=r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482data dari server {'id': 1555, 'tanggal': '2022-09-18 23:19:38', 'var_1': '90821482901849', 'var_2': '90284018204809', 'biner': '00 00 00 00 00 52 00 64 00 4e 00 cf 00 00 00 00 0e 39 30 38 32 31 34 38 32 39 30 31 38 34 39 0e 39 30 32 38 34 30 31 38 32 30 34 38 30 39 06 41 43 41 43 43 41 06 30 39 30 39 32 39 0c 34 38 32 39 30 31 43 43 41 30 30 32  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ', 'var_3': 'ACACCA', 'status': 2, 'ulang': 1, 'hitung': 0, 'var_4': '090929', 'var_5': '482901CCA002', 'gagal': 0, 'edit_date': '2022-09-27 05:12:16', 'machine': 1}
+pengiriman data  s/n 482901CCA002
+batas pengiriman 1

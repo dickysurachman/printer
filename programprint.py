@@ -9,6 +9,16 @@ from datetime import datetime
 
 now = datetime.now()
 
+host = socket.gethostname() 
+port=2022
+ServerSocket = socket.socket()
+try:
+    ServerSocket.bind((host, port))
+except socket.error as e:
+    print(str(e))
+print(f'Server is listing on {host} the port {port}...')
+ServerSocket.listen()
+
 file_object = open('log-print.txt', 'a')
 file1 = open('setting.txt', 'r')
 Lines = file1.readlines()

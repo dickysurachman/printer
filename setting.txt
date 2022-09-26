@@ -1,7 +1,7 @@
-http://localhost/printer/printer/site/info.html
-http://localhost/printer/printer/site/hitung.html
+http://localhost/printer/site/info.html
+http://localhost/printer/site/hitung.html
 5
 172.16.20.8
 25001
 1024
-QG1NXucT67BxTYFTHchtqPIsW7sV76_P_1663043387	
+r-5YX7A27m5-7V4YetmZKlkwXgrypPdW_1663073482	
