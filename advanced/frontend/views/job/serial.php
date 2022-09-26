@@ -16,6 +16,7 @@ $urltotal = Yii::$app->homeUrl.'/item/total.html?id='.$models->id;
 $urlresume = Yii::$app->homeUrl.'/item/resume.html?id='.$models->id;
 $urlprogress = Yii::$app->homeUrl.'/item/progress.html?id='.$models->id;
 $urlstop = Yii::$app->homeUrl.'/item/stop.html?id='.$models->id;
+$urlstopx = Yii::$app->homeUrl.'/item/stopx.html?id='.$models->id;
 $urlreset = Yii::$app->homeUrl.'/item/reset.html?id='.$models->id;
 $urlfailed = Yii::$app->homeUrl.'/item/failed.html?id='.$models->id;
 $this->registerJs(
@@ -25,6 +26,13 @@ let statusx = false;
     $('#setar').click(function(){
         status=setInterval(update,1000);
         statusx=true;
+        $.ajax({
+        type: 'POST',
+        url: '".$urlstopx."',
+        success: function(data) {
+          console.log(data); 
+        }
+        });
         $('#recum').removeAttr('disabled');
         $('#setar').attr('disabled','disabled');
     });

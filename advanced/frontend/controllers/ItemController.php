@@ -202,17 +202,15 @@ class ItemController extends Controller
             $job->status=1;
             $job->save();
         $sql=Yii::$app->db->createCommand("update scanlog set status=1 where machine=".$job->machine." and status=0")->execute();
-        $id=Itemmasterd::find()->where(['idmaster'=>$id])->orderBy(['id'=>SORT_ASC])->all();
-        foreach ($id as $value){
-            $model=$this->findModel($value->iddetail);
-            if(isset($model))
-            {
-                //$model->status=2;
-                //$model->save();
-            }
-            //$value->status=1;
-            //$value->save();
+       
+        return 'stop';
         }
+    }  
+    public function actionStopx($id){
+        $job=Itemmaster::findOne($id);
+        if(isset($job)) {
+        $sql2=Yii::$app->db->createCommand("update scanlog set status=1 where machine=".$job->machine." and status=0")->execute();            
+        $sql=Yii::$app->db->createCommand("update item set status=2 where id not in (select iddetail from itemmasterd where idmaster=".$id.")")->execute();
         return 'stop';
         }
     }
