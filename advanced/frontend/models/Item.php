@@ -69,7 +69,7 @@ class Item extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'tanggal' => Yii::t('yii', 'Date Time'),
+            'tanggal' => Yii::t('yii', 'Add Date Time'),
             'var_1' => Yii::t('yii', 'NIE'),
             'var_2' => Yii::t('yii', 'GTIN'),
             'var_3' => Yii::t('yii', 'LOT NO'),
@@ -112,5 +112,8 @@ class Item extends \yii\db\ActiveRecord
     }
     public function getKarton(){
         return $this->hasOne(Kardusitem::className(), ['iddetail' => 'id']);
+    }
+    public function getScandata(){
+        return $this->hasOne(Scanlog::className(), ['id_item' => 'id']);
     }
 }
