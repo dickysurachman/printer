@@ -4,6 +4,10 @@ use yii\helpers\Html;
 use yii\web\View;
 use app\models\Itemmaster;
 use app\models\Itemmasterd;
+use app\models\Itemkardus;
+use app\models\Itempallet;
+use app\models\Kardusitem;
+use app\models\Palletkardus;
 use scotthuangzl\googlechart\GoogleChart;
 $this->title = 'Dashboard';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
@@ -12,6 +16,11 @@ $job=Itemmaster::find()->count();
 $sukses=Itemmasterd::find()->where(['statusc'=>1])->count();
 $gagal=Itemmasterd::find()->where(['statusc'=>2])->count();
 $run=Itemmasterd::find()->count();
+
+$karton=Itemkardus::find()->count();
+$pallet=Itempallet::find()->count();
+$itemkarton=Kardusitem::find()->count();
+$kartonpallet=Palletkardus::find()->count();
 
 //$script = <<< JS JS;
 $script= "$(document).ready(function(){
@@ -299,7 +308,7 @@ if($run==0) $run=1;
 </style>
 
 <div class="container-fluid">
-
+    <h4>Serialization and Inspection</h4>
     <?php 
     
     date_default_timezone_set("Asia/Bangkok");
@@ -347,11 +356,71 @@ if($run==0) $run=1;
     </div>
     
 </div>
+<div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-bolt"></i></span>
 
+              <div class="info-box-content">
+                <span class="info-box-text">Carton Aggregation</span>
+                <span class="info-box-number">
+                  <?=$karton?>
+                  
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-clipboard"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pallet Aggregation</span>
+                <span class="info-box-number"><?=$pallet?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-code"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Item on Carton</span>
+                <span class="info-box-number"><?=$itemkarton?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-folder"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Carton In Pallet</span>
+                <span class="info-box-number"><?=$kartonpallet?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
 
 <script src="<?=Yii::$app->homeUrl?>/chart.js/Chart.min.js"></script>
 <div class="card-body card card-primary card-outline">
-            <h4>Graph</h4>
+            <h4>Serialization and Inspection Graph </h4>
             <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Pie</a>
