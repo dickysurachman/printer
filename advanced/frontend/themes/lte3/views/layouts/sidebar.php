@@ -87,6 +87,12 @@ use hscstudio\mimin\components\Mimin;
                     ],
                     
                     
+                    ['label' => 'Report', 'url'=>'#','icon' => 'print', 'visible'=>Mimin::checkRoute('lap/report'),
+                        'items' => [
+                            ['label' => \Yii::t('yii', 'Global by Line '), 'url' => ['/lap/report'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('lap/report')],
+
+                        ],
+                    ],
                     ['label' => 'Printer Configuration', 'url'=>['/site/settingsave'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
                     //['label' => 'Connect to Printer', 'url'=>['/site/eksekusi'],'target'=>'_blank','icon' => 'print', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Log Error Printer', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => Mimin::checkRoute('loge/index')],
