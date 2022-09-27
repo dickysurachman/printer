@@ -24,8 +24,8 @@ if(isset($model->tanggal)) {
   $sukses=Itemmasterd::find()->where('statusc=1 and idmaster in (select id from itemmaster where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
   $gagal=Itemmasterd::find()->where('statusc=2 and idmaster in (select id from itemmaster where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
   $run=Itemmasterd::find()->where('idmaster in (select id from itemmaster where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
-  $karton=Itemkardus::find()->where(' tanggal between "'.$model->tanggal.'" and "'.$model->nama.'"')->count();
-  $pallet=Itempallet::find()->where(' tanggal between "'.$model->tanggal.'" and "'.$model->nama.'"')->count();
+  $karton=Itemkardus::find()->where(' tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" and id in (select iddetail from itemmasterkd where id in (select id from itemmasterk where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'"))')->count();
+  $pallet=Itempallet::find()->where(' tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" and id in (select iddetail from itemmasterpd where id in (select id from itemmasterp where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'"))')->count();
   $itemkarton=Kardusitem::find()->where('idkardus in (select id from itemkardus where  tanggal between "'.$model->tanggal.'" and "'.$model->nama.'")')->count();
   $kartonpallet=Palletkardus::find()->where('idpallet in (select id from itempallet where  tanggal between "'.$model->tanggal.'" and "'.$model->nama.'")')->count();
 } else {
