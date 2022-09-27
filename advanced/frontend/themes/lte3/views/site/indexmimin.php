@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use app\models\Itemmaster;
 use app\models\Itemmasterd;
+use scotthuangzl\googlechart\GoogleChart;
 $this->title = 'Dashboard';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 $job=Itemmaster::find()->count();
@@ -298,15 +299,7 @@ if($run==0) $run=1;
 </style>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <?= \hail812\adminlte\widgets\Alert::widget([
-                'type' => 'success',
-                'body' => '<h3>Congratulations!</h3>',
-            ]) ?>
-          
-        </div>
-    </div>
+
     <?php 
     
     date_default_timezone_set("Asia/Bangkok");
@@ -352,109 +345,62 @@ if($run==0) $run=1;
     </div>
     </div>
     </div>
-    <div class="row">
-          <div class="col-md-6">
-
-            <!-- PIE CHART -->
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-             <!-- STACKED BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Stacked Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col (LEFT) -->
-          <div class="col-md-6">
-            <!-- LINE CHART -->
-            <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Line Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-           
-
-          </div>
-          <!-- /.col (RIGHT) -->
-        </div>
+    
 </div>
 
 
 <script src="<?=Yii::$app->homeUrl?>/chart.js/Chart.min.js"></script>
-<script>
-  
-</script>
+<div class="card-body card card-primary card-outline">
+            <h4>Graph</h4>
+            <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Pie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Line</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Bar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-gauge-tab" data-toggle="pill" href="#custom-content-gauge-messages" role="tab" aria-controls="custom-content-gauge-messages" aria-selected="false">Gauge</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="custom-content-below-tabContent">
+              <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+                      <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                    <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <div class="tab-pane fade" id="custom-content-gauge-messages" role="tabpanel" aria-labelledby="custom-content-below-gauge-tab">
+              <?php 
+                echo GoogleChart::widget( array('visualization' => 'Gauge', 'packages' => 'gauge',
+                    'data' => array(
+                        array('Label', 'Value'),
+                        array('TOTAL', intval($run)),
+                        array('PASS', intval($sukses)),
+                        array('FAIL', intval($gagal)),
+                    ),
+                    'options' => array(
+                        'width' => '100%',
+                        'height' => 250,
+                        'redFrom' => 90,
+                        'redTo' => 100,
+                        'yellowFrom' => 75,
+                        'yellowTo' => 90,
+                        'minorTicks' => 5
+                    )
+                ));           
+                ?>
+
+              </div>
+             
+            </div>
+           
+           
+            
+          </div>

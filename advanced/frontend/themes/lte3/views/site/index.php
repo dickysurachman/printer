@@ -455,6 +455,4 @@ if($run==0) $run=1;
 
 
 <script src="<?=Yii::$app->homeUrl?>/chart.js/Chart.min.js"></script>
-<script>
-  
-</script>
+
