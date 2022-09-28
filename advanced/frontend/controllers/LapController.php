@@ -8,7 +8,10 @@ use app\models\Jobs;
 use app\models\Itemmaster;
 use app\models\Item;
 use app\models\ItemSearch;
-
+use app\models\Kardusitem;
+use app\models\KardusitemSearch;
+use app\models\Palletkardus;
+use app\models\PalletkardusSearch;
 class LapController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -36,9 +39,22 @@ class LapController extends \yii\web\Controller
         ]);
     }
     public function actionReportca(){
-        
+        $searchModel = new KardusitemSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('ca', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
     public function actionReportpl(){
+        $searchModel = new PalletkardusSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('pl', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
         
     }
 

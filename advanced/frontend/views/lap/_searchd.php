@@ -24,14 +24,17 @@ $this->registerJs($script,$position);
 
 <div class="reservasi-search">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        //'action' => ['report'],
+        'method' => 'get',
+    ]); ?>
     <div class="row" style="padding:15px;">
     <div class="col-4" style="margin-bottom:15px;padding-left:0px !important;">
     <label><?=Yii::t('yii', 'Date From')?></label>
     <?php
     echo DatePicker::widget([
     'model'  => $model,
-    'attribute'=>'tanggal',
+    'attribute'=>'tgl_a',
     'language' => 'en',
     'dateFormat' => 'yyyy-MM-dd',
     'options'=>['class'=>'form-control ada','readonly'=>'readonly'
@@ -44,7 +47,7 @@ $this->registerJs($script,$position);
     <?php 
     echo DatePicker::widget([
     'model'  => $model,
-    'attribute'=>'tanggal',
+    'attribute'=>'tgl_b',
     'language' => 'en',
     'dateFormat' => 'yyyy-MM-dd',
     'options'=>['class'=>'form-control ada','readonly'=>'readonly'

@@ -5,23 +5,23 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Itemmasterp;
+use app\models\Kardusitem;
 
 /**
- * ItemmasterpSearch represents the model behind the search form about `app\models\Itemmasterp`.
+ * KardusitemSearch represents the model behind the search form about `app\models\Kardusitem`.
  */
-class ItemmasterpSearch extends Itemmasterp
+class KardusitemSearch extends Kardusitem
 {
     /**
      * @inheritdoc
      */
-     public $tgl_a;
+         public $tgl_a;
     public $tgl_b;
     public function rules()
     {
         return [
-            [['id', 'status','shift','machine','job_id','id_line'], 'integer'],
-            [['tanggal','tgl_a','tgl_b',  'nama','linenm','var_1','var_2','var_3','var_4','var_5'], 'safe'],
+            [['id', 'idkardus', 'iddetail', 'status'], 'integer'],
+            [['tanggal','tgl_a','tgl_b'], 'safe'],
         ];
     }
 
@@ -43,7 +43,7 @@ class ItemmasterpSearch extends Itemmasterp
      */
     public function search($params)
     {
-        $query = Itemmasterp::find();
+        $query = Kardusitem::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -59,25 +59,15 @@ class ItemmasterpSearch extends Itemmasterp
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'idkardus' => $this->idkardus,
+            'iddetail' => $this->iddetail,
+            'status' => $this->status,
             'tanggal' => $this->tanggal,
-            'status' => $this->status,
-             'job_id' => $this->job_id,
-            'status' => $this->status,
-            'id_line' => $this->id_line,
-            'shift' => $this->shift,
-            'machine' => $this->machine,              
+
         ]);
 
-        $query->andFilterWhere(['like', 'nama', $this->nama])
-        ->andFilterWhere(['like', 'linenm', $this->linenm])
-         ->andFilterWhere(['like', 'var_1', $this->var_1])
-         ->andFilterWhere(['like', 'var_2', $this->var_2])
-         ->andFilterWhere(['like', 'var_3', $this->var_3])
-         ->andFilterWhere(['like', 'var_4', $this->var_4])
-         ->andFilterWhere(['like', 'var_5', $this->var_5])
-          ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
+        $query->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
             ->andFilterWhere(['<=', 'tanggal', $this->tgl_b]);
-
         return $dataProvider;
     }
 }

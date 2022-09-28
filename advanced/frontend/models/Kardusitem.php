@@ -40,8 +40,8 @@ class Kardusitem extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'idkardus' => Yii::t('yii', 'Carton'),
-            'iddetail' => Yii::t('yii', 'Item'),
+            'idkardus' => Yii::t('yii', 'S/N Carton'),
+            'iddetail' => Yii::t('yii', 'S/N Item'),
             'status' => Yii::t('yii', 'Status'),
             'tanggal' => Yii::t('yii', 'Add Date '),
         ];

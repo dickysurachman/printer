@@ -40,8 +40,8 @@ class Palletkardus extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('yii', 'ID'),
-            'idpallet' => Yii::t('yii', 'Pallet'),
-            'idkardus' => Yii::t('yii', 'Carton'),
+            'idpallet' => Yii::t('yii', 'S/N Pallet'),
+            'idkardus' => Yii::t('yii', 'S/N Carton'),
             'status' => Yii::t('yii', 'Status'),
             'tanggal' => Yii::t('yii', 'Add Date '),
         ];

@@ -91,8 +91,17 @@ return [
     [
          'class'=>'\kartik\grid\DataColumn',
          'attribute'=>'status',
+         'header'=>'Status Print',
          'value'=>'statusname',
          'filter'=>$st,
+     ], 
+     [
+         'class'=>'\kartik\grid\DataColumn',
+         'attribute'=>'status',
+         'header'=>'Status Scan',
+          'value'=>function ($model, $key, $index, $column) {
+                        return isset($model->job)?$model->job->statusname:'';
+                    },
      ],
     
 
