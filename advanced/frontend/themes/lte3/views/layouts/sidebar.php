@@ -90,9 +90,9 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => 'Report', 'url'=>'#','icon' => 'print', 'visible'=>Mimin::checkRoute('lap/report'),
                         'items' => [
                             ['label' => \Yii::t('yii', 'Global by Line '), 'url' => ['/lap/report'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('lap/report')],
-                            ['label' => \Yii::t('yii', 'Serialization & Inspection'), 'url' => ['/lap/reportsi'], 'icon' => 'eye','visible'=>Mimin::checkRoute('lap/report')],
-                            ['label' => \Yii::t('yii', 'Carton Aggregation '), 'url' => ['/lap/reportca'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('lap/report')],
-                            ['label' => \Yii::t('yii', 'Pallet Aggregation'), 'url' => ['/lap/reportpl'], 'icon' => 'folder','visible'=>Mimin::checkRoute('lap/report')],
+                            ['label' => \Yii::t('yii', 'Serialization & Inspection'), 'url' => ['/lap/reportsi'], 'icon' => 'eye','visible'=>Mimin::checkRoute('lap/reportsi')],
+                            ['label' => \Yii::t('yii', 'Carton Aggregation '), 'url' => ['/lap/reportca'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('lap/reportca')],
+                            ['label' => \Yii::t('yii', 'Pallet Aggregation'), 'url' => ['/lap/reportpl'], 'icon' => 'folder','visible'=>Mimin::checkRoute('lap/reportpl')],
 
                         ],
                     ],
