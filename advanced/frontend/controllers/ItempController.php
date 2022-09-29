@@ -411,7 +411,7 @@ class ItempController extends Controller
                 $belakang=-1*$mulai2;
                 for($mulai1=1;$mulai1<=$mulai2;$mulai1++)
                 {
-                $kodesn=$serial. substr("000000".$mulai1,-3);
+                $kodesn=$serial. substr("000000".$mulai1,-4);
                 $barang = New Itempallet();
                 $barang->var_1 = $nie;
                 $barang->var_2 = $gtin;
