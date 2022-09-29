@@ -28,7 +28,7 @@ class Itemmaster extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama','tanggal','linenm'], 'required'],
+            [['nama','linenm'], 'required'],
             [['tanggal'], 'safe'],
             [['status','shift','machine','job_id','id_line'], 'integer'],
             [['nama','linenm','var_1','var_2','var_3','var_4','var_5'], 'string', 'max' => 100],
