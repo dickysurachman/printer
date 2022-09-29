@@ -102,7 +102,7 @@ class ItemkController extends Controller
                 $jj->scan=$value;
                 $jj->machine =$item->master->job->machine;
                 if($jj->save()) {
-                    $resp.=$value." berhasil diinput <br/>";
+                    //$resp.=$value." berhasil diinput <br/>";
                     //$item=$value;
                     $data=explode("(", $value);
                     if(count($data)==6){
@@ -127,17 +127,21 @@ class ItemkController extends Controller
                         if(isset($ii)) {
                             $cek=Kardusitem::find()->where(['iddetail'=>$ii->id])->one();
                             if(isset($cek)){
-                                return $value.' Data sudah pernah dimasukkan ke karton lain';
+                                return "<div class='alert-danger alert'>".$value." gagal karena Data sudah pernah dimasukkan ke karton lain <br/></div>";
                                 break;
                             } else {
-
                                 $kk=new Kardusitem();
                                 $kk->idkardus=$item->id;
                                 $kk->iddetail=$ii->id;
-                                $kk->save();
+                                if($kk->save()) {
+                                    $kondisi=true;
+                                } else {
+                                    $kondisi=false;
+                                }
                             }
 
                         }
+                        if($kondisi==true){
                         $gabung ="(90)".$var1."(01)".$var2."(10)".$var3."(17)".$var4."(21)".$var5;
                         $qrCode = (new QrCode($gabung))
                             ->setSize(170)
@@ -145,8 +149,10 @@ class ItemkController extends Controller
                             ->useForegroundColor(13, 13, 13);
                         $qrCode->writeFile('code.png'); // writer defaults to PNG when none is specified
                         header('Content-Type: '.$qrCode->getContentType());
-                        $resp.='<div class="row">
-                        <div class="col-3">
+                        //$resp.=$value." berhasil diinput <br/>";
+                        $resp.='<div class="row alert-success alert">
+                        <div class="col-4" style="white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;   white-space: -o-pre-wrap;word-wrap: break-word;">'.$value.' berhasil diinput </div>
+                        <div class="col-4">
                         <img src="' . $qrCode->writeDataUri() . '">
                         </div>
                         <div class="col-4">
@@ -156,9 +162,12 @@ class ItemkController extends Controller
 <tr><th>EXP DATE</th><td>'.$var4.'</td></tr>
 <tr><th>S / N</th><td>'.$var5.'</td></tr></tbody></table>
                         </div></div>';
+                        } else {
+                        $resp.="<div class='alert-danger alert'>".$value." gagal diinput <br/></div>";                            
+                        }
                     }
                 } else {
-                    $resp.=$value." gagal diinput <br/>";
+                    $resp."<div class='alert-danger alert'>".$value." gagal diinput <br/></div>";                            
                 }
                 }
                 
@@ -183,6 +192,7 @@ class ItemkController extends Controller
                 <th>NO</th>
                 <th>QR DATA</th>
                 <th>TIME STAMP</th>
+                <th>S/N Product</th>
             </thead>';
         $detail = Kardusitem::find()->where(['idkardus'=>$id])->all();
         $i=1;
@@ -191,6 +201,7 @@ class ItemkController extends Controller
             $res .="<td>".$i."</td>";
             $res .="<td>".$vie->itemd->scan."</td>";
             $res .="<td>".$vie->tanggal."</td>";
+            $res .="<td>".$vie->itemd->var_5."</td>";
             $res .="</tr>";
             $i++;
         }

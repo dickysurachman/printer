@@ -156,7 +156,7 @@ function cekdata(){
   	</div>
     </div>
 
-    <div id="room_type" class="alert-success alert">Notifikasi</div>
+    <div id="room_type" class="alert">Notifikasi</div>
 </div>
 
 <script>

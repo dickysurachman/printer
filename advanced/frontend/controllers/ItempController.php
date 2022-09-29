@@ -140,7 +140,7 @@ class ItempController extends Controller
                 $jj->scan=$value;
                 $jj->machine =$item->master->job->machine;
                 if($jj->save()) {
-                    $resp.=$value." berhasil diinput <br/>";
+                    //$resp.=$value." berhasil diinput <br/>";
                     //$item=$value;
                     $data=explode("(", $value);
                     if(count($data)==6){
@@ -166,17 +166,25 @@ class ItempController extends Controller
                         if(isset($ii)) {
                             $cek=Palletkardus::find()->where(['idkardus'=>$ii->id])->one();
                             if(isset($cek)){
-                                return $value.' Data sudah pernah dimasukkan ke karton lain';
+                            return "<div class='alert-danger alert'>".$value." gagal karena Data sudah pernah dimasukkan ke karton lain <br/></div>";
+                                //return $value.' Data sudah pernah dimasukkan ke karton lain';
                                 break;
                             } else {
 
                                 $kk=new Palletkardus();
                                 $kk->idpallet=$item->id;
                                 $kk->idkardus=$ii->id;
-                                $kk->save();
+                                if($kk->save()){
+                                    $kondisi=true;
+                                } else {
+                                    $kondisi=false;
+
+                                }
                             }
 
                         }
+                        if($kondisi==true){
+
                         $gabung ="(90)".$var1."(01)".$var2."(10)".$var3."(17)".$var4."(21)".$var5;
                         $qrCode = (new QrCode($gabung))
                             ->setSize(170)
@@ -184,8 +192,9 @@ class ItempController extends Controller
                             ->useForegroundColor(13, 13, 13);
                         $qrCode->writeFile('code.png'); // writer defaults to PNG when none is specified
                         header('Content-Type: '.$qrCode->getContentType());
-                        $resp.='<div class="row">
-                        <div class="col-3">
+                        $resp.='<div class="row alert-success alert">
+                        <div class="col-4" style="white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;   white-space: -o-pre-wrap;word-wrap: break-word;">'.$value.' berhasil diinput </div>
+                        <div class="col-4">
                         <img src="' . $qrCode->writeDataUri() . '">
                         </div>
                         <div class="col-4">
@@ -195,9 +204,12 @@ class ItempController extends Controller
 <tr><th>EXP DATE</th><td>'.$var4.'</td></tr>
 <tr><th>S / N</th><td>'.$var5.'</td></tr></tbody></table>
                         </div></div>';
+                        } else {
+                            $resp.="<div class='alert-danger alert'>".$value." gagal diinput <br/></div>";         
+                        }
                     }
                 } else {
-                    $resp.=$value." gagal diinput <br/>";
+                    $resp.="<div class='alert-danger alert'>".$value." gagal diinput <br/></div>";         
                 }
                 }
                 
