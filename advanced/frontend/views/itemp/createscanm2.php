@@ -34,6 +34,7 @@ function resetall(){
           $("#target").html(data);   
         }
         });
+        $("#scanlog-scan").focus();
 }
 $.ajax({
         type: "POST",
