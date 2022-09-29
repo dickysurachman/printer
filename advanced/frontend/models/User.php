@@ -34,7 +34,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['username',  'password_hash', 'email'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
@@ -55,13 +55,17 @@ class User extends \yii\db\ActiveRecord
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
+    public function generateEmailVerificationToken()
+    {
+        $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('yii', 'ID'),
             'username' => Yii::t('yii', 'Username'),
             'auth_key' => Yii::t('yii', 'Auth Key'),
-            'password_hash' => Yii::t('yii', 'Password Hash'),
+            'password_hash' => Yii::t('yii', 'Password'),
             'password_reset_token' => Yii::t('yii', 'Password Reset Token'),
             'email' => Yii::t('yii', 'Email'),
             'status' => Yii::t('yii', 'Status'),

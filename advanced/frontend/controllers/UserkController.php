@@ -163,7 +163,11 @@ class UserkController extends Controller
                                 Html::button(Yii::t('yii2-ajaxcrud', 'Create'), ['class'=>'btn btn-primary','type'=>"submit"])
         
                 ];         
-            }else if($model->load($request->post()) && $model->save()){
+            }else if($model->load($request->post())){
+                $model->setPassword($model->password_hash);
+                $model->generateAuthKey();
+                $model->generateEmailVerificationToken();
+                $model->save();
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Patner",
