@@ -234,6 +234,7 @@ class ItempController extends Controller
                 <th>No</th>
                 <th>QR DATA</th>
                 <th>TIME STAMP</th>
+                <th>S / N Carton</th>
             </thead>';
         $detail = Palletkardus::find()->where(['idpallet'=>$id])->all();
         $i=1;
@@ -242,6 +243,7 @@ class ItempController extends Controller
             $res .="<td>".$i."</td>";
             $res .="<td>".$vie->carton->scan."</td>";
             $res .="<td>".$vie->tanggal."</td>";
+            $res .="<td>".$vie->carton->var_5."</td>";
             $res .="</tr>";
             $i++;
         }
