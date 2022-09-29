@@ -256,7 +256,7 @@ class ItemkController extends Controller
                 $lot=$model->lot;
                 $expire=$model->expired;
                 $serial=substr($nie, 5,6).substr($lot,3,3);
-                $cekserial=Itemkardus::find()->where(['var_5'=>$serial.substr("0000001",-3)])->one();
+                $cekserial=Itemkardus::find()->where(['var_5'=>$serial.substr("0000001",-5)])->one();
                 if($cekserial){
                      Yii::$app->session->setFlash('danger', 'S/N sudah pernah diinput');
                      return $this->redirect(['itemk/uploadcsv']);
