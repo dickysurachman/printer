@@ -120,7 +120,7 @@ class ItemkController extends Controller
                         $ini=$this->findModel($id);
                         $cc=Kardusitem::find()->where(['idkardus'=>$id])->count();
                         if($ini->var_8==$cc){
-                            return 'Target Already Finish';
+                            return "<div class='alert-danger alert'>Target Already Finish<br/></div>";
                             break;
                         }
                         $ii=Item::find()->where(['var_5'=>$var5])->one();

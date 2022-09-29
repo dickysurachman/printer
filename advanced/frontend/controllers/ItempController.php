@@ -157,7 +157,7 @@ class ItempController extends Controller
                         $ini=$this->findModel($id);
                         $cc=Palletkardus::find()->where(['idpallet'=>$id])->count();
                         if($ini->var_8==$cc){
-                            return 'Target Already Finish';
+                            return "<div class='alert-danger alert'>Target Already Finish<br/></div>";
                             break;
                         }
 
