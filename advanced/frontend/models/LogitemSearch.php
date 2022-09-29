@@ -45,6 +45,9 @@ class LogitemSearch extends Logitem
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pagesize' => 50,
+            ],
         ]);
 
         $this->load($params);

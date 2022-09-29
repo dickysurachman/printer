@@ -45,6 +45,9 @@ class ScanlogSearch extends Scanlog
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pagesize' => 50,
+            ],
         ]);
 
         $this->load($params);
