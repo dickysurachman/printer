@@ -60,7 +60,7 @@ use hscstudio\mimin\components\Mimin;
                         'icon'=>'eye',
                         'items' => [
                         ['label' => \Yii::t('yii', 'Job List'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
-                        ['label' => \Yii::t('yii', 'Create Job'), 'url' => ['/item/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
+                        ['label' => \Yii::t('yii', 'Create Job'), 'url' => ['/item/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('item/uploadcsv')],
                         ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],
                         ]
                     ],
@@ -70,7 +70,7 @@ use hscstudio\mimin\components\Mimin;
                         'icon'=>'bolt',
                         'items' => [
                              ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobkardus/index')],
-                             ['label' => \Yii::t('yii', 'Aggregation Carton'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('jobkardus/index')],
+                             ['label' => \Yii::t('yii', 'Aggregation Carton'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('itemk/uploadcsv')],
                             ['label' => 'Item Kardus', 'url'=>['/itemk/index'],'icon' => 'code', 'visible' => Mimin::checkRoute('itemk/index')],
                         
                         ]
@@ -80,7 +80,7 @@ use hscstudio\mimin\components\Mimin;
                         'icon'=>'clipboard',
                         'items' => [
                              ['label' => \Yii::t('yii', 'Pallet Job List '), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobpaller/index')],
-                             ['label' => \Yii::t('yii', 'Aggregation Pallet'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('jobpaller/index')],
+                             ['label' => \Yii::t('yii', 'Aggregation Pallet'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('itemp/uploadcsv')],
                             ['label' => 'Item Pallet', 'url'=>['/itemp/index'],'icon' => 'folder', 'visible' => Mimin::checkRoute('itemp/index')],
                         
                         ]
