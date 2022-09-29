@@ -105,6 +105,7 @@ class ItemkController extends Controller
                     //$resp.=$value." berhasil diinput <br/>";
                     //$item=$value;
                     $data=explode("(", $value);
+                    $kondisi=false
                     if(count($data)==6){
                         $dat1=explode(")",$data[1]);
                         $var1=$dat1[1];
