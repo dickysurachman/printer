@@ -69,8 +69,8 @@ use hscstudio\mimin\components\Mimin;
                         'label' => 'Carton Aggregation',
                         'icon'=>'bolt',
                         'items' => [
-                             ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
-                             ['label' => \Yii::t('yii', 'Aggregation Carton'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
+                             ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobkardus/index')],
+                             ['label' => \Yii::t('yii', 'Aggregation Carton'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('jobkardus/index')],
                             ['label' => 'Item Kardus', 'url'=>['/itemk/index'],'icon' => 'code', 'visible' => Mimin::checkRoute('itemk/index')],
                         
                         ]
@@ -79,15 +79,15 @@ use hscstudio\mimin\components\Mimin;
                         'label' => 'Pallet Aggregation',
                         'icon'=>'clipboard',
                         'items' => [
-                             ['label' => \Yii::t('yii', 'Pallet Job List '), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
-                             ['label' => \Yii::t('yii', 'Aggregation Pallet'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('job/index')],
+                             ['label' => \Yii::t('yii', 'Pallet Job List '), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobpaller/index')],
+                             ['label' => \Yii::t('yii', 'Aggregation Pallet'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('jobpaller/index')],
                             ['label' => 'Item Pallet', 'url'=>['/itemp/index'],'icon' => 'folder', 'visible' => Mimin::checkRoute('itemp/index')],
                         
                         ]
                     ],
                     
-                    
-                    ['label' => 'Report', 'url'=>'#','icon' => 'print', 'visible'=>Mimin::checkRoute('lap/report'),
+                    //'visible'=>Mimin::checkRoute('lap/report'),
+                    ['label' => 'Report', 'url'=>'#','icon' => 'print', 
                         'items' => [
                             ['label' => \Yii::t('yii', 'Global by Line '), 'url' => ['/lap/report'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('lap/report')],
                             ['label' => \Yii::t('yii', 'Serialization & Inspection'), 'url' => ['/lap/reportsi'], 'icon' => 'eye','visible'=>Mimin::checkRoute('lap/reportsi')],

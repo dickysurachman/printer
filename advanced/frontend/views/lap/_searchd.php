@@ -56,7 +56,7 @@ $this->registerJs($script,$position);
     ?></div>
     </div>
  
-    <div class="form-group">
+    <div class="form-group" style="margin-left:5px;">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?php //= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
