@@ -1,0 +1,529 @@
+<?php
+use app\models\Item;
+use yii\helpers\Html;
+use yii\web\View;
+use app\models\Itemmaster;
+use app\models\Itemmasterd;
+use app\models\Itemkardus;
+use app\models\Itempallet;
+use app\models\Kardusitem;
+use app\models\Palletkardus;
+use app\models\Line;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use yii\jui\DatePicker;
+use kartik\select2\Select2;
+use scotthuangzl\googlechart\GoogleChart;
+$this->title = 'Report by Line';
+$this->params['breadcrumbs'] = [['label' => $this->title]];
+$line=ArrayHelper::map(Line::find()->where(['status'=>1])->asArray()->all(), 'id', 'nama');
+
+if(isset($model->tanggal)) {
+
+  $job=Itemmaster::find()->where('id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'"')->count();
+  $sukses=Itemmasterd::find()->where('statusc=1 and idmaster in (select id from itemmaster where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
+  $gagal=Itemmasterd::find()->where('statusc=2 and idmaster in (select id from itemmaster where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
+  $run=Itemmasterd::find()->where('idmaster in (select id from itemmaster where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
+  $karton=Itemkardus::find()->where(' tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" and id in (select iddetail from itemmasterkd where id in (select id from itemmasterk where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'"))')->count();
+  $pallet=Itempallet::find()->where(' tanggal between "'.$model->tanggal.'" and "'.$model->nama.'" and id in (select iddetail from itemmasterpd where id in (select id from itemmasterp where id_line='.$model->linenm.' and tanggal between "'.$model->tanggal.'" and "'.$model->nama.'"))')->count();
+  $itemkarton=Kardusitem::find()->where('idkardus in (select id from itemkardus where  tanggal between "'.$model->tanggal.'" and "'.$model->nama.'")')->count();
+  $kartonpallet=Palletkardus::find()->where('idpallet in (select id from itempallet where  tanggal between "'.$model->tanggal.'" and "'.$model->nama.'")')->count();
+} else {
+  $job=Itemmaster::find()->count();
+  $sukses=Itemmasterd::find()->where(['statusc'=>1])->count();
+  $gagal=Itemmasterd::find()->where(['statusc'=>2])->count();
+  $run=Itemmasterd::find()->count();
+  $karton=Itemkardus::find()->count();
+  $pallet=Itempallet::find()->count();
+  $itemkarton=Kardusitem::find()->count();
+  $kartonpallet=Palletkardus::find()->count();
+
+}
+
+//$script = <<< JS JS;
+$script= "
+$('.ada').datepicker({
+    changeMonth: true, 
+    changeYear: true, 
+    dateFormat:'yy-mm-dd',
+}); 
+$(document).ready(function(){
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    //--------------
+    //- AREA CHART -
+    //--------------
+
+    // Get context with jQuery - using jQuery's .get() method.
+
+
+    var areaChartData = {
+      labels  : ['Total', 'PASS', 'FAIL'],
+      datasets: [
+        {
+          label               : 'Bar Grafik',
+          backgroundColor     : '#28a745',
+          borderColor         : '#28a745',
+          pointRadius          : false,
+          pointColor          : '#28a745',
+          pointStrokeColor    : '#28a745',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: '#28a745',
+          data                : [".$run.", ".$sukses.", ".$gagal."]
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    // This will get the first returned node in the jQuery collection.
+  
+
+    //-------------
+    //- LINE CHART -
+    //--------------
+    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+    var lineChartOptions = $.extend(true, {}, areaChartOptions)
+    var lineChartData = $.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartOptions.datasetFill = false
+
+    var lineChart = new Chart(lineChartCanvas, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
+    })
+
+    //-------------
+    //- DONUT CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+ 
+
+    var donutData1 = {
+      labels: [
+          'Total Count',
+          'PASS',
+          'FAIL',
+      ],
+      datasets: [
+        {
+          data: [".$run.",".$sukses.",".$gagal."],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12'],
+        }
+      ]
+    }
+    var donutData        = {
+      labels: [
+          'Chrome',
+          'IE',
+          'FireFox',
+          'Safari',
+          'Opera',
+          'Navigator',
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = donutData1;
+    var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    })
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    barChartData.datasets[0] = temp0
+ 
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+   
+    
+  })  
+})"; 
+//JS;
+$this->registerJs($script, View::POS_END);
+//if($run==0) $run=1;
+?>
+<style type="text/css">
+    .tile_count {
+    margin-bottom: 20px;
+    margin-top: 20px
+}
+.tile_count .tile_stats_count {
+    border-bottom: 1px solid #D9DEE4;
+    padding: 0 10px 0 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative
+}
+@media (min-width: 992px) {
+    footer {
+        margin-left: 230px
+    }
+}
+@media (min-width: 992px) {
+    .tile_count .tile_stats_count {
+        margin-bottom: 10px;
+        border-bottom: 0;
+        padding-bottom: 10px
+    }
+}
+.tile_count .tile_stats_count:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 65px;
+    border-left: 2px solid #ADB2B5;
+    margin-top: 10px
+}
+@media (min-width: 992px) {
+    .tile_count .tile_stats_count:first-child:before {
+        border-left: 0
+    }
+}
+.tile_count .tile_stats_count .count {
+    font-size: 30px;
+    line-height: 47px;
+    font-weight: 600
+}
+@media (min-width: 768px) {
+    .tile_count .tile_stats_count .count {
+        font-size: 40px
+    }
+}
+@media (min-width: 992px) and (max-width: 1100px) {
+    .tile_count .tile_stats_count .count {
+        font-size: 30px
+    }
+}
+.tile_count .tile_stats_count span {
+    font-size: 12px
+}
+@media (min-width: 768px) {
+    .tile_count .tile_stats_count span {
+        font-size: 13px
+    }
+}
+.tile_count .tile_stats_count .count_bottom i {
+    width: 12px
+}
+.x_panel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease
+}
+.x_content {
+    padding: 0 5px 6px;
+    position: relative;
+    width: 100%;
+    float: left;
+    clear: both;
+    margin-top: 5px
+}
+.blue {
+    color: #3498DB
+}
+.purple {
+    color: #9B59B6
+}
+.green {
+    color: #1ABB9C
+}
+.aero {
+    color: #9CC2CB
+}
+.red {
+    color: #E74C3C
+}
+.dark {
+    color: #34495E
+}
+</style>
+
+<div class="container-fluid">
+    <?php  //echo $this->render('_searchd', ['model' => $job]); ?>
+
+    <?php $form = ActiveForm::begin(); ?>
+    <div class="row" style="padding:15px;">
+    <div class="col-4" style="margin-bottom:15px;padding-left:0px !important;">
+    <label><?=Yii::t('yii', 'Date From')?></label>
+    <?php
+    echo DatePicker::widget([
+    'model'  => $model,
+    'attribute'=>'tanggal',
+    'language' => 'en',
+    'dateFormat' => 'yyyy-MM-dd',
+    'options'=>['class'=>'form-control ada','readonly'=>'readonly'
+    //'dateFormat'=>'yy-mm-dd',
+    ]]);
+    ?>
+    </div>
+    <div class="col-4" style="margin-bottom:15px;padding-right:0px !important;">
+    <label><?=Yii::t('yii', 'Until')?></label>
+    <?php 
+    echo DatePicker::widget([
+    'model'  => $model,
+    'attribute'=>'nama',
+    'language' => 'en',
+    'dateFormat' => 'yyyy-MM-dd',
+    'options'=>['class'=>'form-control ada','readonly'=>'readonly'
+    //'dateFormat'=>'yy-mm-dd',
+    ]]);
+    ?></div>
+    </div>
+
+    <div class="col-2">
+    <?php    
+         echo $form->field($model, 'linenm')->widget(Select2::classname(), [
+        'data'=>$line,
+        //'initValueText' => $cityDesc2, 
+        'options' => ['placeholder' => 'Search for Line Name  ...'],
+        ]);
+        ?>
+    </div>
+ 
+    <div class="form-group">
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?php //= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+    <h4>Serialization and Inspection</h4>
+    <?php 
+    
+    date_default_timezone_set("Asia/Bangkok");
+
+    $time=date("Y-m-d h:i");
+    ?>
+    <div class="row">
+    <div class="x_panel x_content">
+    <div class="tile_count row">
+    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa fa-check"></i> Total Job</span>
+    <div class="count green"><?php echo $job//echo $totalread; ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
+    </div>
+    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa fa-remove"></i> PASS</span>
+    <div class="count red"><?php echo $sukses //echo $totalreject; ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
+    </div>
+    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa fa-camera"></i> FAIL</span>
+    <div class="count blue"><?php echo $gagal//echo $totaltrigger; ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
+    </div>
+    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa fa-check"></i> TOTAL ITEM</span>
+    <div class="count purple"><?php  
+    //$run1=Itemmasterd::find()->count();
+    echo $run;
+    if($run==0) $run=1;
+          ?></div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
+    </div>
+    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa fa-remove"></i> Success Presentation</span>
+    <div class="count aero"><?php echo number_format(($sukses/$run)*100)//custom_echo($rejectrate,5); ?>%</div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
+    </div>
+    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <span class="count_top"><i class="fa fa-bullseye"></i> Failure Presentation </span>
+    <div class="count red"><?php echo number_format(($gagal/$run)*100)//echo $sensorreject; ?>%</div>
+    <span class="count_bottom">Updated: <?php echo $time; ?></span>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+</div>
+<div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-bolt"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Carton Aggregation</span>
+                <span class="info-box-number">
+                  <?=$karton?>
+                  
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-clipboard"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pallet Aggregation</span>
+                <span class="info-box-number"><?=$pallet?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-code"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Item on Carton</span>
+                <span class="info-box-number"><?=$itemkarton?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-folder"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Carton In Pallet</span>
+                <span class="info-box-number"><?=$kartonpallet?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+
+<script src="<?=Yii::$app->homeUrl?>/chart.js/Chart.min.js"></script>
+<div class="card-body card card-primary card-outline">
+            <h4>Serialization and Inspection Graph </h4>
+            <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Pie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Line</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Bar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-gauge-tab" data-toggle="pill" href="#custom-content-gauge-messages" role="tab" aria-controls="custom-content-gauge-messages" aria-selected="false">Gauge</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="custom-content-below-tabContent">
+              <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+                      <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                    <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <div class="tab-pane fade" id="custom-content-gauge-messages" role="tabpanel" aria-labelledby="custom-content-below-gauge-tab">
+              <?php 
+                echo GoogleChart::widget( array('visualization' => 'Gauge', 'packages' => 'gauge',
+                    'data' => array(
+                        array('Label', 'Value'),
+                        array('TOTAL', intval($run)),
+                        array('PASS', intval($sukses)),
+                        array('FAIL', intval($gagal)),
+                    ),
+                    'options' => array(
+                        'width' => '100%',
+                        'height' => 250,
+                        'redFrom' => 90,
+                        'redTo' => 100,
+                        'yellowFrom' => 75,
+                        'yellowTo' => 90,
+                        'minorTicks' => 5
+                    )
+                ));           
+                ?>
+
+              </div>
+             
+            </div>
+           
+           
+            
+          </div>

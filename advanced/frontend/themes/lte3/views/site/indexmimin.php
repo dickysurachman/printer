@@ -8,6 +8,7 @@ use app\models\Itemkardus;
 use app\models\Itempallet;
 use app\models\Kardusitem;
 use app\models\Palletkardus;
+use hscstudio\mimin\components\Mimin;
 use scotthuangzl\googlechart\GoogleChart;
 $this->title = 'Dashboard';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
@@ -21,6 +22,30 @@ $karton=Itemkardus::find()->count();
 $pallet=Itempallet::find()->count();
 $itemkarton=Kardusitem::find()->count();
 $kartonpallet=Palletkardus::find()->count();
+
+
+$kartonall=Itemkardus::find()->all();
+$kartonfinish=0;
+$kartonprogress=0;
+foreach($kartonall as $val){
+  if($val->statusjob=='Done') {
+    $kartonfinish++;
+  } else {
+    $kartonprogress++;
+  }
+}
+
+$palletall=Itempallet::find()->all();
+$palletfinish=0;
+$palletprogress=0;
+foreach($palletall as $vall){
+  if($vall->statusjob=='Done') {
+    $palletfinish++;
+  } else {
+    $palletprogress++;
+  }
+}
+
 
 //$script = <<< JS JS;
 $script= "$(document).ready(function(){
@@ -306,7 +331,10 @@ if($run==0) $run=1;
     color: #34495E
 }
 </style>
-
+<?php 
+if(Mimin::checkRoute('job/index'))
+{
+  ?>
 <div class="container-fluid">
     <h4>Serialization and Inspection</h4>
     <?php 
@@ -356,69 +384,6 @@ if($run==0) $run=1;
     </div>
     
 </div>
-<div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-bolt"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Carton Aggregation</span>
-                <span class="info-box-number">
-                  <?=$karton?>
-                  
-                </span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-clipboard"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Pallet Aggregation</span>
-                <span class="info-box-number"><?=$pallet?></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-
-          <!-- fix for small devices only -->
-          <div class="clearfix hidden-md-up"></div>
-
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-code"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Item on Carton</span>
-                <span class="info-box-number"><?=$itemkarton?></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-folder"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Carton In Pallet</span>
-                <span class="info-box-number"><?=$kartonpallet?></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-        </div>
-
-<script src="<?=Yii::$app->homeUrl?>/chart.js/Chart.min.js"></script>
 <div class="card-body card card-primary card-outline">
             <h4>Serialization and Inspection Graph </h4>
             <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
@@ -473,3 +438,331 @@ if($run==0) $run=1;
            
             
           </div>
+<?php 
+
+} 
+
+if(Mimin::checkRoute('jobkardus/index')){
+?>
+
+
+<h3>Carton Aggregation</h3>
+<div class="row">
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-bolt"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Carton Aggregation</span>
+                <span class="info-box-number">
+                  <?=$karton?>
+                  
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+           <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-code"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Item on Carton</span>
+                <span class="info-box-number"><?=$itemkarton?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+         
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-bookmark"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Carton Finish</span>
+                <span class="info-box-number">
+                  <?=$kartonfinish?>
+                  
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-eye"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Carton On Progress</span>
+                <span class="info-box-number"><?=$kartonprogress?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+
+          <!-- /.col -->
+        </div>
+
+
+
+
+
+<div class="card-body card card-primary card-outline">
+            <h4>Aggregation Carton Graph </h4>
+            <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="custom-content-below-home-tab1" data-toggle="pill" href="#custom-content-below-home1" role="tab" aria-controls="custom-content-below-home1" aria-selected="true">Pie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-profile-tab1" data-toggle="pill" href="#custom-content-below-profile1" role="tab" aria-controls="custom-content-below-profile1" aria-selected="false">Line</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-profile-tab1a" data-toggle="pill" href="#custom-content-below-profile1a" role="tab" aria-controls="custom-content-below-profile1a" aria-selected="false">Bar Chart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-gauge-tab1" data-toggle="pill" href="#custom-content-gauge-messages1" role="tab" aria-controls="custom-content-gauge-messages1" aria-selected="false">Gauge</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="custom-content-below-tabContent">
+              <div class="tab-pane fade show active" id="custom-content-below-home1" role="tabpanel" aria-labelledby="custom-content-below-home-tab1">
+                <?php
+                echo GoogleChart::widget(array('visualization' => 'PieChart',
+                'data' => array(
+                    array('Label', 'Value'),
+                    array('Carton Aggregation', intval($karton)),
+                    array('Carton Finish', intval($kartonfinish)),
+                    array('Carton On Progress', intval($kartonprogress))
+                ),
+                'options' => array('title' => 'Pie Chart Carton Aggregation')));
+                ?>
+
+
+              </div>
+              <div class="tab-pane fade" id="custom-content-below-profile1" role="tabpanel" aria-labelledby="custom-content-below-profile-tab1">
+                   <?php 
+
+                echo GoogleChart::widget(array('visualization' => 'LineChart',
+                                'data' => array(
+                                    array('Label', 'Value'),
+                                    array('Carton Aggregation', intval($karton)),
+                                    array('Carton Finish', intval($kartonfinish)),
+                                    array('Carton On Progress', intval($kartonprogress))
+                                ),
+                                'options' => array('title' => 'Line Chart Carton Aggregation')));
+                    
+
+
+                   ?>
+              </div>  
+              <div class="tab-pane fade" id="custom-content-below-profile1a" role="tabpanel" aria-labelledby="custom-content-below-profile-tab1a">
+                   <?php 
+
+                echo GoogleChart::widget(array('visualization' => 'ColumnChart',
+                                'data' => array(
+                                    array('Label', 'Value'),
+                                    array('Carton Aggregation', intval($karton)),
+                                    array('Carton Finish', intval($kartonfinish)),
+                                    array('Carton On Progress', intval($kartonprogress))
+                                ),
+                                'options' => array('title' => 'Bar Chart Carton Aggregation')));
+                    
+
+
+                   ?>
+              </div>
+             
+              <div class="tab-pane fade" id="custom-content-gauge-messages1" role="tabpanel" aria-labelledby="custom-content-below-gauge-tab1">
+              <?php 
+                echo GoogleChart::widget( array('visualization' => 'Gauge', 'packages' => 'gauge',
+                    'data' => array(
+                        array('Label', 'Value'),
+                        array('Carton Aggregation', intval($karton)),
+                        array('Carton Finish', intval($kartonfinish)),
+                        array('Carton On Progress', intval($kartonprogress)),
+                    ),
+                    'options' => array(
+                        'width' => '100%',
+                        'height' => 250,
+                        'redFrom' => 90,
+                        'redTo' => 100,
+                        'yellowFrom' => 75,
+                        'yellowTo' => 90,
+                        'minorTicks' => 5
+                    )
+                ));           
+                ?>
+
+              </div>
+             
+            </div>
+          </div>
+
+<?php }?>
+<script src="<?=Yii::$app->homeUrl?>/chart.js/Chart.min.js"></script>
+
+<?php if(Mimin::checkRoute('jobpaller/index')) { ?>
+<h3>Pallet Aggregation</h3>
+<div class="row">
+
+           <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-clipboard"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pallet Aggregation</span>
+                <span class="info-box-number"><?=$pallet?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+         
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-folder"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Carton In Pallet</span>
+                <span class="info-box-number"><?=$kartonpallet?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-folder"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pallet Finish</span>
+                <span class="info-box-number"><?=$palletfinish?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-folder-open"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pallet on Progress</span>
+                <span class="info-box-number"><?=$palletprogress?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+<div class="card-body card card-primary card-outline">
+            <h4>Aggregation Pallet Graph </h4>
+            <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="custom-content-below-home-tab2" data-toggle="pill" href="#custom-content-below-home2" role="tab" aria-controls="custom-content-below-home2" aria-selected="true">Pie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-profile-tab2" data-toggle="pill" href="#custom-content-below-profile2" role="tab" aria-controls="custom-content-below-profile2" aria-selected="false">Line</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-profile-tab2a" data-toggle="pill" href="#custom-content-below-profile2a" role="tab" aria-controls="custom-content-below-profile1a" aria-selected="false">Bar Chart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-content-below-gauge-tab2" data-toggle="pill" href="#custom-content-gauge-messages2" role="tab" aria-controls="custom-content-gauge-messages2" aria-selected="false">Gauge</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="custom-content-below-tabContent">
+              <div class="tab-pane fade show active" id="custom-content-below-home2" role="tabpanel" aria-labelledby="custom-content-below-home-tab2">
+                <?php
+                echo GoogleChart::widget(array('visualization' => 'PieChart',
+                'data' => array(
+                    array('Label', 'Value'),
+                    array('Pallet Aggregation', intval($pallet)),
+                    array('Pallet Finish', intval($palletfinish)),
+                    array('Pallet On Progress', intval($palletprogress))
+                ),
+                'options' => array('title' => 'Pie Chart Pallet Aggregation')));
+                ?>
+
+
+              </div>
+              <div class="tab-pane fade" id="custom-content-below-profile2" role="tabpanel" aria-labelledby="custom-content-below-profile-tab2">
+                   <?php 
+
+                echo GoogleChart::widget(array('visualization' => 'LineChart',
+                                'data' => array(
+                                    array('Label', 'Value'),
+                                    array('Pallet Aggregation', intval($pallet)),
+                                    array('Pallet Finish', intval($palletfinish)),
+                                    array('Pallet On Progress', intval($palletprogress))
+                                ),
+                                'options' => array('title' => 'Line Chart Pallet Aggregation')));
+                    
+
+
+                   ?>
+              </div>  
+              <div class="tab-pane fade" id="custom-content-below-profile2a" role="tabpanel" aria-labelledby="custom-content-below-profile-tab2a">
+                   <?php 
+
+                echo GoogleChart::widget(array('visualization' => 'ColumnChart',
+                                'data' => array(
+                                    array('Label', 'Value'),
+                                    array('Pallet Aggregation', intval($pallet)),
+                                    array('Pallet Finish', intval($palletfinish)),
+                                    array('Pallet On Progress', intval($palletprogress))
+                                ),
+                                'options' => array('title' => 'Bar Chart Pallet Aggregation')));
+                    
+
+
+                   ?>
+              </div>
+             
+              <div class="tab-pane fade" id="custom-content-gauge-messages2" role="tabpanel" aria-labelledby="custom-content-below-gauge-tab2">
+              <?php 
+                echo GoogleChart::widget( array('visualization' => 'Gauge', 'packages' => 'gauge',
+                    'data' => array(
+                        array('Label', 'Value'),
+                        array('Pallet Aggregation', intval($pallet)),
+                        array('Pallet Finish', intval($palletfinish)),
+                        array('Pallet On Progress', intval($palletprogress)),
+                    ),
+                    'options' => array(
+                        'width' => '100%',
+                        'height' => 250,
+                        'redFrom' => 90,
+                        'redTo' => 100,
+                        'yellowFrom' => 75,
+                        'yellowTo' => 90,
+                        'minorTicks' => 5
+                    )
+                ));           
+                ?>
+
+              </div>
+             
+            </div>
+          </div>
+
+          <?php } ?>
