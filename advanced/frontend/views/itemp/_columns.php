@@ -2,6 +2,8 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use hscstudio\mimin\components\Mimin;
+
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -100,6 +102,7 @@ return [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'noWrap' => 'true',
+        'visible'=>Mimin::checkRoute('itemp/delete'),
         'template' => '{view} {update} {delete}{print}',
         'vAlign' => 'middle',
         'urlCreator' => function($action, $model, $key, $index) { 

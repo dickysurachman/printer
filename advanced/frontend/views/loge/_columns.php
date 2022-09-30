@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-
+use hscstudio\mimin\components\Mimin;
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -40,6 +40,7 @@ return [
     ],
     [
         'class' => 'kartik\grid\ActionColumn',
+        'visible'=>Mimin::checkRoute('loge/delete'),
         'dropdown' => false,
         'noWrap' => 'true',
         'template' => '{view} {update} {delete}',

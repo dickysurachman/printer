@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 $st=['Active','Progress Execution','Done'];
+use hscstudio\mimin\components\Mimin;
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -78,6 +79,7 @@ return [
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
+        'visible'=>Mimin::checkRoute('itemp/delete'),
         'noWrap' => 'true',
         'template' => '{view} {delete}',//{update} {delete}
         'vAlign' => 'middle',

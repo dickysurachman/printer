@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use hscstudio\mimin\components\Mimin;
 
 return [
     [
@@ -99,6 +100,7 @@ return [
     // ],
     [
         'class' => 'kartik\grid\ActionColumn',
+        'visible'=>Mimin::checkRoute('itemk/delete'),
         'dropdown' => false,
         'noWrap' => 'true',
         'template' => '{view} {update} {delete}{print}',
