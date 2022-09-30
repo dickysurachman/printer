@@ -48,11 +48,13 @@ class ScanlogSearch extends Scanlog
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pagesize' => 50,
-            ],
         ]);
 
+        $dataProvider->setSort([
+            'defaultOrder' => [
+                'tanggal' => SORT_DESC
+            ]
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {
