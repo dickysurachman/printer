@@ -53,6 +53,14 @@ return [
                         return isset($model->itemd)?$model->itemd->var_5:'';
                     },
 
+    ],   
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'status',
+        'value'=>function ($model, $key, $index, $column) {
+                        return isset($model->carton)?$model->carton->statusjob:'';;
+                    },
+
     ],
    
     

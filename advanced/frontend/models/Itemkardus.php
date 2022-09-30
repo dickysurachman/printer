@@ -92,6 +92,16 @@ class Itemkardus extends \yii\db\ActiveRecord
         $gabung ="(90)".$this->var_1."(01)".$this->var_2."(10)".$this->var_3."(17)".$this->var_4."(21)".$this->var_5;
         return $gabung;
     }
+
+    public function getStatusjob(){
+        $g=Kardusitem::find()->where(['idkardus'=>$this->id])->count();
+        if($g==$this->var_8){
+            return 'Done';
+        } else {
+            return 'On Progress';
+        }
+    }
+
     public function getPerusahaan()
     {
         return $this->hasOne(Perusahaan::className(), ['id' => 'var_6']);

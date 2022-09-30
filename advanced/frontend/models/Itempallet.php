@@ -63,7 +63,14 @@ class Itempallet extends \yii\db\ActiveRecord
         } else {
             return 'Done';
         }
-
+    }
+    public function getStatusjob(){
+        $g=Palletkardus::find()->where(['idpallet'=>$this->id])->count();
+        if($g==$this->var_8){
+            return 'Done';
+        } else {
+            return 'On Progress';
+        }
     }
     public function attributeLabels()
     {

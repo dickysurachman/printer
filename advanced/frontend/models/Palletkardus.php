@@ -46,7 +46,7 @@ class Palletkardus extends \yii\db\ActiveRecord
             'tanggal' => Yii::t('yii', 'Add Date '),
         ];
     }
-
+    
     public function getCarton()
     {
         return $this->hasOne(Itemkardus::className(), ['id' => 'idkardus']);
