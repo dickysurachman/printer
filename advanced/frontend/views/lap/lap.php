@@ -450,7 +450,11 @@ if(Mimin::checkRoute('job/index'))
     <span class="count_top"><i class="fa fa-check"></i> TOTAL ITEM</span>
     <div class="count purple"><?php  
     //$run1=Itemmasterd::find()->count();
-    echo $run;
+    if($run==0 or $run==1) {
+      echo "0";
+    } else {
+      echo $run;
+    }
           ?></div>
     <span class="count_bottom">Updated: <?php echo $time; ?></span>
     </div>
