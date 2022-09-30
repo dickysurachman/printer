@@ -15,11 +15,14 @@ class LogitemSearch extends Logitem
     /**
      * @inheritdoc
      */
+    public $numlimit;
+    public $tgl_a;
+    public $tgl_b;
     public function rules()
     {
         return [
-            [['id', 'status','machine'], 'integer'],
-            [['tanggal', 'logbaca','ip'], 'safe'],
+            [['id', 'status','machine','numlimit'], 'integer'],
+            [['tanggal', 'logbaca','ip','tgl_a','tgl_b'], 'safe'],
         ];
     }
 
@@ -43,13 +46,10 @@ class LogitemSearch extends Logitem
     {
         $query = Logitem::find();
 
+            
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pagesize' => 50,
-            ],
-        ]);
-
+                'query' => $query,
+            ]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -67,6 +67,8 @@ class LogitemSearch extends Logitem
 
         $query->andFilterWhere(['like', 'logbaca', $this->logbaca])
         ->andFilterWhere(['like', 'ip', $this->ip])
+        ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
+            ->andFilterWhere(['<=', 'date(tanggal)', $this->tgl_b])
         ;
 
         return $dataProvider;

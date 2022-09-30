@@ -17,6 +17,7 @@ CrudAsset::register($this);
 
 ?>
 <div class="logitem-index">
+     <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',

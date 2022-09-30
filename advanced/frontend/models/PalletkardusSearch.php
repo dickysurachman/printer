@@ -65,7 +65,7 @@ class PalletkardusSearch extends Palletkardus
             'tanggal' => $this->tanggal,
         ]);
          $query->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
-            ->andFilterWhere(['<=', 'tanggal', $this->tgl_b]);
+            ->andFilterWhere(['<=', 'date(tanggal)', $this->tgl_b]);
         return $dataProvider;
     }
 }

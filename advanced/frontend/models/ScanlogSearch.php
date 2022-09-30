@@ -15,11 +15,14 @@ class ScanlogSearch extends Scanlog
     /**
      * @inheritdoc
      */
+     public $numlimit;
+    public $tgl_a;
+    public $tgl_b;
     public function rules()
     {
         return [
-            [['id', 'status','process','id_job','id_item'], 'integer'],
-            [['tanggal', 'scan'], 'safe'],
+            [['id', 'status','process','id_job','id_item','numlimit'], 'integer'],
+            [['tanggal', 'scan','tgl_a','tgl_b'], 'safe'],
         ];
     }
 
@@ -67,7 +70,9 @@ class ScanlogSearch extends Scanlog
             'id_item' => $this->id_item,
         ]);
 
-        $query->andFilterWhere(['like', 'scan', $this->scan]);
+        $query->andFilterWhere(['like', 'scan', $this->scan])
+            ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
+            ->andFilterWhere(['<=', 'date(tanggal)', $this->tgl_b]);
 
         return $dataProvider;
     }

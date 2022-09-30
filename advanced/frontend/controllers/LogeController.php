@@ -40,6 +40,9 @@ class LogeController extends Controller
     {    
         $searchModel = new LogitemSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(isset($searchModel->numlimit)){
+            $dataProvider->pagination = ['pageSize' =>intval($searchModel->numlimit)];
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

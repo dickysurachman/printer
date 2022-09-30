@@ -69,7 +69,7 @@ class ItemkardusSearch extends Itemkardus
         $query->andFilterWhere(['like', 'var_1', $this->var_1])
             ->andFilterWhere(['like', 'var_2', $this->var_2])
              ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
-            ->andFilterWhere(['<=', 'tanggal', $this->tgl_b])
+            ->andFilterWhere(['<=', 'date(tanggal)', $this->tgl_b])
             ->andFilterWhere(['like', 'biner', $this->biner])
             ->andFilterWhere(['like', 'var_3', $this->var_3])
             ->andFilterWhere(['like', 'status', $this->status])

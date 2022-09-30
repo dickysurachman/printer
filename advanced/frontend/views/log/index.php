@@ -10,13 +10,14 @@ use yii2ajaxcrud\ajaxcrud\BulkButtonWidget;
 /* @var $searchModel app\models\ScanlogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yii', 'Scanlogs');
+$this->title = Yii::t('yii', 'Log Camera');
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
 ?>
 <div class="scanlog-index">
+    <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
