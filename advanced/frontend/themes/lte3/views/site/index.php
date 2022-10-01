@@ -442,7 +442,7 @@ if(Mimin::checkRoute('job/index'))
 
 } 
 
-iif(Mimin::checkRoute('jobkardus/index')){
+if(Mimin::checkRoute('jobkardus/index')){
 ?>
 
 
