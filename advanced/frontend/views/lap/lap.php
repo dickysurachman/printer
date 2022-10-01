@@ -631,7 +631,7 @@ if(Mimin::checkRoute('jobkardus/index')){
                 echo GoogleChart::widget(array('visualization' => 'PieChart',
                 'data' => array(
                     array('Label', 'Value'),
-                    array('Aggregation', intval($karton)),
+                    array('Total', intval($karton)),
                     array('Finish', intval($kartonfinish)),
                     array('On Progress', intval($kartonprogress))
                 ),
@@ -676,7 +676,7 @@ if(Mimin::checkRoute('jobkardus/index')){
                 echo GoogleChart::widget( array('visualization' => 'Gauge', 'packages' => 'gauge',
                     'data' => array(
                         array('Label', 'Value'),
-                        array('Aggregation', intval($karton)),
+                        array('Total', intval($karton)),
                         array('Finish', intval($kartonfinish)),
                         array('On Progress', intval($kartonprogress)),
                     ),
@@ -798,10 +798,10 @@ if(Mimin::checkRoute('jobkardus/index')){
 
                 echo GoogleChart::widget(array('visualization' => 'LineChart',
                                 'data' => array(
-                                    array('Label', 'Value'),
-                                    array('Total', intval($pallet)),
-                                    array('Finish', intval($palletfinish)),
-                                    array('On Progress', intval($palletprogress))
+                                    array('Label', 'Value',['role'=>'style']),
+                                    array('Total', intval($pallet),"#28a745"),
+                                    array('Finish', intval($palletfinish),"#28a745"),
+                                    array('On Progress', intval($palletprogress),"#28a745")
                                 ),
                                 'options' => array('title' => 'Line Chart Pallet Aggregation','height'=>350,'legend'=>['position'=>'none'])));
                     
@@ -814,10 +814,10 @@ if(Mimin::checkRoute('jobkardus/index')){
 
                 echo GoogleChart::widget(array('visualization' => 'ColumnChart',
                                 'data' => array(
-                                    array('Label', 'Value'),
-                                    array('Total', intval($pallet)),
-                                    array('Finish', intval($palletfinish)),
-                                    array('On Progress', intval($palletprogress))
+                                    array('Label', 'Value',['role'=>'style']),
+                                    array('Total', intval($pallet),"#28a745"),
+                                    array('Finish', intval($palletfinish),"#28a745"),
+                                    array('On Progress', intval($palletprogress),"#28a745")
                                 ),
                                 'options' => array('title' => 'Bar Chart Pallet Aggregation','height'=>350,'legend'=>['position'=>'none'])));
                     

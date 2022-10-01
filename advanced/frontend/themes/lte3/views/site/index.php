@@ -442,7 +442,7 @@ if(Mimin::checkRoute('job/index'))
 
 } 
 
-if(Mimin::checkRoute('jobkardus/index')){
+iif(Mimin::checkRoute('jobkardus/index')){
 ?>
 
 
@@ -542,11 +542,11 @@ if(Mimin::checkRoute('jobkardus/index')){
                 echo GoogleChart::widget(array('visualization' => 'PieChart',
                 'data' => array(
                     array('Label', 'Value'),
-                    array('Carton Aggregation', intval($karton)),
-                    array('Carton Finish', intval($kartonfinish)),
-                    array('Carton On Progress', intval($kartonprogress))
+                    array('Total', intval($karton)),
+                    array('Finish', intval($kartonfinish)),
+                    array('On Progress', intval($kartonprogress))
                 ),
-                'options' => array('title' => 'Pie Chart Carton Aggregation')));
+                'options' => array('title' => 'Pie Chart Carton Aggregation','height'=>350)));
                 ?>
 
 
@@ -556,12 +556,12 @@ if(Mimin::checkRoute('jobkardus/index')){
 
                 echo GoogleChart::widget(array('visualization' => 'LineChart',
                                 'data' => array(
-                                    array('Label', 'Value'),
-                                    array('Carton Aggregation', intval($karton)),
-                                    array('Carton Finish', intval($kartonfinish)),
-                                    array('Carton On Progress', intval($kartonprogress))
+                                    array('Label', 'Value',['role'=>'style']),
+                                    array('Aggregation', intval($karton),"#28a745"),
+                                    array('Finish', intval($kartonfinish),"#28a745"),
+                                    array('On Progress', intval($kartonprogress),"#28a745")
                                 ),
-                                'options' => array('title' => 'Line Chart Carton Aggregation')));
+                                'options' => array('title' => 'Line Chart Carton Aggregation','height'=>350,'legend'=>['position'=>'none'])));
                     
 
 
@@ -569,16 +569,14 @@ if(Mimin::checkRoute('jobkardus/index')){
               </div>  
               <div class="tab-pane fade" id="custom-content-below-profile1a" role="tabpanel" aria-labelledby="custom-content-below-profile-tab1a">
                    <?php 
-
-                echo GoogleChart::widget(array('visualization' => 'ColumnChart',
-                                'data' => array(
-                                    array('Label', 'Value'),
-                                    array('Carton Aggregation', intval($karton)),
-                                    array('Carton Finish', intval($kartonfinish)),
-                                    array('Carton On Progress', intval($kartonprogress))
+                    echo GoogleChart::widget(array('visualization' => 'ColumnChart',
+                'data' =>  array(
+                                    array('Label', 'Value',['role'=>'style']),
+                                    array('Total', intval($karton),"#28a745"),
+                                    array('Finish', intval($kartonfinish),"#28a745 "),
+                                    array('On Progress', intval($kartonprogress),"#28a745")
                                 ),
-                                'options' => array('title' => 'Bar Chart Carton Aggregation')));
-                    
+                'options' => array('title' => 'Bar Chart Carton Aggregation','height'=>350,'legend'=>['position'=>'none']))); 
 
 
                    ?>
@@ -589,9 +587,9 @@ if(Mimin::checkRoute('jobkardus/index')){
                 echo GoogleChart::widget( array('visualization' => 'Gauge', 'packages' => 'gauge',
                     'data' => array(
                         array('Label', 'Value'),
-                        array('Carton Aggregation', intval($karton)),
-                        array('Carton Finish', intval($kartonfinish)),
-                        array('Carton On Progress', intval($kartonprogress)),
+                        array('Total', intval($karton)),
+                        array('Finish', intval($kartonfinish)),
+                        array('On Progress', intval($kartonprogress)),
                     ),
                     'options' => array(
                         'width' => '100%',
@@ -697,11 +695,11 @@ if(Mimin::checkRoute('jobkardus/index')){
                 echo GoogleChart::widget(array('visualization' => 'PieChart',
                 'data' => array(
                     array('Label', 'Value'),
-                    array('Pallet Aggregation', intval($pallet)),
-                    array('Pallet Finish', intval($palletfinish)),
-                    array('Pallet On Progress', intval($palletprogress))
+                    array('Total', intval($pallet)),
+                    array('Finish', intval($palletfinish)),
+                    array('On Progress', intval($palletprogress))
                 ),
-                'options' => array('title' => 'Pie Chart Pallet Aggregation')));
+                'options' => array('title' => 'Pie Chart Pallet Aggregation','height'=>350)));
                 ?>
 
 
@@ -711,12 +709,12 @@ if(Mimin::checkRoute('jobkardus/index')){
 
                 echo GoogleChart::widget(array('visualization' => 'LineChart',
                                 'data' => array(
-                                    array('Label', 'Value'),
-                                    array('Pallet Aggregation', intval($pallet)),
-                                    array('Pallet Finish', intval($palletfinish)),
-                                    array('Pallet On Progress', intval($palletprogress))
+                                    array('Label', 'Value',['role'=>'style']),
+                                    array('Total', intval($pallet),"#28a745"),
+                                    array('Finish', intval($palletfinish),"#28a745"),
+                                    array('On Progress', intval($palletprogress),"#28a745")
                                 ),
-                                'options' => array('title' => 'Line Chart Pallet Aggregation')));
+                                'options' => array('title' => 'Line Chart Pallet Aggregation','height'=>350,'legend'=>['position'=>'none'])));
                     
 
 
@@ -727,12 +725,12 @@ if(Mimin::checkRoute('jobkardus/index')){
 
                 echo GoogleChart::widget(array('visualization' => 'ColumnChart',
                                 'data' => array(
-                                    array('Label', 'Value'),
-                                    array('Pallet Aggregation', intval($pallet)),
-                                    array('Pallet Finish', intval($palletfinish)),
-                                    array('Pallet On Progress', intval($palletprogress))
+                                    array('Label', 'Value',['role'=>'style']),
+                                    array('Total', intval($pallet),"#28a745"),
+                                    array('Finish', intval($palletfinish),"#28a745"),
+                                    array('On Progress', intval($palletprogress),"#28a745")
                                 ),
-                                'options' => array('title' => 'Bar Chart Pallet Aggregation')));
+                                'options' => array('title' => 'Bar Chart Pallet Aggregation','height'=>350,'legend'=>['position'=>'none'])));
                     
 
 
@@ -744,9 +742,9 @@ if(Mimin::checkRoute('jobkardus/index')){
                 echo GoogleChart::widget( array('visualization' => 'Gauge', 'packages' => 'gauge',
                     'data' => array(
                         array('Label', 'Value'),
-                        array('Pallet Aggregation', intval($pallet)),
-                        array('Pallet Finish', intval($palletfinish)),
-                        array('Pallet On Progress', intval($palletprogress)),
+                        array('Total', intval($pallet)),
+                        array('Finish', intval($palletfinish)),
+                        array('On Progress', intval($palletprogress)),
                     ),
                     'options' => array(
                         'width' => '100%',
