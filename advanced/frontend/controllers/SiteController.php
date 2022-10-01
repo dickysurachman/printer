@@ -458,6 +458,11 @@ public function actionEksekusi()
     {
         return $this->render('about',['pesan'=>$pesan]);
     }
+    public function actionForbidden()
+    {
+        $pesan="Anda tidak berhak mengakses halaman ini, hubungi administrator";
+        return $this->render('about',['pesan'=>$pesan]);
+    }
 
     /**
      * Signs user up.
