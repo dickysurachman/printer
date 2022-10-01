@@ -74,7 +74,7 @@ return [
          'class'=>'\kartik\grid\DataColumn',
          'attribute'=>'status',
          'value'=>'statusname',
-         'filter'=>$st,
+         //'filter'=>$st,
      ],
     [
         'class' => 'kartik\grid\ActionColumn',

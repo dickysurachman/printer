@@ -54,7 +54,7 @@ $st=['Active','Progress Execution','Done'];
     ]]);
     ?></div>
     </div>
-    <?= $form->field($model, 'status')->dropDownList($st); ?>
+    <?= $form->field($model, 'status')->dropDownList($st,['prompt'=>'select']); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

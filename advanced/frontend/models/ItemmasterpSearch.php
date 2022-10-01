@@ -17,10 +17,11 @@ class ItemmasterpSearch extends Itemmasterp
      */
      public $tgl_a;
     public $tgl_b;
+    public $numlimit;
     public function rules()
     {
         return [
-            [['id', 'status','shift','machine','job_id','id_line'], 'integer'],
+            [['id', 'status','shift','machine','job_id','id_line','numlimit'], 'integer'],
             [['tanggal','tgl_a','tgl_b',  'nama','linenm','var_1','var_2','var_3','var_4','var_5'], 'safe'],
         ];
     }

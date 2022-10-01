@@ -51,6 +51,9 @@ class ItempController extends Controller
     {    
         $searchModel = new ItempalletSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(isset($searchModel->numlimit)){
+            $dataProvider->pagination = ['pageSize' =>intval($searchModel->numlimit)];
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

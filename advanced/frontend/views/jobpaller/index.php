@@ -5,7 +5,7 @@ use yii\bootstrap4\Modal;
 use kartik\grid\GridView;
 use yii2ajaxcrud\ajaxcrud\CrudAsset;
 use yii2ajaxcrud\ajaxcrud\BulkButtonWidget;
-
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ItemmasterpSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,7 +14,7 @@ $this->title = Yii::t('yii', 'Pallet Job List');
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
-
+$st=['20'=>'20','50'=>'50','100'=>'100','200'=>'200'];
 ?>
 <style type="text/css">
     
@@ -25,6 +25,12 @@ CrudAsset::register($this);
 <div class="itemmasterp-index">
      <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemp/uploadcsv'], ['class' => 'btn btn-success']) ?>
     <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
+<?php                         
+$form =ActiveForm::begin(['method' => 'get',]);
+//echo Html::activeDropDownList($searchModel, 'numlimit',$st,['onChange'=>'this.form.submit()','data-pjax'=>1]);
+//ActiveForm::end();
+
+?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
@@ -34,6 +40,10 @@ CrudAsset::register($this);
             'columns' => require(__DIR__.'/_columns.php'),
             'toolbar'=> [
                 ['content'=>
+                    //$form->field($model, 'status')->dropDownList($st).
+                    //ActiveForm::begin(['method' => 'get',]).
+                    //ActiveForm::end().
+                    Html::activeDropDownList($searchModel, 'numlimit',$st,['onChange'=>'this.form.submit()','data-pjax'=>1]).
                     Html::a('<i class="fa fa-redo"></i>', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-outline-success', 'title' => Yii::t('yii2-ajaxcrud', 'Reset Grid')]).
                     '{toggleData}'.
@@ -65,7 +75,10 @@ CrudAsset::register($this);
         ])?>
     </div>
 </div>
-<?php Modal::begin([
+<?php 
+
+ActiveForm::end();
+Modal::begin([
     "id" => "ajaxCrudModal",
     "footer" => "", // always need it for jquery plugin
     "clientOptions" => [

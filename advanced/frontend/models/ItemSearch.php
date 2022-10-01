@@ -17,12 +17,11 @@ class ItemSearch extends Item
      */
     public $tgl_a;
     public $tgl_b;
-
-
+    public $numlimit;
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id','numlimit'], 'integer'],
             [['tgl_a','tgl_b','edit_date','tanggal', 'var_1','gagal','hitung','ulang','var_4','var_5','var_2', 'biner', 'var_3', 'status'], 'safe'],
         ];
     }

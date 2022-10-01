@@ -40,7 +40,9 @@ class JobpallerController extends Controller
     {    
         $searchModel = new ItemmasterpSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+         if(isset($searchModel->numlimit)){
+            $dataProvider->pagination = ['pageSize' =>intval($searchModel->numlimit)];
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

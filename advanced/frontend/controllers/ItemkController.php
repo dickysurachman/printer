@@ -51,7 +51,9 @@ class ItemkController extends Controller
     {    
         $searchModel = new ItemkardusSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        if(isset($searchModel->numlimit)){
+            $dataProvider->pagination = ['pageSize' =>intval($searchModel->numlimit)];
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

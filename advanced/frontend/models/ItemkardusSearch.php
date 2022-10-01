@@ -17,11 +17,12 @@ class ItemkardusSearch extends Itemkardus
      */
     public $tgl_a;
     public $tgl_b;
+    public $numlimit;
 
     public function rules()
     {
         return [
-            [['id', 'ulang', 'hitung', 'gagal'], 'integer'],
+            [['id', 'ulang', 'hitung', 'gagal','numlimit'], 'integer'],
             [['tgl_a','tgl_b','tanggal', 'var_1', 'var_2', 'biner', 'var_3', 'status', 'var_4', 'var_5', 'var_6', 'var_7', 'var_8', 'var_9', 'var_10'], 'safe'],
         ];
     }
