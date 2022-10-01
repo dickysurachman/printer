@@ -108,6 +108,9 @@ use Da\QrCode\QrCode;
 
 </div>
 </div>
+<script type="text/javascript">
+    window.print();
+</script>
 <?php 
 //}
 

@@ -121,3 +121,6 @@ use yii\widgets\DetailView;
     </div>
 
 </div>
+<script type="text/javascript">
+    window.print();
+</script>
