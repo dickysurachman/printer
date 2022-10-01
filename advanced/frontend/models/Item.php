@@ -91,7 +91,7 @@ class Item extends \yii\db\ActiveRecord
     }
      public function getJob(){
 
-        return $this->hasOne(itemmasterd::className(), ['iddetail' => 'id']);
+        return $this->hasOne(Itemmasterd::className(), ['iddetail' => 'id']);
     }
     public function beforeSave($insert)
     {
