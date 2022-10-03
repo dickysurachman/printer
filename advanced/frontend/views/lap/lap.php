@@ -23,7 +23,7 @@ if(isset($model->tanggal)) {
 
   $job=Itemmaster::find()->where('id_line='.$model->linenm.' and date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'"')->count();
   $sukses=Itemmasterd::find()->where('statusc=1 and idmaster in (select id from itemmaster where id_line='.$model->linenm.' and date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
-  $gagal=Itemmasterd::find()->where('statusc=2 and idmaster in (select id from itemmaster where id_line='.$model->linenm.' and date(tanggal between) "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
+  $gagal=Itemmasterd::find()->where('statusc=2 and idmaster in (select id from itemmaster where id_line='.$model->linenm.' and date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
   $run=Itemmasterd::find()->where('idmaster in (select id from itemmaster where id_line='.$model->linenm.' and date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'" )')->count();
   $karton=Itemkardus::find()->where(' date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'" and id in (select iddetail from itemmasterkd where idmaster in (select id from itemmasterk where id_line='.$model->linenm.' and date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'"))')->count();
   $pallet=Itempallet::find()->where(' date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'" and id in (select iddetail from itemmasterpd where idmaster in (select id from itemmasterp where id_line='.$model->linenm.' and date(tanggal) between "'.$model->tanggal.'" and "'.$model->nama.'"))')->count();

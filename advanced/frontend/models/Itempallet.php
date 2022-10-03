@@ -92,6 +92,7 @@ class Itempallet extends \yii\db\ActiveRecord
             'hitung' => Yii::t('yii', 'Success'),
             'gagal' => Yii::t('yii', 'Failure'),
             'status' => Yii::t('yii', 'Status'),
+            'Statusjob' => Yii::t('yii', 'Status'),
         ];
     }
      public function getScan(){

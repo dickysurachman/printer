@@ -29,6 +29,7 @@ use yii\widgets\DetailView;
                 <th>LOT</th>
                 <th>S/N</th>
                 <th>QR Data</th>
+                <th>Status</th>
             </tr>
         <?php
     foreach($model->detail as $value){
@@ -38,6 +39,7 @@ use yii\widgets\DetailView;
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
         echo "<td>".$value->itemd->scan."</td></tr>";
+        echo "<td>".$value->itemd->statusjob."</td></tr>";
         $i++;
     }   ?>
         </table>

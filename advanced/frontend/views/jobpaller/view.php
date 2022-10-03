@@ -28,7 +28,7 @@ use yii\widgets\DetailView;
                 <th>GTIN</th>
                 <th>LOT</th>
                 <th>S/N</th>
-                <th>status</th>
+                <th>Status</th>
             </tr>
         <?php
     foreach($model->detail as $value){
@@ -37,7 +37,7 @@ use yii\widgets\DetailView;
         echo "<td>".$value->itemd->var_2."</td>";
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
-        echo "<td>".$value->itemd->statusname."</td></tr>";
+        echo "<td>".$value->itemd->statusjob."</td></tr>";
         $i++;
     }?>
     </table>
