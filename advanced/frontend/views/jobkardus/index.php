@@ -5,7 +5,7 @@ use yii\bootstrap4\Modal;
 use kartik\grid\GridView;
 use yii2ajaxcrud\ajaxcrud\CrudAsset;
 use yii2ajaxcrud\ajaxcrud\BulkButtonWidget;
-
+use hscstudio\mimin\components\Mimin;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ItemkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
