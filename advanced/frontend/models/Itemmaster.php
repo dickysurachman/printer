@@ -47,6 +47,7 @@ class Itemmaster extends \yii\db\ActiveRecord
             'tanggal' => Yii::t('yii', 'Date'),
             'nama' => Yii::t('yii', 'Name'),
             'status' => Yii::t('yii', 'Status'),
+            'statusname' => Yii::t('yii', 'Status'),
             'shift' => Yii::t('yii', 'Shift'),
             'machine' => Yii::t('yii', 'Machine'),
             'linenm' => Yii::t('yii', 'Line Name'),

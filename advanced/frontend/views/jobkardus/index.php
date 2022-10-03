@@ -27,8 +27,9 @@ CrudAsset::register($this);
     }
 </style>
 <div class="itemk-index">
+    <?php if(Mimin::checkRoute('itemk/uploadcsv')) { ?>
      <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemk/uploadcsv'], ['class' => 'btn btn-success']) ?>
-     <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
+     <?php } echo $this->render('_searchd', ['model' => $searchModel]); ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',

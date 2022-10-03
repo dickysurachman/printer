@@ -48,7 +48,11 @@ class ItemmasterSearch extends Itemmaster
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        $dataProvider->setSort([
+            'defaultOrder' => [
+                'tanggal' => SORT_DESC
+            ]
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -75,7 +79,7 @@ class ItemmasterSearch extends Itemmaster
          ->andFilterWhere(['like', 'var_4', $this->var_4])
          ->andFilterWhere(['like', 'var_5', $this->var_5])
          ->andFilterWhere(['>=', 'tanggal', $this->tgl_a])
-            ->andFilterWhere(['<=', 'tanggal', $this->tgl_b]);
+            ->andFilterWhere(['<=', 'date(tanggal)', $this->tgl_b]);
 
         return $dataProvider;
     }

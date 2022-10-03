@@ -6,6 +6,8 @@ use kartik\grid\GridView;
 use yii2ajaxcrud\ajaxcrud\CrudAsset;
 use yii2ajaxcrud\ajaxcrud\BulkButtonWidget;
 use yii\widgets\ActiveForm;
+use hscstudio\mimin\components\Mimin;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ItemmasterpSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -23,8 +25,10 @@ $st=['20'=>'20','50'=>'50','100'=>'100','200'=>'200'];
     }
 </style>
 <div class="itemmasterp-index">
+    <?php if(Mimin::checkRoute('itemp/uploadcsv')) { ?>
      <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemp/uploadcsv'], ['class' => 'btn btn-success']) ?>
-    <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
+    
+    <?php }  echo $this->render('_searchd', ['model' => $searchModel]); ?>
 <?php                         
 $form =ActiveForm::begin(['method' => 'get',]);
 //echo Html::activeDropDownList($searchModel, 'numlimit',$st,['onChange'=>'this.form.submit()','data-pjax'=>1]);

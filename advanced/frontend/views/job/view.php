@@ -13,7 +13,7 @@ use yii\widgets\DetailView;
             'id',
             'tanggal',
             'nama',
-            'status',
+            'statusname',
         ],
     ]) ?>
 
