@@ -30,7 +30,7 @@ $st2=['20'=>'20','50'=>'50','100'=>'100','200'=>'200'];
 
 <div class="item-index">
     <?php //= Html::a(Yii::t('yii', 'Import Job'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>
-     <?= Html::a(Yii::t('yii', 'Generate Job'), ['itemp/uploadcsv'], ['class' => 'btn btn-success']) ?>
+     <?php //= Html::a(Yii::t('yii', 'Generate Job'), ['itemp/uploadcsv'], ['class' => 'btn btn-success']) ?>
     <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
      <?php $form =ActiveForm::begin(['method' => 'get',]); ?>
     <div id="ajaxCrudDatatable">

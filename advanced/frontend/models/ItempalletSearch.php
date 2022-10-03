@@ -51,7 +51,11 @@ class ItempalletSearch extends Itempallet
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        $dataProvider->setSort([
+            'defaultOrder' => [
+                'tanggal' => SORT_DESC
+            ]
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {
