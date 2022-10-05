@@ -14,6 +14,7 @@ use yii\helpers\Html;
                 <th>GTIN</th>
                 <th>LOT</th>
                 <th>S/N</th>
+                <th>Status</th>
                 
                  <th>Input Data</th>
             </tr>
@@ -29,6 +30,7 @@ use yii\helpers\Html;
         echo "<td>".$value->itemd->var_2."</td>";
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
+        echo "<td>".$value->itemd->statusjob."</td>";
        
          echo "<td>".Html::a('<span class="fas fa-barcode" style="font-size:10pt;" title="Start Input"></span> '.\Yii::t('yii', 'USB'), ['itemk/scanusb', 'id' => $value->itemd->id], ['data-pjax' => "0",'class'=>'btn btn-success','target'=>"_blank"])."&nbsp;&nbsp;".
                     "</td></tr>";

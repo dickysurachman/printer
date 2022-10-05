@@ -13,6 +13,7 @@ use yii\widgets\DetailView;
             'id',
             'tanggal',
             'nama',
+            'statusdetail',
             //'status',
         ],
     ]) ?>
@@ -33,13 +34,13 @@ use yii\widgets\DetailView;
             </tr>
         <?php
     foreach($model->detail as $value){
-        echo "<tr><td>".$i."</td>";
-        echo "<td>".$value->itemd->var_1."</td>";
+        echo "<tr ><td style='width:8px;'>".$i."</td>";
+        echo "<td >".$value->itemd->var_1."</td>";
         echo "<td>".$value->itemd->var_2."</td>";
         echo "<td>".$value->itemd->var_3."</td>";
         echo "<td>".$value->itemd->var_5."</td>";
-        echo "<td>".$value->itemd->scan."</td></tr>";
-        echo "<td>".$value->itemd->statusjob."</td></tr>";
+        echo "<td style='word-break: break-all;width:150px !important;'>".$value->itemd->scan."</td>";
+        echo "<td >".$value->itemd->statusjob."</td></tr>";
         $i++;
     }   ?>
         </table>

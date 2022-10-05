@@ -22,8 +22,8 @@ CrudAsset::register($this);
         background-color: white !important;
     }
     .modal-dialog {
-        max-width: 70% !important;
-        width: 70% !important;
+        max-width: 80% !important;
+        width: 80% !important;
     }
 </style>
 <div class="itemk-index">

@@ -54,6 +54,7 @@ class Itemk extends \yii\db\ActiveRecord
             'job_id' => Yii::t('yii', 'Product Name'),
             'id_line' => Yii::t('yii', 'Line Name'),            
             'status' => Yii::t('yii', 'Status'),
+            'statusdetail' => Yii::t('yii', 'Status'),
         ];
     }
       
@@ -64,5 +65,20 @@ class Itemk extends \yii\db\ActiveRecord
       public function getDetail()
     {
         return $this->hasMany(Itemkd::className(), ['idmaster' => 'id']);
+    }
+
+    public function getStatusdetail(){
+        $ja=Itemmasterd::find()->where(['idmaster'=>$this->id])->all();
+        $status="On Progress";
+        foreach($ja as $vall){
+            $haha=$vall->itemd->statusjob;
+            if($haha=="Done"){
+                $status="Done";
+            } else {
+                $status="On Progress";
+                break;
+            }
+        }
+        return $status;
     }
 }
