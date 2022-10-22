@@ -413,6 +413,78 @@ public function actionEksekusi()
             'model' => $model,
         ]);
     }
+    public function actionLogingeneral()
+    {
+        $this->layout="main-login";
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+
+        return $this->render('logingeneral', [
+            'model' => $model,
+        ]);
+    }
+    public function actionLoginserial()
+    {
+        $this->layout="main-login";
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+
+        return $this->render('loginserial', [
+            'model' => $model,
+        ]);
+    }
+    public function actionLogincarton()
+    {
+        $this->layout="main-login";
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+
+        return $this->render('loginkarton', [
+            'model' => $model,
+        ]);
+    }
+    public function actionLoginpallet()
+    {
+        $this->layout="main-login";
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+
+        return $this->render('loginpallet', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Logs out the current user.
