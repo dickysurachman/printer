@@ -213,25 +213,26 @@ class UserkController extends Controller
     {
         $request = Yii::$app->request;
         $model = $this->findModel($id);       
-        if(strpos(" ".$model->username, "serial")) {
+        if(strpos("XOXX".Yii::$app->user->identity->username, "serial")) {
             $authItems = ArrayHelper::map(
             AuthItem::find()->where('type=1 and name like "%serial%"')->asArray()->all(),
             'name', 'name');
-         } else if(strpos(" ".$model->username, "kardus")) {
+         } else if(strpos("XOXX".Yii::$app->user->identity->username, "kardus")) {
             $authItems = ArrayHelper::map(
             AuthItem::find()->where('type=1 and name like "%kardus%"')->asArray()->all(),
             'name', 'name');
 
-         } else if(strpos(" ".$model->username, "pallet")) {
+         } else if(strpos("XOXX".Yii::$app->user->identity->username, "pallet")) {
             $authItems = ArrayHelper::map(
             AuthItem::find()->where('type=1 and name like "%pallet%"')->asArray()->all(),
             'name', 'name');
 
          } else {
             $authItems = ArrayHelper::map(
-            AuthItem::find()->where([
-                'type' => 1,
-            ])->asArray()->all(),
+            AuthItem::find()->where('type=1 and name like "%karton%"')->asArray()->all(),
+            //AuthItem::find()->where([
+            //    'type' => 1,
+            //])->asArray()->all(),
             'name', 'name');
          }
 
