@@ -371,10 +371,7 @@ if($run==0) $run=1;
     color: #34495E
 }
 </style>
-<?php 
-if(Mimin::checkRoute('job/index'))
-{
-  ?>
+
 <div class="container-fluid">
   <?php $form = ActiveForm::begin(); ?>
     <div class="row" style="padding:15px;">
@@ -415,12 +412,16 @@ if(Mimin::checkRoute('job/index'))
         ?>
     </div>
  
-    <div class="form-group">
+    <div class="form-group" style="padding:5px;">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?php //= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
+    <?php 
+  if(Mimin::checkRoute('job/index'))
+  {
+  ?>
     <h4>Serialization and Inspection</h4>
     <?php 
     
