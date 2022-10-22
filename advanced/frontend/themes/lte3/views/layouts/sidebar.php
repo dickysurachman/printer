@@ -128,7 +128,7 @@ use hscstudio\mimin\components\Mimin;
                         ],
                     ],
                    
-                    ['label' => 'Event Log', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => !Mimin::checkRoute('rep/eventlog')
+                    ['label' => 'Event Log', 'icon' => 'spinner', 'visible' => !Mimin::checkRoute('rep/eventlog') or Mimin::checkRoute('loge/index')
                         ,'items' => [
                             ['label' => 'Log Error Printer', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => Mimin::checkRoute('loge/index')],
                              ['label' => 'Log Camera', 'url'=>['/log/index'],'icon' => 'download', 'visible' => Mimin::checkRoute('job/index')],
