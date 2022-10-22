@@ -213,15 +213,33 @@ class UserkController extends Controller
     {
         $request = Yii::$app->request;
         $model = $this->findModel($id);       
-        $authAssignments = AuthAssignment::find()->where([
-            'user_id' => $model->id,
-        ])->column();
+        if(strpos(" ".$model->username, "serial")) {
+            $authItems = ArrayHelper::map(
+            AuthItem::find()->where('type=1 and name like "%serial%"')->asArray()->all(),
+            'name', 'name');
+         } else if(strpos(" ".$model->username, "kardus")) {
+            $authItems = ArrayHelper::map(
+            AuthItem::find()->where('type=1 and name like "%kardus%"')->asArray()->all(),
+            'name', 'name');
 
-        $authItems = ArrayHelper::map(
+         } else if(strpos(" ".$model->username, "pallet")) {
+            $authItems = ArrayHelper::map(
+            AuthItem::find()->where('type=1 and name like "%pallet%"')->asArray()->all(),
+            'name', 'name');
+
+         } else {
+            $authItems = ArrayHelper::map(
             AuthItem::find()->where([
                 'type' => 1,
             ])->asArray()->all(),
             'name', 'name');
+         }
+
+        $authAssignments = AuthAssignment::find()->where([
+            'user_id' => $model->id,
+        ])->column();
+
+        
 
         $authAssignment = new AuthAssignment([
             'user_id' => $model->id,

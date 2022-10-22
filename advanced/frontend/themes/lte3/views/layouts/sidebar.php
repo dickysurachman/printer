@@ -24,19 +24,7 @@ use hscstudio\mimin\components\Mimin;
             </div>
         </div>
 
-        <!-- SidebarSearch Form -->
-        <!-- href be escaped -->
-        <!-- <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div> -->
-
+        
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
@@ -58,18 +46,58 @@ use hscstudio\mimin\components\Mimin;
                     ],
 
                     [
-                        'label' => 'Serialization & Inspection',
+                        'label' => 'Create Job',
+                        'icon'=>'wrench',
+                        'visible'=>Mimin::checkRoute('userk/delete'),
+                        'items'=>[    
+                        ['label' => \Yii::t('yii', 'Serialization & Inspection'), 'url' => ['/item/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('item/uploadcsv')],
+                        ['label' => \Yii::t('yii', 'Carton Aggregation'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('item/uploadcsv')],
+                        ['label' => \Yii::t('yii', 'Pallet Aggregation'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('item/uploadcsv')],
+
+                        ]
+                    ],
+                    [
+                        'label' => 'Send Job',
+                        'icon'=>'folder',
+                        'visible'=>Mimin::checkRoute('userk/delete'),
+                        'items'=>[    
+                        ['label' => \Yii::t('yii', 'Job Serialization & Inspection'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
+                        ['label' => \Yii::t('yii', 'Job Carton Aggregation'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobkardus/index')],
+                        ['label' => \Yii::t('yii', 'Job Pallet Aggregation'), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobpaller/index')],
+
+                        ]
+                    ],
+                    [
+                        'label' => 'Job List',
+                        'icon'=>'wrench',
+                        //'visible'=>(!Mimin::checkRoute('rep/manager') or !Mimin::checkRoute('userk/delete')),
+                        'visible'=>Mimin::checkRoute('rep/manager') and !Mimin::checkRoute('userk/delete'),
+                        'items'=>[    
+                        ['label' => \Yii::t('yii', 'Job Serialization & Inspection'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
+                        ['label' => \Yii::t('yii', 'Job Carton Aggregation'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobkardus/index')],
+                        ['label' => \Yii::t('yii', 'Job Pallet Aggregation'), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobpaller/index')],
+
+                        ]
+                    ],
+                    [
+                        //'label' => 'Serialization & Inspection',
+                        'label' => 'Job List',
                         'icon'=>'eye',
+                        'visible'=>!Mimin::checkRoute('userk/delete') and !Mimin::checkRoute('rep/manager') ,
                         'items' => [
                         ['label' => \Yii::t('yii', 'Job List'), 'url' => ['/job/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
                         ['label' => \Yii::t('yii', 'Create Job'), 'url' => ['/item/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('item/uploadcsv')],
-                        ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],
+                        ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],                    
+                        ['label' => 'Printer Configuration', 'url'=>['/site/settingsave'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
+                        ['label' => 'Camera Configuration', 'url'=>['/site/settingcamera'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
                         ]
                     ],
                     
                      [
-                        'label' => 'Carton Aggregation',
+                        //'label' => 'Carton Aggregation',
+                        'label' => 'Job List',
                         'icon'=>'bolt',
+                        'visible'=>!Mimin::checkRoute('userk/delete') and !Mimin::checkRoute('rep/manager') ,
                         'items' => [
                              ['label' => \Yii::t('yii', 'Box Job List'), 'url' => ['/jobkardus/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobkardus/index')],
                              ['label' => \Yii::t('yii', 'Aggregation Carton'), 'url' => ['/itemk/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('itemk/uploadcsv')],
@@ -78,8 +106,10 @@ use hscstudio\mimin\components\Mimin;
                         ]
                     ],
                     [
-                        'label' => 'Pallet Aggregation',
+                        //'label' => 'Pallet Aggregation',
+                        'label' => 'Job List',
                         'icon'=>'clipboard',
+                        'visible'=>!Mimin::checkRoute('userk/delete') and !Mimin::checkRoute('rep/manager') ,
                         'items' => [
                              ['label' => \Yii::t('yii', 'Pallet Job List '), 'url' => ['/jobpaller/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('jobpaller/index')],
                              ['label' => \Yii::t('yii', 'Aggregation Pallet'), 'url' => ['/itemp/uploadcsv'], 'icon' => 'bolt','visible'=>Mimin::checkRoute('itemp/uploadcsv')],
@@ -87,9 +117,8 @@ use hscstudio\mimin\components\Mimin;
                         
                         ]
                     ],
-                    
-                    //'visible'=>Mimin::checkRoute('lap/report'),
-                    ['label' => 'Report', 'url'=>'#','icon' => 'print', 
+                    ['label' => \Yii::t('yii', 'Status Machine'), 'url' => ['/rep/machine'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('rep/machine')],
+                    ['label' => 'Report Log Job', 'url'=>'#','icon' => 'print', 
                         'items' => [
                             ['label' => \Yii::t('yii', 'Global by Line '), 'url' => ['/lap/report'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('lap/report')],
                             ['label' => \Yii::t('yii', 'Serialization & Inspection'), 'url' => ['/lap/reportsi'], 'icon' => 'eye','visible'=>Mimin::checkRoute('lap/reportsi')],
@@ -98,52 +127,19 @@ use hscstudio\mimin\components\Mimin;
 
                         ],
                     ],
-                    ['label' => 'Printer Configuration', 'url'=>['/site/settingsave'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
-                    //['label' => 'Connect to Printer', 'url'=>['/site/eksekusi'],'target'=>'_blank','icon' => 'print', 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => 'Log Error Printer', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => Mimin::checkRoute('loge/index')],
-                     //['label' => \Yii::t('yii', 'Job Scan'), 'url' => ['/jobscan/index'], 'icon' => 'clipboard','visible'=>Mimin::checkRoute('job/index')],
-                     //['label' => \Yii::t('yii', 'Aggregation Case Carton'), 'url' => ['/jobscan/aggregation'], 'icon' => 'file','visible'=>Mimin::checkRoute('job/index')],
-                    ['label' => 'Camera Configuration', 'url'=>['/site/settingcamera'],'icon' => 'link', 'visible' => !Yii::$app->user->isGuest],
-                    //['label' => 'Server Camera', 'url'=>Yii::$app->homeUrl.'/servercamera.py','target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],
-                    //['label' => 'Server Camera', 'url'=>['/site/scan'],'target'=>'_blank','icon' => 'camera-retro', 'visible' => !Yii::$app->user->isGuest],
-                    //['label' => 'Input Barcode', 'url'=>['/site/scanm2'],'icon' => 'barcode', 'visible' => Mimin::checkRoute('site/scanm2')],
-                    //['label' => 'Camera Monitoring', 'url'=>['/site/cameralive'],'icon' => 'eye', 'visible' => Mimin::checkRoute('site/cameralive')],
-                    ['label' => 'Log Camera', 'url'=>['/log/index'],'icon' => 'download', 'visible' => Mimin::checkRoute('job/index')],
-                    //['label' => 'Data Scan', 'url'=>['/itemc/index'],'icon' => 'book', 'visible' => Mimin::checkRoute('itemc/index')],
+                   
+                    ['label' => 'Event Log', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => !Mimin::checkRoute('rep/eventlog')
+                        ,'items' => [
+                            ['label' => 'Log Error Printer', 'url'=>['/loge/index'],'icon' => 'spinner', 'visible' => Mimin::checkRoute('loge/index')],
+                             ['label' => 'Log Camera', 'url'=>['/log/index'],'icon' => 'download', 'visible' => Mimin::checkRoute('job/index')],
+ 
+                        ]
+                    ],
+                    
                     ['label' => \Yii::t('yii', 'Login'), 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
                     ['label' => \Yii::t('yii', 'Change Password'), 'url' => ['site/password'], 'icon' => 'key', 'visible' => !Yii::$app->user->isGuest],
                     ['label' =>  \Yii::t('yii', 'Logout'),'url' => ['site/logout'],'template'=>'<a class="nav-link" href="{url}" data-method="post"><i class="nav-icon fas fa-sign-in-alt"></i>{label}</a>','icon' => 'sign-in-alt', 'visible' => !Yii::$app->user->isGuest]
 
-                    /*
-                    ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
-                    ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-                    ['label' => 'MULTI LEVEL EXAMPLE', 'header' => true],
-                    ['label' => 'Level1'],
-                    [
-                        'label' => 'Level1',
-                        'items' => [
-                            ['label' => 'Level2', 'iconStyle' => 'far'],
-                            [
-                                'label' => 'Level2',
-                                'iconStyle' => 'far',
-                                'items' => [
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                                ]
-                            ],
-                            ['label' => 'Level2', 'iconStyle' => 'far']
-                        ]
-                    ],
-                    ['label' => 'Level1'],
-                    ['label' => 'LABELS', 'header' => true],
-                    ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
-                    */
                 ]
             ]);
             ?>

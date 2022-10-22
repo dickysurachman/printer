@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\User;
-
+use hscstudio\mimin\components\Mimin;
 /**
  * UserSearch represents the model behind the search form about `app\models\User`.
  */
@@ -61,13 +61,37 @@ class UserSearch extends User
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+        if(strpos("XOXX".Yii::$app->user->identity->username, "serial")) {
+        $query->andFilterWhere(['like', 'username', "serial"])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
+        } else if(strpos("XOXX".Yii::$app->user->identity->username, "karton")) {
+        $query->andFilterWhere(['like', 'username', "karton"])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
+        
+        } else if(strpos("XOXX".Yii::$app->user->identity->username, "pallet")) {
+        $query->andFilterWhere(['like', 'username', "pallet"])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
 
+        } else {            
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
+        }
 
         return $dataProvider;
     }

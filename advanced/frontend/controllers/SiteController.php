@@ -471,7 +471,8 @@ public function actionEksekusi()
      */
     public function actionSignup()
     {
-        $this->layout="main-login";
+        return $this->redirect(['site/login']);
+        /*$this->layout="main-login";
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
@@ -480,7 +481,7 @@ public function actionEksekusi()
 
         return $this->render('signup', [
             'model' => $model,
-        ]);
+        ]);*/
     }
 
     public function actionGetprint(){

@@ -323,7 +323,7 @@ class ItemkController extends Controller
                     Yii::$app->session->setFlash('danger', 'Failed import '.$e.getMessage());
 
                 }
-            return $this->redirect(['itemk/index']); 
+            return $this->redirect(['jobkardus/index']); 
         }
         // Yii::$app->session->setFlash('success', ' rows Success ');
         return $this->render('uploadcsva', [
