@@ -228,9 +228,8 @@ class ItemController extends Controller
     public function actionFailed($id){
         $job=Itemmaster::findOne($id);
         if(isset($job)) {
-        //$sql=Yii::$app->db->createCommand("delete from scanlog where machine=".$job->machine." and status=0")->execute();
-        $sql=Yii::$app->db->createCommand("update itemmasterd set status=0,statusc=0 where statusc=2 and idmaster=".$id)->execute();
         $sql=Yii::$app->db->createCommand("update item set status=0 where id in (select iddetail from itemmasterd where statusc=2 and idmaster=".$id.")")->execute();
+        $sql=Yii::$app->db->createCommand("update itemmasterd set status=0,statusc=0 where statusc=2 and idmaster=".$id)->execute();
         return 'failed';
         }
     }
@@ -239,7 +238,6 @@ class ItemController extends Controller
      public function actionResume($id){
         $job=Itemmaster::findOne($id);
         if(isset($job)) {
-        //$sql=Yii::$app->db->createCommand("delete from scanlog where machine=".$job->machine." and status=0")->execute();
         $sql=Yii::$app->db->createCommand("update itemmasterd set status=0 where statusc=0 and idmaster=".$id)->execute();
         return 'resume';
         }
