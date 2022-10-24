@@ -481,7 +481,7 @@ public function actionEksekusi()
             if(strpos("XXXA".$model->username,"serial")) {
                 $model->login();
             } else {
-            Yii::$app->session->setFlash('danger', 'Login Faied');                
+            Yii::$app->session->setFlash('warning', 'Login Faied');                
             }
             return $this->goBack();
         }
@@ -504,7 +504,7 @@ public function actionEksekusi()
             if(strpos("XXXA".$model->username,"karton")) {
                 $model->login();
             } else {
-            Yii::$app->session->setFlash('danger', 'Login Faied');                
+            Yii::$app->session->setFlash('warning', 'Login Faied');                
             }
 
             return $this->goBack();
@@ -528,7 +528,7 @@ public function actionEksekusi()
             if(strpos("XXXA".$model->username,"pallet")) {
                 $model->login();
             } else {
-            Yii::$app->session->setFlash('danger', 'Login Faied');                
+            Yii::$app->session->setFlash('warning', 'Login Faied');                
             }
 
             return $this->goBack();
