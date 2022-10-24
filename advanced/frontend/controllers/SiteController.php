@@ -83,6 +83,25 @@ class SiteController extends Controller
         $h=Machine::find()->where(['key'=>$key])->one();
         if(isset($h)) {
         $ipx=$h->ip;
+        if(trim($ipx)=="") {
+            $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(10)->all();
+            foreach($res as $value){
+                $value->status=2;
+                $value->save();
+                $det=Itemmasterd::findOne(['iddetail'=>$value]);
+                $det->status=1;
+                $det->save();
+            }
+            $h->status=1;
+            $h->save();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+            'message' => $res,
+            'code' => 100,
+            ];
+
+        } else {
+
         $ipy=$_SERVER['REMOTE_ADDR'];
         if(($ipx==$ipy) or ($ipy=="::1")) {      
             $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(10)->all();
@@ -100,6 +119,7 @@ class SiteController extends Controller
             'message' => $res,
             'code' => 100,
             ];
+        }
         }
         }
     }
@@ -297,6 +317,34 @@ class SiteController extends Controller
         $h=Machine::find()->where(['key'=>$key])->one();
         if(isset($h)) {
         $ipx=$h->ip;
+        if(trim($ipx)==""){
+        $ipy=$_SERVER['REMOTE_ADDR']; 
+            if($status=="failure") {
+            $new1=new Logitem();
+            $new1->logbaca=$logbaca;
+            $new1->machine=$h->id;
+            $new1->ip=$ipy;
+            $new1->save();
+            } else {
+            $ja=Item::findOne($id);
+            if(isset($ja)){
+            $total=$ja->hitung+$ja->gagal;
+            if($status=="sukses") {
+                $ja->status=2;
+                $det=Itemmasterd::findOne(['iddetail'=>$ja->id]);
+                $det->status=1;
+                $det->save();
+            } else {
+                $ja->status=2;
+                $det=Itemmasterd::findOne($ja->id);
+                $det->status=2;
+                $det->save();                
+            }
+            $ja->save();
+            }
+        }
+        
+        } else {
         $ipy=$_SERVER['REMOTE_ADDR'];
         if(($ipx==$ipy) or ($ipy=="::1")) {   
             if($status=="failure") {
@@ -322,8 +370,10 @@ class SiteController extends Controller
             }
             $ja->save();
             }
+            }
+        } 
         }
-    } } 
+    }
     } 
     public function actionHitungx($id,$status,string $logbaca=""){
         if($status=="failure") {

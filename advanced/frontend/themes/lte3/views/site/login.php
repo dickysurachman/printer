@@ -4,31 +4,45 @@ use yii\helpers\Url;
 use common\widgets\Alert;
 ?>
 <?= Alert::widget() ?>
+
+<style type="text/css">
+    
+@media only screen and (min-width: 720px){
+.login-box, .register-box{
+    width : 80% !important;
+}
+
+}
+
+</style>
+
 <div class="card">
-    <div class="card-body login-card-body" style="min-width: 400px !important;">
-        <p class="login-box-msg">Choose Your Login</p>
+    <div class="card-body login-card-body" >
+        <p class="login-box-msg">Select Application</p>
             <div class="row" style="margin:15px">
-            <div class="col-6">
-                
-          <?= Html::a('General', Url::to('logingeneral.html'),['class' => 'btn btn-warning btn-block']) ?>
+            <div class="col-md-3">
+                <img src="<?=Yii::$app->homeUrl?>/images/serial.JPG" class="img-responsive">
+          <?= Html::a('Administrator Line Manager', Url::to('logingeneral.html'),['class' => 'btn btn-warning btn-block']) ?>
             </div>
-            <div class="col-6">
+            <div class="col-md-3">
                 
-          <?= Html::a('Serialization', Url::to('loginserial.html'),['class' => 'btn btn-success btn-block']) ?>
+                <img src="<?=Yii::$app->homeUrl?>images/serial.JPG" class="img-responsive">
+          <?= Html::a('Serialization & Inspection Station', Url::to('loginserial.html'),['class' => 'btn btn-success btn-block']) ?>
             </div>
 
-            </div>
-            <div class="row"> 
-                <div class="col-6"> 
-                <?= Html::a('Aggregation Carton', Url::to('logincarton.html'),['class' => 'btn btn-danger btn-block']) ?>
+                <div class="col-md-3"> 
+                <img src="<?=Yii::$app->homeUrl?>images/serial.JPG" class="img-responsive">
+                <?= Html::a('Aggregation Case Carton Station', Url::to('logincarton.html'),['class' => 'btn btn-danger btn-block']) ?>
 
                 </div>
-                <div class="col-6"> 
+                <div class="col-md-3"> 
+                <img src="<?=Yii::$app->homeUrl?>images/serial.JPG" class="img-responsive">
 
-                  <?= Html::a('Aggregation Pallet', Url::to('loginpallet.html'),['class' => 'btn btn-primary btn-block']) ?>
+                  <?= Html::a('Aggregation Case Pallet Station', Url::to('loginpallet.html'),['class' => 'btn btn-primary btn-block']) ?>
 
                 </div>
             </div>
+
         <!-- /.social-auth-links -->
     </div>
     <!-- /.login-card-body -->
