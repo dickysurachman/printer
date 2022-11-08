@@ -15,7 +15,7 @@ use yii\widgets\DetailView;
             'nama',
             'nie',
             'gtin',
-            'status',
+            //'status',
         ],
     ]) ?>
 

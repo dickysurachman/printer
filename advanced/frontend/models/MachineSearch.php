@@ -18,7 +18,7 @@ class MachineSearch extends Machine
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
+            [['id', 'status','statusm'], 'integer'],
             [['tanggal', 'nama', 'ip', 'key'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class MachineSearch extends Machine
             'id' => $this->id,
             'tanggal' => $this->tanggal,
             'status' => $this->status,
+            'statusm' => $this->statusm,
         ]);
 
         $query->andFilterWhere(['like', 'nama', $this->nama])

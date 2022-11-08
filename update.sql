@@ -410,3 +410,6 @@ CREATE TRIGGER `deletepk1` AFTER DELETE ON `itempallet` FOR EACH ROW DELETE from
 CREATE TRIGGER `deleteki1a` AFTER DELETE ON `item` FOR EACH ROW DELETE from kardusitem where iddetail=old.id;
 CREATE TRIGGER `deletepk1a` AFTER DELETE ON `itemkardus` FOR EACH ROW DELETE from palletkardus where idkardus=old.id;
 
+
+07-11-2022
+alter table `machine` add `statusm` int(2) DEFAULT '0';

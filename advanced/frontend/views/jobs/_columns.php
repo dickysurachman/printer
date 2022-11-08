@@ -30,10 +30,10 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'gtin',
     ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'status',
-    ],
+    //[
+    //    'class'=>'\kartik\grid\DataColumn',
+    //    'attribute'=>'status',
+    //],
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,

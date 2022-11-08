@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Url;
-$st=['off','on'];
+$st=['0'=>'off','1'=>'on'];
+$st2=['pilih'=>'pilih','0'=>'off','1'=>'on'];
+//$st2=['off','on'];
 return [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -35,6 +37,12 @@ return [
         'filter'=> $st,
         'attribute'=>'status',
         'value'=>'statusnya'
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        //'filter'=> $st2,
+        'attribute'=>'statusm',
+        'value'=>'statusmc',
     ],
     [
         'class' => 'kartik\grid\ActionColumn',

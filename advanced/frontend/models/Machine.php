@@ -31,7 +31,7 @@ class Machine extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal'], 'safe'],
-            [['status'], 'integer'],
+            [['status','statusm'], 'integer'],
             [['nama', 'ip', 'key'], 'string', 'max' => 100],
         ];
     }
@@ -40,6 +40,14 @@ class Machine extends \yii\db\ActiveRecord
     public function getStatusnya()
     {
         if($this->status==0){
+            return "Off";
+        } else {
+            return "On";
+        }
+    }    
+    public function getStatusmc()
+    {
+        if($this->statusm==0){
             return "Off";
         } else {
             return "On";
@@ -56,7 +64,8 @@ class Machine extends \yii\db\ActiveRecord
             'nama' => Yii::t('yii', 'Nama'),
             'ip' => Yii::t('yii', 'IP Public'),
             'key' => Yii::t('yii', 'Key'),
-            'status' => Yii::t('yii', 'Status'),
+            'status' => Yii::t('yii', 'Lock'),
+            'statusm' => Yii::t('yii', 'Status Machine'),
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use app\models\Machine;
 
 /**
  * Login form
@@ -57,6 +58,11 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            $mac=Machine::find()->all();
+            foreach ($mac as $value) {
+                $value->statusm=0;
+                $value->save();
+            }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         

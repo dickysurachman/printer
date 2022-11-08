@@ -15,15 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 $st=['off','on'];
+$st2=['off','on'];
 $kolom=[
 [
         'class' => 'kartik\grid\SerialColumn',
         'width' => '30px',
     ],
-        // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'id',
-    // ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal',
@@ -44,7 +41,13 @@ $kolom=[
         'class'=>'\kartik\grid\DataColumn',
         'filter'=> $st,
         'attribute'=>'status',
-        'value'=>'statusnya'
+        'value'=>'statusnya',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        //'filter'=> $st2,
+        'attribute'=>'statusm',
+        'value'=>'statusmc',
     ]
 ]
 ?>

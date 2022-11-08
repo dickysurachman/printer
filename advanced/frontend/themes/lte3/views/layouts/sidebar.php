@@ -137,7 +137,7 @@ use hscstudio\mimin\components\Mimin;
                     ],
                     
                     ['label' => \Yii::t('yii', 'Login'), 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => \Yii::t('yii', 'Change Password'), 'url' => ['site/password'], 'icon' => 'key', 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => \Yii::t('yii', 'Change Password'), 'url' => ['site/password'], 'icon' => 'key', 'visible' => Mimin::checkRoute('rep/password')], //!Yii::$app->user->isGuest
                     ['label' =>  \Yii::t('yii', 'Logout'),'url' => ['site/logout'],'template'=>'<a class="nav-link" href="{url}" data-method="post"><i class="nav-icon fas fa-sign-in-alt"></i>{label}</a>','icon' => 'sign-in-alt', 'visible' => !Yii::$app->user->isGuest]
 
                 ]

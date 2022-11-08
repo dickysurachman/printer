@@ -121,6 +121,8 @@ class SiteController extends Controller
             ];
         }
         }
+        $h->statusm=1;
+        $h->save();
         }
     }
     public function actionInfox(){
@@ -162,6 +164,8 @@ class SiteController extends Controller
                 $mm->save();
                 return "save";
             }
+            $h->statusm=1;
+            $h->save();
         }
     }        
     public function actionCamerax($status,$key){        
@@ -174,6 +178,8 @@ class SiteController extends Controller
                 $mm->save();
                 return "save";
             }
+        $h->statusm=1;
+        $h->save();
         }
     }       
     public function actionCamerakardus($status,$key){        

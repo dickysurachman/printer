@@ -35,5 +35,8 @@ class RepController extends \yii\web\Controller
     public function actionEventlog(){
         
     }
+    public function actionPassword(){
+        
+    }
 
 }
