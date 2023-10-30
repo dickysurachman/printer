@@ -1,6 +1,6 @@
 <?php
 $ss=date("Y-m-d");
-$ex=date("Y-m-d",strtotime("2022-12-22"));
+$ex=date("Y-m-d",strtotime("2023-12-22"));
 if(strtotime($ss)>=strtotime($ex)){
     echo "Time Expired";
     die();
