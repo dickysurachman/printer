@@ -217,9 +217,9 @@ class UserkController extends Controller
             $authItems = ArrayHelper::map(
             AuthItem::find()->where('type=1 and name like "%serial%"')->asArray()->all(),
             'name', 'name');
-         } else if(strpos("XOXX".Yii::$app->user->identity->username, "kardus")) {
+         } else if(strpos("XOXX".Yii::$app->user->identity->username, "karton")) {
             $authItems = ArrayHelper::map(
-            AuthItem::find()->where('type=1 and name like "%kardus%"')->asArray()->all(),
+            AuthItem::find()->where('type=1 and name like "%karton%"')->asArray()->all(),
             'name', 'name');
 
          } else if(strpos("XOXX".Yii::$app->user->identity->username, "pallet")) {
@@ -229,7 +229,7 @@ class UserkController extends Controller
 
          } else {
             $authItems = ArrayHelper::map(
-            AuthItem::find()->where('type=1 and name like "%karton%"')->asArray()->all(),
+            AuthItem::find()->where("type=1 and name not like '%serial%' and name not like '%karton%' and name not like '%pallet%'")->asArray()->all(),
             //AuthItem::find()->where([
             //    'type' => 1,
             //])->asArray()->all(),

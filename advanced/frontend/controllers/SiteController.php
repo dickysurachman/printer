@@ -638,8 +638,9 @@ public function actionEksekusi()
         $filename=Yii::$app->security->generateRandomString() . '0-' . time().".zip";
         $zip = new \ZipArchive(); 
         $zip->open($filename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-        $zip->addFile('runcamera.bat'); 
-        $zip->addFile('camerasrv.py'); 
+        //$zip->addFile('runcamera.bat'); 
+        $zip->addFile('camera.bat'); 
+        $zip->addFile('servercamera.js'); 
         $zip->addFile('setting2.txt'); 
         $zip->close();
         //$zip->createZip($zip,$filename);

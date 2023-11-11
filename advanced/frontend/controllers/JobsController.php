@@ -102,7 +102,7 @@ class JobsController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Jobs #".$id,
+                    'title'=> "Products #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -134,7 +134,7 @@ class JobsController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Jobs",
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Products",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -145,7 +145,7 @@ class JobsController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Jobs",
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Products",
                     'content'=>'<span class="text-success">'.Yii::t('yii2-ajaxcrud', 'Create').' Jobs '.Yii::t('yii2-ajaxcrud', 'Success').'</span>',
                     'footer'=> Html::button(Yii::t('yii2-ajaxcrud', 'Close'), ['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                             Html::a(Yii::t('yii2-ajaxcrud', 'Create More'), ['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
@@ -153,7 +153,7 @@ class JobsController extends Controller
                 ];         
             }else{           
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Jobs",
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Create New')." Products",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -196,7 +196,7 @@ class JobsController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Jobs #".$id,
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Products #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -206,7 +206,7 @@ class JobsController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Jobs #".$id,
+                    'title'=> "Products #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -215,7 +215,7 @@ class JobsController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Jobs #".$id,
+                    'title'=> Yii::t('yii2-ajaxcrud', 'Update')." Products #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),

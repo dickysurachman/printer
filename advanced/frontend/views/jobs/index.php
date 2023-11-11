@@ -10,7 +10,7 @@ use yii2ajaxcrud\ajaxcrud\BulkButtonWidget;
 /* @var $searchModel app\models\ItemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yii', 'Master Jobs');
+$this->title = Yii::t('yii', 'Master Product');
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
@@ -19,7 +19,7 @@ CrudAsset::register($this);
 <div class="item-index">
     <?php //= Html::a(Yii::t('yii', 'Import Job'), ['item/uploadcsv'], ['class' => 'btn btn-success']) ?>
 
-    <?php  echo $this->render('_searchd', ['model' => $searchModel]); ?>
+    <?php  //echo $this->render('_searchd', ['model' => $searchModel]); ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',

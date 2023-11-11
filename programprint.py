@@ -50,7 +50,6 @@ print("BUFFER ",BUFFER_SIZE)
 print("URL API",settt[0])
 print("DURASI TIMER (dalam detik)",settt[2])
 print("KEY",keyyy)
-
 file_object.write("Start Time  ="+ str(current_time)+"\n")
 file_object.write("IP Perangkat "+ str(TCP_IP)+"\n")
 file_object.write("Port Perangkat "+ str(TCP_PORT)+"\n")

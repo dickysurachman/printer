@@ -1,7 +1,11 @@
 <?php
 date_default_timezone_set("Asia/Bangkok");
 $ss=date("Y-m-d");
+<<<<<<< HEAD
 $ex=date("Y-m-d",strtotime("2023-12-22"));
+=======
+$ex=date("Y-m-d",strtotime("2024-12-22"));
+>>>>>>> 7e1fd0538531738610042049ea188b553c6af868
 //echo $ss ."//".$ex;
 if(strtotime($ss)>=strtotime($ex)){
     echo "Time Expired";
