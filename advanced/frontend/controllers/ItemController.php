@@ -232,6 +232,7 @@ class ItemController extends Controller
         $sql=Yii::$app->db->createCommand("update itemmasterd set status=0,statusc=0 where statusc=2 and idmaster=".$id)->execute();
         return 'failed';
         }
+        
     }
 
 
