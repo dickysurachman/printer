@@ -74,7 +74,7 @@ class ItemkController extends Controller
 
         if(isset($model)){
             $this->layout=false;
-            return $this->render('viewpr', [
+            return $this->render('viewprzd220', [
                 'model' => $model,
 //                'searchModel' => $searchModel,
 //                'dataProvider' => $dataProvider,

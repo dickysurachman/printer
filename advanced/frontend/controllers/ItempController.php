@@ -74,7 +74,7 @@ class ItempController extends Controller
         if($model->var_8==$cc){
         if(isset($model)){
             $this->layout=false;
-            return $this->render('viewpr', [
+            return $this->render('viewprzd220', [
                 'model' => $model,
             ]);
 
