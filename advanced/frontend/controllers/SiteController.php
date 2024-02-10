@@ -125,6 +125,92 @@ class SiteController extends Controller
         $h->save();
         }
     }
+    public function actionInfory($key){
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+        $ipx=$h->ip;
+        if(trim($ipx)=="") {
+            $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->all();
+            if(isset($res)) {
+                $sql=Yii::$app->db->createCommand("update itemmasterd set status=2 where iddetail in (select id from item where machine=".$h->id." and status=1)")->execute();
+                $sql=Yii::$app->db->createCommand("update item set status=2 where machine=".$h->id." and status=1")->execute();
+            }
+            /*foreach($res as $value){
+                $value->status=2;
+                $value->save();
+                $det=Itemmasterd::findOne(['iddetail'=>$value]);
+                $det->status=1;
+                $det->save();
+            }*/
+            $h->status=1;
+            $h->save();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+            'message' => $res,
+            'code' => 100,
+            ];
+
+        } else {
+
+        $ipy=$_SERVER['REMOTE_ADDR'];
+        if(($ipx==$ipy) or ($ipy=="::1")) {      
+            $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->all();
+            if(isset($res)) {
+                $sql=Yii::$app->db->createCommand("update itemmasterd set status=2 where iddetail in (select id from item where machine=".$h->id." and status=1)")->execute();
+                $sql=Yii::$app->db->createCommand("update item set status=2 where machine=".$h->id." and status=1")->execute();
+            }
+            /*            
+            foreach($res as $value){
+                $value->status=2;
+                $value->save();
+                $det=Itemmasterd::findOne(['iddetail'=>$value]);
+                $det->status=1;
+                $det->save();
+            }*/
+            $h->status=1;
+            $h->save();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+            'message' => $res,
+            'code' => 100,
+            ];
+        }
+        }
+        $h->statusm=1;
+        $h->save();
+        }
+    }
+
+    public function actionInforytest($key){
+        $h=Machine::find()->where(['key'=>$key])->one();
+        if(isset($h)) {
+        $ipx=$h->ip;
+        if(trim($ipx)=="") {
+            $count=Item::find()->where(['status'=>2,'machine'=>$h->id])->count();
+            $res=Item::find()->where(['status'=>2,'machine'=>$h->id])->orderBy(['id'=>SORT_DESC])->limit(300)->all();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+            'message' => $res,
+            'code' => 100,
+            ];
+
+        } else {
+
+        $ipy=$_SERVER['REMOTE_ADDR'];
+        if(($ipx==$ipy) or ($ipy=="::1")) { 
+            $count=Item::find()->where(['status'=>2,'machine'=>$h->id])->count();     
+            $res=Item::find()->where(['status'=>2,'machine'=>$h->id])->orderBy(['id'=>SORT_DESC])->limit(300)->all();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+            'message' => $res,
+            'code' => 100,
+            ];
+        }
+        }
+        //$h->statusm=1;
+        //$h->save();
+        }
+    }
     public function actionInfox(){
         $res=Item::find()->where(['status'=>1])->limit(50)->all();
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -706,6 +792,7 @@ public function actionEksekusi()
             fwrite($myfile, $model->port_alat."\n");
             fwrite($myfile, $model->buffer."\n");
             fwrite($myfile, $model->key."\n");
+            fwrite($myfile, $model->namafile."\n");
             fclose($myfile);
             //return $this->goHome();
             return $this->redirect(['site/settingsaver']);
