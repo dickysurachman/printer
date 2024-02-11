@@ -181,13 +181,13 @@ class SiteController extends Controller
         }
     }
 
-    public function actionInforytest($key){
+    public function actionInforytest($key,$lim){
         $h=Machine::find()->where(['key'=>$key])->one();
         if(isset($h)) {
         $ipx=$h->ip;
         if(trim($ipx)=="") {
             $count=Item::find()->where(['status'=>2,'machine'=>$h->id])->count();
-            $res=Item::find()->where(['status'=>2,'machine'=>$h->id])->orderBy(['id'=>SORT_DESC])->limit(300)->all();
+            $res=Item::find()->where(['status'=>2,'machine'=>$h->id])->orderBy(['id'=>SORT_DESC])->limit($lim)->all();
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
             'message' => $res,
@@ -199,7 +199,7 @@ class SiteController extends Controller
         $ipy=$_SERVER['REMOTE_ADDR'];
         if(($ipx==$ipy) or ($ipy=="::1")) { 
             $count=Item::find()->where(['status'=>2,'machine'=>$h->id])->count();     
-            $res=Item::find()->where(['status'=>2,'machine'=>$h->id])->orderBy(['id'=>SORT_DESC])->limit(300)->all();
+            $res=Item::find()->where(['status'=>2,'machine'=>$h->id])->orderBy(['id'=>SORT_DESC])->limit($lim)->all();
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
             'message' => $res,
