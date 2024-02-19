@@ -29,7 +29,7 @@ console.log(arr1);
 var url = arr1[0];
 var port=arr1[1];
 var key=arr1[2];
-
+let angka=0;
 
 // emitted when new client connects
 server.on('connection',function(socket){
@@ -82,11 +82,12 @@ socket.setTimeout(800000,function(){
 
 
 socket.on('data',function(data){
+  angka++;
   var bread = socket.bytesRead;
   var bwrite = socket.bytesWritten;
   console.log('Bytes read : ' + bread);
   console.log('Bytes written : ' + bwrite);
-  console.log('Data sent to server : ' + url+'?status='+data+'&key='+key);
+  console.log(angka + ' Data sent to server : ' + url+'?status='+data+'&key='+key);
   http.get(url+'?status='+data+'&key='+key, (resp) => {
     let data = '';
     // A chunk of data has been received.
