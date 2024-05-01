@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
-$this->title=Yii::t('yii', 'Setting Camera');
+$this->title=Yii::t('yii', 'Setting Program');
 /* @var $this yii\web\View */
 /* @var $model app\models\Item */
 /* @var $form yii\widgets\ActiveForm */
