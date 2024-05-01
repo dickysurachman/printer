@@ -101,8 +101,10 @@ class SiteController extends Controller
             ];
 
         } else {
-
         $ipy=$_SERVER['REMOTE_ADDR'];
+        if($h->status==0) {
+            $ipy=$ipx;
+        }
         if(($ipx==$ipy) or ($ipy=="::1")) {      
             $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->limit(10)->all();
             foreach($res as $value){
@@ -153,6 +155,10 @@ class SiteController extends Controller
         } else {
 
         $ipy=$_SERVER['REMOTE_ADDR'];
+        if($h->status==0) {
+            $ipy=$ipx;
+        }
+
         if(($ipx==$ipy) or ($ipy=="::1")) {      
             $res=Item::find()->where(['status'=>1,'machine'=>$h->id])->all();
             if(isset($res)) {
