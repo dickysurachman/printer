@@ -20,6 +20,7 @@ use app\models\Machine;
 use yii\widgets\DetailView;
 use Da\QrCode\QrCode;
 use app\models\Scanlog;
+use app\models\Paramsys;
 
 /**
  * ItemController implements the CRUD actions for Item model.
@@ -122,6 +123,114 @@ class ItemController extends Controller
             $var4=$dat1[1];
             $dat1=explode(")",$data[5]);
             $var5=$dat1[1];
+            //$sc=Item::find()->where(['var_5'=>$var5,'status'=>2])->one();
+            $sc=Item::find()->where(['var_5'=>$var5,'machine'=>$master->machine])->one();
+            if(isset($sc)){
+                $sc->status=2;
+                $sc->save();
+                $det=Itemmasterd::find()->where(['iddetail'=>$sc->id])->one();
+                $det->statusc=1;
+                $det->save();
+                $value->id_job=$det->idmaster;
+                $value->id_item=$sc->id;
+                $ver1="PASS";
+                $value->dbs="True";
+                $value->stat="PASS";
+                $value->process=1;
+                //$value->status=1;
+                $value->save();
+            } else {
+                $ver1="FAIL";
+                $var="True";
+                $value->dbs="False";
+                $value->stat="FAIL";
+                $value->process=1;
+                //$value->status=1;
+                $value->save();
+
+            }
+        } else {
+            $itemd=Itemmasterd::find()->where(['idmaster'=>$id])->orderBy(['id'=>SORT_ASC])->all();
+            $j=1;
+            foreach($itemd as $vall){
+                if($i==$j){
+                    $vall->statusc=2;
+                    $vall->save();
+                    $value->id_job=$vall->idmaster;
+                    $value->id_item=$vall->id;
+                }
+                $j++;
+            }
+            $value->dbs="False";
+            $value->stat="FAIL";
+            $value->process=1;
+            ////$value->status=1;
+            $value->save();
+
+        }
+        } else {
+            $ver=$value->dbs;
+            $ver1=$value->stat;
+        }
+        $tab.="<tr><td>".$i."</td>";
+        $tab.= "<td>".$value->scan."</td>";
+        $tab.= "<td>".$ver."</td>";
+        $tab.= "<td>".date('d-m-Y H:i:s',strtotime($value->tanggal))."</td>";
+        $tab.= "<td>".$ver1."</td></tr>";
+        $i++;
+     }
+        $tab.="</table>";
+        return $tab;
+
+    }    
+
+
+public function actionTablexx($id){
+    $param=Paramsys::findOne(['status'=>1]);
+    $total= $param->jumlah;
+    $delim=$param->pemisah;
+    $delim2=$param->pemisah2;
+    $snseq=$param->SN;
+    $tab='<table class="table table-hover table-striped">
+               <thead class="thead-dark">
+                <th>No</th>
+                <th>Log Scan</th>
+                <th>Database</th>
+                <th>Time Stamp</th>
+                <th>Status</th>
+            </thead>';
+    $i=1;
+    $master=Itemmaster::findOne($id);
+    $models=Scanlog::find()->where(['machine'=>$master->machine,'status'=>'0'])->orderBy(['id'=>SORT_ASC])->all();
+     $ver="False";
+    $ver1="FAIL";
+    foreach($models as $value){
+        if($value->process==0) {
+        $data=explode($delim, $value->scan);
+        $ver="False";
+        $ver1="FAIL";
+        if(count($data)==$total){
+            $ver="True";
+            if(is_null($delim2)==false) {                
+                $dat1=explode($delim2,$data[1]);
+                $var1=$dat1[1];
+                $dat1=explode($delim2,$data[2]);
+                $var2=$dat1[1]; 
+                $dat1=explode($delim2,$data[3]);
+                $var3=$dat1[1];
+                $dat1=explode($delim2,$data[4]);
+                $var4=$dat1[1];
+                $dat1=explode($delim2,$data[$snseq]);
+                $var5=$dat1[1];
+
+            } else {
+                $var1=$data[0];
+                $var2=$data[1];
+                $var3=$data[2];
+                $var4=$data[3];
+                $var5=$data[$snseq];
+
+            }
             //$sc=Item::find()->where(['var_5'=>$var5,'status'=>2])->one();
             $sc=Item::find()->where(['var_5'=>$var5,'machine'=>$master->machine])->one();
             if(isset($sc)){

@@ -40,6 +40,7 @@ use hscstudio\mimin\components\Mimin;
                     ['label' => \Yii::t('yii', 'Routes'), 'url' => ['/mimin/route/index'], 'icon' => 'fas fa-angle-double-right','visible'=>Mimin::checkRoute('mimin/route')],
                     ['label' => 'Master Machine', 'url'=>['/machine/index'],'icon' => 'microchip', 'visible' => Mimin::checkRoute('machine/index')],
                     ['label' => 'Master Line', 'url'=>['/line/index'],'icon' => 'bookmark', 'visible' => Mimin::checkRoute('machine/index')],
+                    ['label' => 'Parameters Scan', 'url'=>['/param/index'],'icon' => 'camera', 'visible' => Mimin::checkRoute('machine/index')],
                     ['label' => 'Company', 'url'=>['/perusahaan/index'],'icon' => 'address-book', 'visible' => Mimin::checkRoute('perusahaan/index')],
                      ['label' => \Yii::t('yii', 'Master Product'), 'url' => ['/jobs/index'], 'icon' => 'file','visible'=>Mimin::checkRoute('jobs/index')],
                         ]
