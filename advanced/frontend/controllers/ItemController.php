@@ -211,7 +211,7 @@ public function actionTablexx($id){
         $ver1="FAIL";
         if(count($data)==$total){
             $ver="True";
-            if(is_null($delim2)==false) {                
+            if(is_null($delim2)==false && trim($delim2)<>'') {                
                 $dat1=explode($delim2,$data[1]);
                 $var1=$dat1[1];
                 $dat1=explode($delim2,$data[2]);

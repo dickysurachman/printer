@@ -27,7 +27,7 @@ return [
         'attribute'=>'pemisah2',
         'value'=> function ($model){
                     $delim2=$model->pemisah2;
-                    return (is_null($delim2)==false?$model->pemisah2:'Not Set');
+                    return ((is_null($delim2)==false && trim($delim2)<>'')?$model->pemisah2:'Not Set');
                 }
     ],
     [
