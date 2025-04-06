@@ -91,6 +91,7 @@ use hscstudio\mimin\components\Mimin;
                         ['label' => 'Item Barcode', 'url'=>['/item/index'],'icon' => 'th', 'visible' => Mimin::checkRoute('item/index')],                    
                         ['label' => 'Printer (ANSER)', 'url'=>['/site/settingsave'],'icon' => 'link', 'visible' => Mimin::checkRoute('item/index')],
                         ['label' => 'Printer (RYNAN)', 'url'=>['/site/settingsaver'],'icon' => 'link', 'visible' => Mimin::checkRoute('item/index')],
+                        ['label' => 'Printer (TIJ)', 'url'=>['/site/settingsavetj'],'icon' => 'link', 'visible' => Mimin::checkRoute('item/index')],
                         ['label' => 'Camera Configuration', 'url'=>['/site/settingcamera'],'icon' => 'link', 'visible' => Mimin::checkRoute('item/index')],
                         ]
                     ],

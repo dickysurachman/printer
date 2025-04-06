@@ -742,6 +742,23 @@ public function actionEksekusi()
         header("Expires: 0"); 
         readfile("$filename");
 
+    }   
+    public function actionGetprinttj(){
+        $filename=Yii::$app->security->generateRandomString() . '0-' . time().".zip";
+        $zip = new \ZipArchive(); 
+        $zip->open($filename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $zip->addFile('runprintertij.bat'); 
+        $zip->addFile('programprintj.py'); 
+        $zip->addFile('setting.txt'); 
+        $zip->close();
+        //$zip->createZip($zip,$filename);
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+        header('Content-Length: ' . filesize($filename));
+        header("Pragma: no-cache"); 
+        header("Expires: 0"); 
+        readfile("$filename");
+
     }
     public function actionGetcamera(){
         $filename=Yii::$app->security->generateRandomString() . '0-' . time().".zip";
@@ -781,6 +798,29 @@ public function actionEksekusi()
         }
 
         return $this->render('settingsave', [
+            'model' => $model,
+        ]);
+    }     
+    public function actionSettingsavetj()
+    {
+        $model = new Setting();
+        if ($model->load(Yii::$app->request->post())) {
+            Yii::$app->session->setFlash('success', 'Save File Setting');
+            $myfile = fopen("setting.txt", "w") or die("Unable to open file!");
+            //$txt = "Mickey Mouse\n";
+            fwrite($myfile, $model->url1."\n");
+            fwrite($myfile, $model->url2."\n");
+            fwrite($myfile, $model->timer."\n");
+            fwrite($myfile, $model->ip_alat."\n");
+            fwrite($myfile, $model->port_alat."\n");
+            fwrite($myfile, $model->buffer."\n");
+            fwrite($myfile, $model->key."\n");
+            fclose($myfile);
+            //return $this->goHome();
+            return $this->redirect(['site/settingsavetj']);
+        }
+
+    return $this->render('settingsave3', [
             'model' => $model,
         ]);
     }

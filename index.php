@@ -4,7 +4,7 @@ $ss=date("Y-m-d");
 
 $ex=date("Y-m-d",strtotime("2023-12-22"));
 
-$ex=date("Y-m-d",strtotime("2024-12-22"));
+$ex=date("Y-m-d",strtotime("2026-12-22"));
 
 //echo $ss ."//".$ex;
 if(strtotime($ss)>=strtotime($ex)){

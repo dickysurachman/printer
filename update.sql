@@ -413,3 +413,21 @@ CREATE TRIGGER `deletepk1a` AFTER DELETE ON `itemkardus` FOR EACH ROW DELETE fro
 
 07-11-2022
 alter table `machine` add `statusm` int(2) DEFAULT '0';
+
+
+
+01-05-2024
+CREATE TABLE `param_sys` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `pemisah` varchar(100) DEFAULT NULL,
+  `jumlah` int(2) DEFAULT 1,
+  `SN` int(2) DEFAULT 1,
+  `status` int(2) DEFAULT 0
+) ENGINE=InnoDB ;
+ALTER TABLE `param_sys`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `param_sys`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+alter table `param_sys` add `pemisah2` varchar(100) DEFAULT NULL;
