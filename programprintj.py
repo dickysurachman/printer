@@ -96,7 +96,7 @@ while True:
             #print("send:"+MESSAGE)
             #print("receiveddata:")
             #print(databalik.decode())
-            time.sleep(1)
+            time.sleep(3)
         for i in data['message']:
             file_object = open('log-print.txt', 'a')
             #print("data dari server")
