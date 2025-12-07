@@ -161,7 +161,7 @@ class JobController extends Controller
             $model=Item::find()->where(['id'=>$kk->iddetail])->one();
             if(isset($model)){
                 //$this->layout=false;
-                return $this->render('serialxx', [
+                return $this->render('serialxx1', [
                     'model' => $model,
                     'models' => $models,
                 ]);

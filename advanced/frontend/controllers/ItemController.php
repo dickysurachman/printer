@@ -305,8 +305,8 @@ public function actionTablexx($id){
             $model->status=1;
             $model->save();            
         }
-        
-}        return 'jalan';
+        }        
+        return 'jalan';
     }
     public function actionStop($id){
         $job=Itemmaster::findOne($id);

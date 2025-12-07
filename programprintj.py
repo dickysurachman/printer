@@ -97,40 +97,46 @@ while True:
             #print("receiveddata:")
             #print(databalik.decode())
             time.sleep(3)
-        for i in data['message']:
-            file_object = open('log-print.txt', 'a')
-            #print("data dari server")
-            #print(i)
-            #file_object.write("data dari server "+ str(i)+ "\n")
-            file_object.write("pengiriman data  s/n "+str(i['var_5']))
-            file_object.write("\n")
-            print("pengiriman data s/n",i['var_5'])
-            baca +="pengiriman data s/n"+str(i['var_5'])
-            MESSAGE='MFD|vaar1:'+i['var_1']+'|vaar2:'+ i['var_2']+'|vaar3:'+ i['var_3']+'|vaar4:'+ i['var_4']+'|vaar5:'+ i['var_5']
-            #MESSAGE='{"command":"DATA","data":{"POD1":"' + i['var_1']+'","POD2":"' + i['var_2']+'","POD3":"' + i['var_3']+'","POD4":"' + i['var_4']+'","POD5":"' + i['var_5']+'"} }' 
-            batas=int(i['ulang'])
-            try:
-                s.send(MESSAGE.encode('ascii'))
-                time.sleep(1)
-                databalik=s.recv(int(BUFFER_SIZE))
-                print("receiveddata:")
-                print(databalik.decode('ascii'))
-                file_object.write("receiveddata :"+str(databalik)+"\n")
-                dua=str(databalik.decode('ascii'))
-                file_object.write("send data printer" + str(MESSAGE)+"\n")
-                #file_object.write("receiveddata " + str(data)+"\n")
-                    
-            except socket.error:
-                url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca=koneksierror"+str(baca.replace(";",""))+"&key="+str(keyyy)
-                response2 = request.urlopen(url1)
-                print(str(y) + " sending to server " +url1)
-                print ('koneksi error')
-                file_object.write("koneksi error \n")
-                file_object.write("sending to server " + str(url1))
+            for i in data['message']:
+                file_object = open('log-print.txt', 'a')
+                #print("data dari server")
+                #print(i)
+                #file_object.write("data dari server "+ str(i)+ "\n")
+                file_object.write("pengiriman data  s/n "+str(i['var_5']))
+                file_object.write("\n")
+                print("pengiriman data s/n",i['var_5'])
+                baca +="pengiriman data s/n"+str(i['var_5'])
+                MESSAGE='MFD|vaar1:'+i['var_1']+'|vaar2:'+ i['var_2']+'|vaar3:'+ i['var_3']+'|vaar4:'+ i['var_4']+'|vaar5:'+ i['var_5']
+                #MESSAGE='{"command":"DATA","data":{"POD1":"' + i['var_1']+'","POD2":"' + i['var_2']+'","POD3":"' + i['var_3']+'","POD4":"' + i['var_4']+'","POD5":"' + i['var_5']+'"} }' 
+                batas=int(i['ulang'])
+                try:
+                    s.send(MESSAGE.encode('ascii'))
+                    time.sleep(1)
+                    databalik=s.recv(int(BUFFER_SIZE))
+                    print("receiveddata:")
+                    print(databalik.decode('ascii'))
+                    file_object.write("receiveddata :"+str(databalik)+"\n")
+                    dua=str(databalik.decode('ascii'))
+                    file_object.write("send data printer" + str(MESSAGE)+"\n")
+                    #file_object.write("receiveddata " + str(data)+"\n")
+                except socket.error:
+                    url1 = str(settt[1])+"?id="+str(i['id'])+"&status=failure&logbaca=koneksierror"+str(baca.replace(";",""))+"&key="+str(keyyy)
+                    response2 = request.urlopen(url1)
+                    print(str(y) + " sending to server " +url1)
+                    print ('koneksi error')
+                    file_object.write("koneksi error \n")
+                    file_object.write("sending to server " + str(url1))
                 #file_object.close()    
                 #break
                 #finally:
                     #s.close()
+            MESSAGE='STOP'
+            s.send(MESSAGE.encode('ascii'))
+            databalik=s.recv(int(BUFFER_SIZE))
+            print("send:"+MESSAGE)
+            print("receiveddata:")
+            print(databalik.decode('ascii'))
+
         file_object.close()
         #time.sleep(3)
         s.close()
